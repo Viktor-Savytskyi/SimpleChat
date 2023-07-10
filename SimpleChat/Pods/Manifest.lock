@@ -1,0 +1,32 @@
+PODS:
+  - InputBarAccessoryView (5.5.0):
+    - InputBarAccessoryView/Core (= 5.5.0)
+  - InputBarAccessoryView/Core (5.5.0)
+  - MessageKit (3.8.0):
+    - InputBarAccessoryView (~> 5.5.0)
+  - SDWebImage (5.15.6):
+    - SDWebImage/Core (= 5.15.6)
+  - SDWebImage/Core (5.15.6)
+  - SkyFloatingLabelTextField (4.0.0)
+
+DEPENDENCIES:
+  - MessageKit
+  - SDWebImage
+  - SkyFloatingLabelTextField
+
+SPEC REPOS:
+  trunk:
+    - InputBarAccessoryView
+    - MessageKit
+    - SDWebImage
+    - SkyFloatingLabelTextField
+
+SPEC CHECKSUMS:
+  InputBarAccessoryView: 1d7b0a672b36e370f01f264b3907ef39d03328e3
+  MessageKit: a1ba0c69ebead94029867853eb44dd05b9b3f453
+  SDWebImage: d47d81bea8a77187896b620dc79c3c528e8906b9
+  SkyFloatingLabelTextField: 79ddc40e4ad59707fedbb48d605417aee48bb78a
+
+PODFILE CHECKSUM: d6a2803f153c045b4bbd8f6c7c197d8c8ec5dcea
+
+COCOAPODS: 1.11.3

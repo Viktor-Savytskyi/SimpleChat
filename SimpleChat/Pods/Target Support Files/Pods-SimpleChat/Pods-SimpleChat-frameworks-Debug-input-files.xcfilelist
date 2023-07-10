@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-SimpleChat/Pods-SimpleChat-frameworks.sh
+${BUILT_PRODUCTS_DIR}/InputBarAccessoryView/InputBarAccessoryView.framework
+${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework
+${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework
