@@ -16,6 +16,12 @@
 		488045712A581253007986B7 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488045702A581253007986B7 /* ChatsViewController.swift */; };
 		488045732A581614007986B7 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488045722A581614007986B7 /* ImagePickerController.swift */; };
 		488045752A5841D1007986B7 /* UIPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488045742A5841D1007986B7 /* UIPickerController.swift */; };
+		488B2A562A5C01DA00F52973 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A552A5C01DA00F52973 /* LoginPresenter.swift */; };
+		488B2A5B2A5C020B00F52973 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A5A2A5C020B00F52973 /* LoginRouter.swift */; };
+		488B2A5E2A5C021F00F52973 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A5D2A5C021F00F52973 /* LoginInteractor.swift */; };
+		488B2A612A5C023300F52973 /* LoginEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A602A5C023300F52973 /* LoginEntity.swift */; };
+		488B2A642A5C029200F52973 /* GlobalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A632A5C029200F52973 /* GlobalRouter.swift */; };
+		48C993E32A5C29480072686A /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C993E22A5C29480072686A /* ImagePickerManager.swift */; };
 		92E18A3893B3C5A35C9E09F4 /* Pods_SimpleChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D628289AF729D785799BD8 /* Pods_SimpleChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +57,12 @@
 		488045702A581253007986B7 /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 		488045722A581614007986B7 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		488045742A5841D1007986B7 /* UIPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPickerController.swift; sourceTree = "<group>"; };
+		488B2A552A5C01DA00F52973 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		488B2A5A2A5C020B00F52973 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		488B2A5D2A5C021F00F52973 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		488B2A602A5C023300F52973 /* LoginEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEntity.swift; sourceTree = "<group>"; };
+		488B2A632A5C029200F52973 /* GlobalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalRouter.swift; sourceTree = "<group>"; };
+		48C993E22A5C29480072686A /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		59D7E86C2C6F035513E33EC0 /* Pods-SimpleChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.debug.xcconfig"; path = "Target Support Files/Pods-SimpleChat/Pods-SimpleChat.debug.xcconfig"; sourceTree = "<group>"; };
 		A2D628289AF729D785799BD8 /* Pods_SimpleChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -123,16 +135,103 @@
 			children = (
 				488045402A57EF84007986B7 /* AppDelegate.swift */,
 				488045422A57EF84007986B7 /* SceneDelegate.swift */,
-				488045442A57EF84007986B7 /* LoginViewController.swift */,
-				488045742A5841D1007986B7 /* UIPickerController.swift */,
-				488045722A581614007986B7 /* ImagePickerController.swift */,
-				488045702A581253007986B7 /* ChatsViewController.swift */,
+				488B2A622A5C028400F52973 /* Managers */,
+				488B2A652A5C039F00F52973 /* Reuseble */,
+				488B2A542A5C019B00F52973 /* LoginModule */,
+				488B2A662A5C03AE00F52973 /* ChatsModule */,
 				488045462A57EF84007986B7 /* Main.storyboard */,
 				488045492A57EF86007986B7 /* Assets.xcassets */,
 				4880454B2A57EF86007986B7 /* LaunchScreen.storyboard */,
 				4880454E2A57EF86007986B7 /* Info.plist */,
 			);
 			path = SimpleChat;
+			sourceTree = "<group>";
+		};
+		488B2A542A5C019B00F52973 /* LoginModule */ = {
+			isa = PBXGroup;
+			children = (
+				488B2A5F2A5C022600F52973 /* LoginEntity */,
+				488B2A5C2A5C021100F52973 /* LoginInteractor */,
+				488B2A592A5C01F600F52973 /* LoginRouter */,
+				488B2A582A5C01E800F52973 /* LoginViewController */,
+				488B2A572A5C01DE00F52973 /* LoginPresenter */,
+			);
+			path = LoginModule;
+			sourceTree = "<group>";
+		};
+		488B2A572A5C01DE00F52973 /* LoginPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				488B2A552A5C01DA00F52973 /* LoginPresenter.swift */,
+			);
+			path = LoginPresenter;
+			sourceTree = "<group>";
+		};
+		488B2A582A5C01E800F52973 /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				488045442A57EF84007986B7 /* LoginViewController.swift */,
+			);
+			path = LoginViewController;
+			sourceTree = "<group>";
+		};
+		488B2A592A5C01F600F52973 /* LoginRouter */ = {
+			isa = PBXGroup;
+			children = (
+				488B2A5A2A5C020B00F52973 /* LoginRouter.swift */,
+			);
+			path = LoginRouter;
+			sourceTree = "<group>";
+		};
+		488B2A5C2A5C021100F52973 /* LoginInteractor */ = {
+			isa = PBXGroup;
+			children = (
+				488B2A5D2A5C021F00F52973 /* LoginInteractor.swift */,
+			);
+			path = LoginInteractor;
+			sourceTree = "<group>";
+		};
+		488B2A5F2A5C022600F52973 /* LoginEntity */ = {
+			isa = PBXGroup;
+			children = (
+				488B2A602A5C023300F52973 /* LoginEntity.swift */,
+			);
+			path = LoginEntity;
+			sourceTree = "<group>";
+		};
+		488B2A622A5C028400F52973 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				488B2A632A5C029200F52973 /* GlobalRouter.swift */,
+				48C993E22A5C29480072686A /* ImagePickerManager.swift */,
+			);
+			name = Managers;
+			path = LoginModule;
+			sourceTree = "<group>";
+		};
+		488B2A652A5C039F00F52973 /* Reuseble */ = {
+			isa = PBXGroup;
+			children = (
+				488045742A5841D1007986B7 /* UIPickerController.swift */,
+				488045722A581614007986B7 /* ImagePickerController.swift */,
+			);
+			path = Reuseble;
+			sourceTree = "<group>";
+		};
+		488B2A662A5C03AE00F52973 /* ChatsModule */ = {
+			isa = PBXGroup;
+			children = (
+				488B2A672A5C03BF00F52973 /* ChatsViewController */,
+			);
+			path = ChatsModule;
+			sourceTree = "<group>";
+		};
+		488B2A672A5C03BF00F52973 /* ChatsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				488045702A581253007986B7 /* ChatsViewController.swift */,
+			);
+			path = ChatsViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,12 +409,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				488B2A612A5C023300F52973 /* LoginEntity.swift in Sources */,
 				488045452A57EF84007986B7 /* LoginViewController.swift in Sources */,
 				488045412A57EF84007986B7 /* AppDelegate.swift in Sources */,
+				488B2A562A5C01DA00F52973 /* LoginPresenter.swift in Sources */,
 				488045732A581614007986B7 /* ImagePickerController.swift in Sources */,
 				488045712A581253007986B7 /* ChatsViewController.swift in Sources */,
 				488045432A57EF84007986B7 /* SceneDelegate.swift in Sources */,
+				488B2A5B2A5C020B00F52973 /* LoginRouter.swift in Sources */,
 				488045752A5841D1007986B7 /* UIPickerController.swift in Sources */,
+				488B2A642A5C029200F52973 /* GlobalRouter.swift in Sources */,
+				48C993E32A5C29480072686A /* ImagePickerManager.swift in Sources */,
+				488B2A5E2A5C021F00F52973 /* LoginInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,23 +593,27 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 683FFW2T3C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleChat/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "PlayTest wants to use your camera";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "developer-team.SimpleChat";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ekreativeIntership.SimpleChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -517,23 +626,27 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 683FFW2T3C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleChat/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "PlayTest wants to use your camera";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "developer-team.SimpleChat";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ekreativeIntership.SimpleChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
