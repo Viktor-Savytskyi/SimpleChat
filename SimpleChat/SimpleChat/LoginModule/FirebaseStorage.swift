@@ -9,9 +9,11 @@ import Foundation
 import FirebaseStorage
 
 class FirebaseStorage {
-    static let folderName = "Avatars"
     
-    static func createRef(image: Data, completion: @escaping ((String?, Error?) -> Void)) {
+    static let shared = FirebaseStorage()
+    let folderName = "Avatars"
+    
+    func saveImageWithUrl(image: Data, completion: @escaping ((String?, Error?) -> Void)) {
         let imageRef = Storage.storage().reference().child(folderName).child("\(UUID().uuidString).png")
         imageRef.putData(image, metadata: nil) { (_, error) in
             if let error {

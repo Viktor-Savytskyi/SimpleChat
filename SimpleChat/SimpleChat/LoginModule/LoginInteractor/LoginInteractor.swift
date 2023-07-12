@@ -11,6 +11,6 @@ protocol LoginInteractorInput {
     
 }
 
-class LoginInteractor {
+class LoginInteractor: LoginInteractorInput {
     
 }

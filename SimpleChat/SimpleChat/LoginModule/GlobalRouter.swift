@@ -7,15 +7,17 @@
 
 import UIKit
 
-enum Screens {
-    case login
-    case chats
+enum Storyboards: String {
+    case main = "Main"
+}
+enum Screens: String {
+    case login = "LoginViewController"
+    case chats = "ChatsViewController"
 }
 
 final class GlobalRouter {
     
     private var navigationController: UINavigationController
-    
     static let shared = GlobalRouter()
     
     init() {
@@ -27,7 +29,6 @@ final class GlobalRouter {
         return navigationController
     }
     
-    
     func moveTo(screen: Screens) {
         switch screen {
         case .login:
@@ -38,12 +39,12 @@ final class GlobalRouter {
     }
     
     private func openLoginScreen() {
-        let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        let loginVC = LoginRouter.createLoginMoudle()
         navigationController.pushViewController(loginVC, animated: true)
     }
     
     private func openChatsScreen() {
-        let chatsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatsViewController") as! ChatsViewController
+        let chatsVC = UIStoryboard(name: Storyboards.main.rawValue, bundle: nil).instantiateViewController(withIdentifier: Screens.chats.rawValue) as! ChatsViewController
         navigationController.pushViewController(chatsVC, animated: true)
     }
 }

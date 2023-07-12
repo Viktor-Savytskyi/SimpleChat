@@ -5,10 +5,10 @@
 //  Created by Developer on 10.07.2023.
 //
 
-import Foundation
+import UIKit
 
 protocol LoginPresenterInput {
-    
+    func moveToChats()
 }
 
 protocol LoginPresenterOutput {
@@ -16,12 +16,25 @@ protocol LoginPresenterOutput {
 }
 
 class LoginPresenter {
-    var LoginViewController: LoginViewControllerInput!
-    var LoginInteractor: LoginInteractorInput!
-    var imagePickerManager: ImagePickerManager!
+    var viewController: LoginViewControllerInput
+    var interactor: LoginInteractorInput
+    var router: LoginRouterInput
+    var imagePickerManager: ImagePickerManager
 
-    init(imagePickerManager: ImagePickerManager!) {
+    init(viewController: LoginViewControllerInput,
+         interactor: LoginInteractorInput,
+         router: LoginRouterInput,
+         imagePickerManager: ImagePickerManager) {
+        self.viewController = viewController
+        self.interactor = interactor
+        self.router = router
         self.imagePickerManager = imagePickerManager
     }
     
+}
+
+extension LoginPresenter: LoginPresenterInput {
+    func moveToChats() {
+        router.moveToChats()
+    }
 }

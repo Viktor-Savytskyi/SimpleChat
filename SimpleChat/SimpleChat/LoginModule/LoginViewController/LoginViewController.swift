@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var enterButton: UIButton!
     
     var imagePickerManager: ImagePickerManager!
+    var presenter: LoginPresenterInput!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,7 +92,7 @@ class LoginViewController: UIViewController {
                     guard let self else { return }
                     self.avatarImageView.image = image
                     let imageData = image.jpegData(compressionQuality: 1) ?? Data()
-                    FirebaseStorage.createRef(image: imageData) { [weak self] url, error in
+                    FirebaseStorage.shared.saveImageWithUrl(image: imageData) { [weak self] url, error in
 //                        guard let self else { return }
                         if (error != nil) {
                             print(error?.localizedDescription ?? "")
@@ -117,7 +118,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func enterAction(_ sender: Any) {
-        GlobalRouter.shared.moveTo(screen: .chats)
+        presenter.moveToChats()
     }
     
 }
