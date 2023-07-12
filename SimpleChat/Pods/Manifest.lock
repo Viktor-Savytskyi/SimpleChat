@@ -1,32 +1,74 @@
 PODS:
+  - FirebaseAppCheckInterop (10.9.0)
+  - FirebaseAuthInterop (10.9.0)
+  - FirebaseCore (10.9.0):
+    - FirebaseCoreInternal (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/Logger (~> 7.8)
+  - FirebaseCoreExtension (10.9.0):
+    - FirebaseCore (~> 10.0)
+  - FirebaseCoreInternal (10.9.0):
+    - "GoogleUtilities/NSData+zlib (~> 7.8)"
+  - FirebaseStorage (10.9.0):
+    - FirebaseAppCheckInterop (~> 10.0)
+    - FirebaseAuthInterop (~> 10.0)
+    - FirebaseCore (~> 10.0)
+    - FirebaseCoreExtension (~> 10.0)
+    - GTMSessionFetcher/Core (< 4.0, >= 2.1)
+  - GoogleUtilities/Environment (7.11.1):
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/Logger (7.11.1):
+    - GoogleUtilities/Environment
+  - "GoogleUtilities/NSData+zlib (7.11.1)"
+  - GTMSessionFetcher/Core (3.1.1)
   - InputBarAccessoryView (5.5.0):
     - InputBarAccessoryView/Core (= 5.5.0)
   - InputBarAccessoryView/Core (5.5.0)
   - MessageKit (3.8.0):
     - InputBarAccessoryView (~> 5.5.0)
+  - PromisesObjC (2.2.0)
   - SDWebImage (5.15.6):
     - SDWebImage/Core (= 5.15.6)
   - SDWebImage/Core (5.15.6)
   - SkyFloatingLabelTextField (4.0.0)
 
 DEPENDENCIES:
+  - FirebaseStorage
   - MessageKit
   - SDWebImage
   - SkyFloatingLabelTextField
 
 SPEC REPOS:
   trunk:
+    - FirebaseAppCheckInterop
+    - FirebaseAuthInterop
+    - FirebaseCore
+    - FirebaseCoreExtension
+    - FirebaseCoreInternal
+    - FirebaseStorage
+    - GoogleUtilities
+    - GTMSessionFetcher
     - InputBarAccessoryView
     - MessageKit
+    - PromisesObjC
     - SDWebImage
     - SkyFloatingLabelTextField
 
 SPEC CHECKSUMS:
+  FirebaseAppCheckInterop: e69dde5cd51b88ee1b4339d6766b691272256f9b
+  FirebaseAuthInterop: e53c08e60a02de17d1ab77c5032db8ae22d3a799
+  FirebaseCore: b68d3616526ec02e4d155166bbafb8eca64af557
+  FirebaseCoreExtension: d3e9bba2930a8033042112397cd9f006a1bb203d
+  FirebaseCoreInternal: d2b4acb827908e72eca47a9fd896767c3053921e
+  FirebaseStorage: 075a0c10ec43f24193018c539d65e991db65d9ef
+  GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
+  GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
   InputBarAccessoryView: 1d7b0a672b36e370f01f264b3907ef39d03328e3
   MessageKit: a1ba0c69ebead94029867853eb44dd05b9b3f453
+  PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   SDWebImage: d47d81bea8a77187896b620dc79c3c528e8906b9
   SkyFloatingLabelTextField: 79ddc40e4ad59707fedbb48d605417aee48bb78a
 
-PODFILE CHECKSUM: d6a2803f153c045b4bbd8f6c7c197d8c8ec5dcea
+PODFILE CHECKSUM: b6ef31afe20cc0a80187eaa7c2d644aa49b1f577
 
 COCOAPODS: 1.11.3

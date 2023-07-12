@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>211863289391-3skue07lu3j0t2pr7ve3ntvmmsem1a1p.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.211863289391-3skue07lu3j0t2pr7ve3ntvmmsem1a1p</string>
+	<key>API_KEY</key>
+	<string>AIzaSyADd1fEi9C_sBh5WT5LCJ5Eh9CnO0Qsddk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>211863289391</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ekreativeIntership.SimpleChat</string>
+	<key>PROJECT_ID</key>
+	<string>simplechat-dc2d0</string>
+	<key>STORAGE_BUCKET</key>
+	<string>simplechat-dc2d0.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:211863289391:ios:d45a10f07b6638001190da</string>
+</dict>
+</plist>

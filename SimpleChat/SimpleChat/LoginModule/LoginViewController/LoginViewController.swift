@@ -11,6 +11,10 @@ import SDWebImage
 import Photos
 import PhotosUI
 
+protocol LoginViewControllerInput {
+    
+}
+
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var editImageView: UIImageView!
@@ -25,7 +29,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         prepareUI()
         addGestureRecognizers()
-        setupCameraManager()
+        imagePickerManager = ImagePickerManager()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,10 +48,7 @@ class LoginViewController: UIViewController {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         editImageView.layer.cornerRadius = editImageView.frame.height / 2
     }
-    
-    private func setupCameraManager() {
-        imagePickerManager = ImagePickerManager()
-    }
+
     
     func addGestureRecognizers() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(editImage))
@@ -54,47 +56,73 @@ class LoginViewController: UIViewController {
         editImageView.isUserInteractionEnabled = true
     }
     
-    func showImagePickerAlerView() {
+    func showImagePickerAler() {
         let imagePickerAlertView = UIAlertController(title: ImagePickerTitles.choseImage.description,
                                                      message: ImagePickerTitles.selectOrPickImage.description,
                                                      preferredStyle: .actionSheet)
-        let pickFromGaleryAction = UIAlertAction(title: ImagePickerTitles.galery.description, style: .default) { [weak self] _ in
-            guard let self else { return }
-            let pHPicker = self.imagePickerManager.openPHPicker { [weak self] image in
-                guard let self else { return }
-                self.avatarImageView.image = image
-            }
-            self.present(pHPicker, animated: true)
-        }
-        
-        let getFromCameraAction = UIAlertAction(title: ImagePickerTitles.camera.description, style: .default) { [weak self] _ in
-            guard let self else { return }
-            self.imagePickerManager.tryToOpenCamera(
-                completion: {
-                    let picker = self.imagePickerManager.showCamera { image in
-                        self.avatarImageView.image = image
-                    }
-                    self.present(picker, animated: true)
-                }, getpermissionAccessCompletion: { alert in
-                    self.present(alert, animated: true)
-                })
-        }
-        
+        let pickFromGalleryAction = createPickFromAlertAction(sourceType: .gallery)
+        let getFromCameraAction = createPickFromAlertAction(sourceType: .camera)
         let cancelAction = UIAlertAction(title: ImagePickerTitles.cancel.description, style: .cancel)
         
-        imagePickerAlertView.addAction(pickFromGaleryAction)
+        imagePickerAlertView.addAction(pickFromGalleryAction)
         imagePickerAlertView.addAction(getFromCameraAction)
         imagePickerAlertView.addAction(cancelAction)
         self.present(imagePickerAlertView, animated: true)
     }
     
+    func createPickFromAlertAction(sourceType: SourceType) -> UIAlertAction {
+        var showCompletion: (() -> Void)?
+        var title: String!
+        
+        switch sourceType {
+        case .camera:
+            title = ImagePickerTitles.camera.description
+            showCompletion = {
+                let cameraPicker = self.imagePickerManager.showCamera { [weak self] image in
+                    guard let self else { return }
+                    self.avatarImageView.image = image
+                }
+                self.present(cameraPicker, animated: true)
+            }
+        case .gallery:
+            title = ImagePickerTitles.gallery.description
+            showCompletion = {
+                let phPicker = self.imagePickerManager.showPHPicker { [weak self] image in
+                    guard let self else { return }
+                    self.avatarImageView.image = image
+                    let imageData = image.jpegData(compressionQuality: 1) ?? Data()
+                    FirebaseStorage.createRef(image: imageData) { [weak self] url, error in
+//                        guard let self else { return }
+                        if (error != nil) {
+                            print(error?.localizedDescription ?? "")
+                        } else {
+                            print(url ?? "")
+                        }
+                    }
+                }
+                self.present(phPicker, animated: true)
+            }
+        }
+        
+        return UIAlertAction(title: title, style: .default) { [weak self] _ in
+            guard let self else { return }
+            self.imagePickerManager.tryToOpen(type: sourceType,
+                                              showCompletion: showCompletion,
+                                              accessCompletion: { alert in self.present(alert, animated: true) })
+        }
+    }
+    
     @objc func editImage() {
-        showImagePickerAlerView()
+        showImagePickerAler()
     }
     
     @IBAction func enterAction(_ sender: Any) {
         GlobalRouter.shared.moveTo(screen: .chats)
     }
+    
+}
+
+extension LoginViewController: LoginViewControllerInput {
     
 }
 

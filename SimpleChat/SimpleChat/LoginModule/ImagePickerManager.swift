@@ -12,12 +12,12 @@ import PhotosUI
 enum ImagePickerTitles {
     case choseImage
     case selectOrPickImage
-    case galery
+    case gallery
     case camera
     case cancel
     case fatalError
     case allow
-    case necessaryMessage
+    case necessaryMessage(type: SourceType)
     
     var description: String {
         switch self {
@@ -25,20 +25,25 @@ enum ImagePickerTitles {
             return "Chose image"
         case .selectOrPickImage:
             return "select or pick your image"
-        case .galery:
-            return "Galery"
+        case .gallery:
+            return "Gallery"
         case .camera:
             return "Camera"
         case .cancel:
-            return "Cancel"
+            return "Not now"
         case .fatalError:
             return "Fatal error"
         case .allow:
             return "Allow"
-        case .necessaryMessage:
-            return "Camera access is absolutely necessary to use this app"
+        case .necessaryMessage(let type):
+            return "Application should have full access to your '\(type.rawValue.uppercased())'. It is absolutely necessary to use this app"
         }
     }
+}
+
+enum SourceType: String {
+    case camera
+    case gallery
 }
 
 class ImagePickerManager: NSObject {
@@ -53,27 +58,43 @@ class ImagePickerManager: NSObject {
         phPickerDelegate = self
     }
     
-    func tryToOpenCamera(completion: (() -> Void)? = nil,
-                         getpermissionAccessCompletion: ((UIAlertController) -> Void)? = nil) {
-        AVCaptureDevice.requestAccess(for: .video) { [weak self] success in
-            guard let self else { return }
-            DispatchQueue.main.async {
-                if success {
-                    completion?()
-                } else {
-                    self.presentCameraSettings(getpermissionAccessCompletion: getpermissionAccessCompletion)
-                }
+    func tryToOpen(type: SourceType,
+                   showCompletion: (() -> Void)? = nil,
+                   accessCompletion: ((UIAlertController) -> Void)? = nil) {
+        var isAuthorized = false
+        switch type {
+        case .camera:
+            AVCaptureDevice.requestAccess(for: .video) { success in
+                isAuthorized = success
+            }
+        case .gallery:
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+                isAuthorized = status == .authorized
             }
         }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            if isAuthorized {
+                showCompletion?()
+            } else {
+                self.showSettings(sourceType: type, accessCompletion: accessCompletion)
+            }
+        }
+        
     }
     
-    func presentCameraSettings(getpermissionAccessCompletion: ((UIAlertController) -> Void)? = nil) {
-        let alert = UIAlertController(title: ImagePickerTitles.camera.description, message: ImagePickerTitles.necessaryMessage.description, preferredStyle: .alert)
+    func showSettings(sourceType: SourceType, accessCompletion: ((UIAlertController) -> Void)? = nil) {
+        let title = sourceType == .camera ? ImagePickerTitles.camera.description : ImagePickerTitles.gallery.description
+        let alert = UIAlertController(title: title, message: ImagePickerTitles.necessaryMessage(type: sourceType).description, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: ImagePickerTitles.cancel.description, style: .cancel))
         alert.addAction(UIAlertAction(title: ImagePickerTitles.allow.description, style: .default, handler: { action in
-            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            self.gotoAppPrivacySettings()
         }))
-        getpermissionAccessCompletion?(alert)
+        accessCompletion?(alert)
+    }
+    
+    func gotoAppPrivacySettings() {
+        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
     }
     
     func showCamera(completion: @escaping ((UIImage) -> Void)) -> UIImagePickerController {
@@ -86,7 +107,7 @@ class ImagePickerManager: NSObject {
         return picker
     }
     
-    func openPHPicker(completion: @escaping ((UIImage) -> Void)) -> PHPickerViewController {
+    func showPHPicker(completion: @escaping ((UIImage) -> Void)) -> PHPickerViewController {
         var phPickerConfig = PHPickerConfiguration(photoLibrary: .shared())
         phPickerConfig.selectionLimit = 1
         phPickerConfig.filter = PHPickerFilter.any(of: [.images, .images])

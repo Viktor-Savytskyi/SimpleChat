@@ -10,4 +10,5 @@ import Foundation
 struct LoginEntity {
     var firstName: String
     var lastName: String
+    var image: String
 }

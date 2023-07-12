@@ -6,3 +6,22 @@
 //
 
 import Foundation
+
+protocol LoginPresenterInput {
+    
+}
+
+protocol LoginPresenterOutput {
+    
+}
+
+class LoginPresenter {
+    var LoginViewController: LoginViewControllerInput!
+    var LoginInteractor: LoginInteractorInput!
+    var imagePickerManager: ImagePickerManager!
+
+    init(imagePickerManager: ImagePickerManager!) {
+        self.imagePickerManager = imagePickerManager
+    }
+    
+}

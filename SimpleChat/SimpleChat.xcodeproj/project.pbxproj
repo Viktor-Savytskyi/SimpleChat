@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		487300B92A5D4D7B00C35335 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 487300B82A5D4D7B00C35335 /* GoogleService-Info.plist */; };
+		487300BE2A5DA68E00C35335 /* FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487300BD2A5DA68E00C35335 /* FirebaseStorage.swift */; };
 		488045412A57EF84007986B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488045402A57EF84007986B7 /* AppDelegate.swift */; };
 		488045432A57EF84007986B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488045422A57EF84007986B7 /* SceneDelegate.swift */; };
 		488045452A57EF84007986B7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488045442A57EF84007986B7 /* LoginViewController.swift */; };
@@ -44,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		12230C7DDF358B887A2F4485 /* Pods-SimpleChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.release.xcconfig"; path = "Target Support Files/Pods-SimpleChat/Pods-SimpleChat.release.xcconfig"; sourceTree = "<group>"; };
+		487300B82A5D4D7B00C35335 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		487300BD2A5DA68E00C35335 /* FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorage.swift; sourceTree = "<group>"; };
 		4880453D2A57EF84007986B7 /* SimpleChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		488045402A57EF84007986B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		488045422A57EF84007986B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +114,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		487300BA2A5D4EE400C35335 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				488045402A57EF84007986B7 /* AppDelegate.swift */,
+				488045422A57EF84007986B7 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		487300BB2A5D4EF200C35335 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				488045492A57EF86007986B7 /* Assets.xcassets */,
+				4880454E2A57EF86007986B7 /* Info.plist */,
+				487300B82A5D4D7B00C35335 /* GoogleService-Info.plist */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
 		488045342A57EF84007986B7 = {
 			isa = PBXGroup;
 			children = (
@@ -133,16 +156,14 @@
 		4880453F2A57EF84007986B7 /* SimpleChat */ = {
 			isa = PBXGroup;
 			children = (
-				488045402A57EF84007986B7 /* AppDelegate.swift */,
-				488045422A57EF84007986B7 /* SceneDelegate.swift */,
+				487300BA2A5D4EE400C35335 /* Application */,
 				488B2A622A5C028400F52973 /* Managers */,
 				488B2A652A5C039F00F52973 /* Reuseble */,
 				488B2A542A5C019B00F52973 /* LoginModule */,
 				488B2A662A5C03AE00F52973 /* ChatsModule */,
 				488045462A57EF84007986B7 /* Main.storyboard */,
-				488045492A57EF86007986B7 /* Assets.xcassets */,
 				4880454B2A57EF86007986B7 /* LaunchScreen.storyboard */,
-				4880454E2A57EF86007986B7 /* Info.plist */,
+				487300BB2A5D4EF200C35335 /* Resourses */,
 			);
 			path = SimpleChat;
 			sourceTree = "<group>";
@@ -203,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				488B2A632A5C029200F52973 /* GlobalRouter.swift */,
+				487300BD2A5DA68E00C35335 /* FirebaseStorage.swift */,
 				48C993E22A5C29480072686A /* ImagePickerManager.swift */,
 			);
 			name = Managers;
@@ -341,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4880454D2A57EF86007986B7 /* LaunchScreen.storyboard in Resources */,
+				487300B92A5D4D7B00C35335 /* GoogleService-Info.plist in Resources */,
 				4880454A2A57EF86007986B7 /* Assets.xcassets in Resources */,
 				488045482A57EF84007986B7 /* Main.storyboard in Resources */,
 			);
@@ -421,6 +444,7 @@
 				488B2A642A5C029200F52973 /* GlobalRouter.swift in Sources */,
 				48C993E32A5C29480072686A /* ImagePickerManager.swift in Sources */,
 				488B2A5E2A5C021F00F52973 /* LoginInteractor.swift in Sources */,
+				487300BE2A5DA68E00C35335 /* FirebaseStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,8 +622,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 683FFW2T3C;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SimpleChat/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "PlayTest wants to use your camera";
+				INFOPLIST_FILE = SimpleChat/Resourses/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -631,8 +654,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 683FFW2T3C;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SimpleChat/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "PlayTest wants to use your camera";
+				INFOPLIST_FILE = SimpleChat/Resourses/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -8,4 +8,5 @@ target 'SimpleChat' do
 pod 'MessageKit'
 pod 'SkyFloatingLabelTextField'
 pod 'SDWebImage'
+pod 'FirebaseStorage'
 end

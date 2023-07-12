@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+protocol LoginInteractorInput {
+    
+}
+
+class LoginInteractor {
+    
+}

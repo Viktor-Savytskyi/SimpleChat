@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>SimpleChat photo use</string>
+	<string>We need to access gallery</string>
 	<key>NSCameraUsageDescription</key>
-	<string>For taking pictures</string>
+	<string>We need to access camera</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
