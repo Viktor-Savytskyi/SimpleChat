@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LoginEntity {
+struct User {
     var firstName: String
     var lastName: String
     var image: String

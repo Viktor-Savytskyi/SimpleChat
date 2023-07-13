@@ -39,7 +39,7 @@ final class GlobalRouter {
     }
     
     private func openLoginScreen() {
-        let loginVC = LoginRouter.createLoginMoudle()
+        let loginVC = UIStoryboard(name: Storyboards.main.rawValue, bundle: nil).instantiateViewController(withIdentifier: Screens.login.rawValue) as! LoginViewController
         navigationController.pushViewController(loginVC, animated: true)
     }
     

@@ -16,12 +16,8 @@
 		4880454A2A57EF86007986B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 488045492A57EF86007986B7 /* Assets.xcassets */; };
 		4880454D2A57EF86007986B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4880454B2A57EF86007986B7 /* LaunchScreen.storyboard */; };
 		488045712A581253007986B7 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488045702A581253007986B7 /* ChatsViewController.swift */; };
-		488045732A581614007986B7 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488045722A581614007986B7 /* ImagePickerController.swift */; };
-		488045752A5841D1007986B7 /* UIPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488045742A5841D1007986B7 /* UIPickerController.swift */; };
-		488B2A562A5C01DA00F52973 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A552A5C01DA00F52973 /* LoginPresenter.swift */; };
-		488B2A5B2A5C020B00F52973 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A5A2A5C020B00F52973 /* LoginRouter.swift */; };
-		488B2A5E2A5C021F00F52973 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A5D2A5C021F00F52973 /* LoginInteractor.swift */; };
-		488B2A612A5C023300F52973 /* LoginEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A602A5C023300F52973 /* LoginEntity.swift */; };
+		488B2A562A5C01DA00F52973 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A552A5C01DA00F52973 /* LoginViewModel.swift */; };
+		488B2A612A5C023300F52973 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A602A5C023300F52973 /* User.swift */; };
 		488B2A642A5C029200F52973 /* GlobalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A632A5C029200F52973 /* GlobalRouter.swift */; };
 		48C993E32A5C29480072686A /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C993E22A5C29480072686A /* ImagePickerManager.swift */; };
 		92E18A3893B3C5A35C9E09F4 /* Pods_SimpleChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D628289AF729D785799BD8 /* Pods_SimpleChat.framework */; };
@@ -59,12 +55,8 @@
 		488045532A57EF86007986B7 /* SimpleChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4880455D2A57EF86007986B7 /* SimpleChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		488045702A581253007986B7 /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
-		488045722A581614007986B7 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
-		488045742A5841D1007986B7 /* UIPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPickerController.swift; sourceTree = "<group>"; };
-		488B2A552A5C01DA00F52973 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
-		488B2A5A2A5C020B00F52973 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
-		488B2A5D2A5C021F00F52973 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
-		488B2A602A5C023300F52973 /* LoginEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEntity.swift; sourceTree = "<group>"; };
+		488B2A552A5C01DA00F52973 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		488B2A602A5C023300F52973 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		488B2A632A5C029200F52973 /* GlobalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalRouter.swift; sourceTree = "<group>"; };
 		48C993E22A5C29480072686A /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		59D7E86C2C6F035513E33EC0 /* Pods-SimpleChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.debug.xcconfig"; path = "Target Support Files/Pods-SimpleChat/Pods-SimpleChat.debug.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +151,7 @@
 				487300BA2A5D4EE400C35335 /* Application */,
 				488B2A622A5C028400F52973 /* Managers */,
 				488B2A652A5C039F00F52973 /* Reuseble */,
+				488B2A5F2A5C022600F52973 /* Models */,
 				488B2A542A5C019B00F52973 /* LoginModule */,
 				488B2A662A5C03AE00F52973 /* ChatsModule */,
 				488045462A57EF84007986B7 /* Main.storyboard */,
@@ -171,53 +164,34 @@
 		488B2A542A5C019B00F52973 /* LoginModule */ = {
 			isa = PBXGroup;
 			children = (
-				488B2A5F2A5C022600F52973 /* LoginEntity */,
-				488B2A5C2A5C021100F52973 /* LoginInteractor */,
-				488B2A592A5C01F600F52973 /* LoginRouter */,
-				488B2A582A5C01E800F52973 /* LoginViewController */,
-				488B2A572A5C01DE00F52973 /* LoginPresenter */,
+				488B2A582A5C01E800F52973 /* ViewController */,
+				488B2A572A5C01DE00F52973 /* ViewModel */,
 			);
 			path = LoginModule;
 			sourceTree = "<group>";
 		};
-		488B2A572A5C01DE00F52973 /* LoginPresenter */ = {
+		488B2A572A5C01DE00F52973 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				488B2A552A5C01DA00F52973 /* LoginPresenter.swift */,
+				488B2A552A5C01DA00F52973 /* LoginViewModel.swift */,
 			);
-			path = LoginPresenter;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		488B2A582A5C01E800F52973 /* LoginViewController */ = {
+		488B2A582A5C01E800F52973 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				488045442A57EF84007986B7 /* LoginViewController.swift */,
 			);
-			path = LoginViewController;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
-		488B2A592A5C01F600F52973 /* LoginRouter */ = {
+		488B2A5F2A5C022600F52973 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				488B2A5A2A5C020B00F52973 /* LoginRouter.swift */,
+				488B2A602A5C023300F52973 /* User.swift */,
 			);
-			path = LoginRouter;
-			sourceTree = "<group>";
-		};
-		488B2A5C2A5C021100F52973 /* LoginInteractor */ = {
-			isa = PBXGroup;
-			children = (
-				488B2A5D2A5C021F00F52973 /* LoginInteractor.swift */,
-			);
-			path = LoginInteractor;
-			sourceTree = "<group>";
-		};
-		488B2A5F2A5C022600F52973 /* LoginEntity */ = {
-			isa = PBXGroup;
-			children = (
-				488B2A602A5C023300F52973 /* LoginEntity.swift */,
-			);
-			path = LoginEntity;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		488B2A622A5C028400F52973 /* Managers */ = {
@@ -234,8 +208,6 @@
 		488B2A652A5C039F00F52973 /* Reuseble */ = {
 			isa = PBXGroup;
 			children = (
-				488045742A5841D1007986B7 /* UIPickerController.swift */,
-				488045722A581614007986B7 /* ImagePickerController.swift */,
 			);
 			path = Reuseble;
 			sourceTree = "<group>";
@@ -432,18 +404,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				488B2A612A5C023300F52973 /* LoginEntity.swift in Sources */,
+				488B2A612A5C023300F52973 /* User.swift in Sources */,
 				488045452A57EF84007986B7 /* LoginViewController.swift in Sources */,
 				488045412A57EF84007986B7 /* AppDelegate.swift in Sources */,
-				488B2A562A5C01DA00F52973 /* LoginPresenter.swift in Sources */,
-				488045732A581614007986B7 /* ImagePickerController.swift in Sources */,
+				488B2A562A5C01DA00F52973 /* LoginViewModel.swift in Sources */,
 				488045712A581253007986B7 /* ChatsViewController.swift in Sources */,
 				488045432A57EF84007986B7 /* SceneDelegate.swift in Sources */,
-				488B2A5B2A5C020B00F52973 /* LoginRouter.swift in Sources */,
-				488045752A5841D1007986B7 /* UIPickerController.swift in Sources */,
 				488B2A642A5C029200F52973 /* GlobalRouter.swift in Sources */,
 				48C993E32A5C29480072686A /* ImagePickerManager.swift in Sources */,
-				488B2A5E2A5C021F00F52973 /* LoginInteractor.swift in Sources */,
 				487300BE2A5DA68E00C35335 /* FirebaseStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
