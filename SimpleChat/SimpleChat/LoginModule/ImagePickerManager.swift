@@ -11,41 +11,38 @@ import PhotosUI
 
 enum ImagePickerTitles {
     case choseImage
-    case selectOrPickImage
     case gallery
     case camera
     case cancel
     case notNow
-    case fatalError
     case allow
     case settings
-    case selectLimitedPhotos
     case necessaryMessage(type: SourceType)
+    case moveToAppPrivacySettings
+    case fatalError
     
     var description: String {
         switch self {
         case .choseImage:
-            return "Chose image"
-        case .selectOrPickImage:
-            return "select or pick your image"
+            return "Chose image from"
         case .gallery:
             return "Gallery"
         case .camera:
             return "Camera"
         case .cancel:
             return "Cancel"
-        case .fatalError:
-            return "Fatal error"
         case .allow:
             return "Allow"
         case .necessaryMessage(let type):
-            return "Application should have access to your '\(type.rawValue.capitalized)'. It is absolutely necessary to use this app"
+            return "Application need to have full access to your '\(type.rawValue.capitalized)'. It is absolutely necessary to use this app"
         case .notNow:
             return "Not now"
-        case .selectLimitedPhotos:
-            return "Select limited photos"
         case .settings:
             return "Settings"
+        case .moveToAppPrivacySettings:
+            return "Not able to open App privacy settings"
+        case .fatalError:
+            return "Fatal Error"
         }
     }
 }
@@ -53,12 +50,6 @@ enum ImagePickerTitles {
 enum SourceType: String {
     case camera
     case gallery
-}
-
-enum AccessType {
-    case authorized
-    case limited
-    case denied
 }
 
 protocol ImagePickerDelegate {
@@ -80,10 +71,9 @@ class ImagePickerManager: NSObject {
         self.currentViewController = currentViewController
     }
     
-    
     func showImagePickerAler(completion: @escaping (UIImage) -> Void) {
         let imagePickerAlertView = UIAlertController(title: ImagePickerTitles.choseImage.description,
-                                                     message: ImagePickerTitles.selectOrPickImage.description,
+                                                     message: "",
                                                      preferredStyle: .actionSheet)
         
         let getFromCameraAction = UIAlertAction(title: ImagePickerTitles.camera.description, style: .default) { [weak self] _ in
@@ -95,11 +85,11 @@ class ImagePickerManager: NSObject {
         
         let pickFromGalleryAction = UIAlertAction(title: ImagePickerTitles.gallery.description, style: .default) { [weak self] _ in
             guard let self else { return }
-            self.openGalery { image in
+            self.openGallery { image in
                 completion(image)
             }
         }
-
+        
         let cancelAction = UIAlertAction(title: ImagePickerTitles.cancel.description, style: .cancel)
         
         imagePickerAlertView.addAction(pickFromGalleryAction)
@@ -109,41 +99,33 @@ class ImagePickerManager: NSObject {
     }
     
     func openCamera(completion: @escaping (UIImage) -> Void) {
-        var accessType: AccessType!
+        var isAuthorized: Bool = false
         AVCaptureDevice.requestAccess(for: .video) { success in
-            accessType = success ? .authorized : .denied
+            isAuthorized = success
         }
         
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            if accessType == .authorized {
+            if isAuthorized {
                 let cameraPicker = self.showCamera { image in
                     completion(image)
                 }
                 self.currentViewController.presentOverParent(cameraPicker)
             } else {
-                self.currentViewController.presentOverParent(self.showSettings(sourceType: .camera,
-                                                                               accessType: accessType))
+                self.currentViewController.presentOverParent(self.showSettings(sourceType: .camera))
             }
         }
     }
     
-    func openGalery(completion: @escaping (UIImage) -> Void) {
-        var accessType: AccessType!
+    func openGallery(completion: @escaping (UIImage) -> Void) {
+        var isAuthorized: Bool = false
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
-            if status == .authorized {
-                accessType = .authorized
-            } else if status == .limited {
-                accessType = .limited
-            } else {
-                accessType = .denied
-            }
+            isAuthorized = status == .authorized
         }
         
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            switch accessType {
-            case .authorized:
+            if isAuthorized {
                 let phPicker = self.showPHPicker { [weak self] image in
                     guard let self else { return }
                     completion(image)
@@ -158,20 +140,14 @@ class ImagePickerManager: NSObject {
                     }
                 }
                 self.currentViewController.presentOverParent(phPicker)
-            case .limited:
-                self.currentViewController.presentOverParent(self.showSettings(sourceType: .gallery,
-                                                                               accessType: accessType, completion: completion))
-            case .denied:
-                self.currentViewController.presentOverParent(self.showSettings(sourceType: .gallery,
-                                                                               accessType: accessType))
-            case .none:
-                print(ImagePickerTitles.fatalError.description)
+            } else {
+                self.currentViewController.presentOverParent(self.showSettings(sourceType: .gallery))
             }
         }
     }
     
     
-    func showSettings(sourceType: SourceType, accessType: AccessType, completion: ((UIImage) -> Void)? = nil) -> UIAlertController {
+    func showSettings(sourceType: SourceType, completion: ((UIImage) -> Void)? = nil) -> UIAlertController {
         let title = sourceType == .camera ? ImagePickerTitles.camera.description : ImagePickerTitles.gallery.description
         
         let alert = UIAlertController(title: title,
@@ -180,7 +156,7 @@ class ImagePickerManager: NSObject {
         
         let moveToSettingsAction = (UIAlertAction(title: ImagePickerTitles.settings.description,
                                                   style: .default) { _ in
-            self.gotoAppPrivacySettings()
+            self.moveToAppPrivacySettings()
         })
         
         let notNowAction = (UIAlertAction(title: ImagePickerTitles.notNow.description,
@@ -188,30 +164,16 @@ class ImagePickerManager: NSObject {
         
         alert.addAction(moveToSettingsAction)
         alert.addAction(notNowAction)
-        
-        if sourceType == .gallery && accessType == .limited  {
-            let selectPhotosAction = UIAlertAction(title: ImagePickerTitles.selectLimitedPhotos.description,
-                                                   style: .default) { [weak self] _ in
-                guard let self else { return }
-                DispatchQueue.main.async { [weak self] in
-                    guard let self else { return }
-                    PHPhotoLibrary.shared().register(self)
-                    PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: self.currentViewController)
-                    self.imageCompletion = completion
-                }
-            }
-            alert.addAction(selectPhotosAction)
-        }
         return alert
     }
     
-    func gotoAppPrivacySettings() {
+    func moveToAppPrivacySettings() {
         guard let url = URL(string: UIApplication.openSettingsURLString),
-                UIApplication.shared.canOpenURL(url) else {
-                    assertionFailure("Not able to open App privacy settings")
-                    return
-            }
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+              UIApplication.shared.canOpenURL(url) else {
+            assertionFailure(ImagePickerTitles.moveToAppPrivacySettings.description)
+            return
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     func showCamera(completion: @escaping ((UIImage) -> Void)) -> UIImagePickerController {
@@ -241,7 +203,7 @@ extension ImagePickerManager: UIImagePickerControllerDelegate, UINavigationContr
         if let image = info[.originalImage] as? UIImage {
             self.imageCompletion?(image)
         } else {
-            print("fatal error")
+            print(ImagePickerTitles.fatalError.description)
         }
         picker.dismiss(animated: true)
     }
@@ -260,32 +222,3 @@ extension ImagePickerManager: PHPickerViewControllerDelegate {
         }
     }
 }
-
-extension ImagePickerManager: PHPhotoLibraryChangeObserver {
-    func photoLibraryDidChange(_ changeInstance: PHChange) {
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.fetchLimit = 1
-        let images = PHAsset.fetchAssets(with: .image, options: fetchOptions)
-        let newImages = convertAssetsToImages(fetchResult: images)
-        imageCompletion?(newImages.last ?? UIImage())
-    }
-}
-
-extension ImagePickerManager {
-    func convertAssetsToImages(fetchResult: PHFetchResult<PHAsset>) -> [UIImage] {
-        let manager = PHImageManager.default()
-        let options = PHImageRequestOptions()
-        options.isSynchronous = true
-        var images: [UIImage] = []
-        for index in 0..<fetchResult.count {
-            let asset = fetchResult.object(at: index)
-            manager.requestImage(for: asset, targetSize: CGSize(width: 300, height: 300), contentMode: .aspectFit, options: options) { (image, _) in
-                if let image = image {
-                    images.append(image)
-                }
-            }
-        }
-        return images
-    }
-}
-
