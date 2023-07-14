@@ -20,7 +20,7 @@ final class GlobalRouter {
     private var navigationController: UINavigationController
     static let shared = GlobalRouter()
     
-    init() {
+    private init() {
         self.navigationController = .init()
     }
     

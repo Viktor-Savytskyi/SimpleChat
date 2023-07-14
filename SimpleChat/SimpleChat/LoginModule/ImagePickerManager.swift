@@ -9,7 +9,7 @@ import UIKit
 import Photos
 import PhotosUI
 
-enum ImagePickerTitles {
+private enum ImagePickerTitles {
     case choseImage
     case gallery
     case camera
@@ -47,22 +47,18 @@ enum ImagePickerTitles {
     }
 }
 
-enum SourceType: String {
+private enum SourceType: String {
     case camera
     case gallery
 }
 
-protocol ImagePickerDelegate {
-    func show(vc: ViewControllerPickerPresentable)
-    func dismiss(vc: ViewControllerPickerPresentable)
-}
 
-class ImagePickerManager: NSObject {
+final class ImagePickerManager: NSObject {
     
-    var imageCompletion: ((UIImage) -> Void)?
+    private var imageCompletion: ((UIImage) -> Void)?
+    private var currentViewController: ViewControllerPickerPresentable!
     var pickerDelegate: (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
     var phPickerDelegate: PHPickerViewControllerDelegate?
-    var currentViewController: ViewControllerPickerPresentable!
     
     required init(currentViewController: ViewControllerPickerPresentable) {
         super.init()
@@ -98,7 +94,7 @@ class ImagePickerManager: NSObject {
         currentViewController.presentOverParent(imagePickerAlertView)
     }
     
-    func openCamera(completion: @escaping (UIImage) -> Void) {
+    private func openCamera(completion: @escaping (UIImage) -> Void) {
         var isAuthorized: Bool = false
         AVCaptureDevice.requestAccess(for: .video) { success in
             isAuthorized = success
@@ -117,7 +113,7 @@ class ImagePickerManager: NSObject {
         }
     }
     
-    func openGallery(completion: @escaping (UIImage) -> Void) {
+    private func openGallery(completion: @escaping (UIImage) -> Void) {
         var isAuthorized: Bool = false
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
             isAuthorized = status == .authorized
@@ -147,7 +143,7 @@ class ImagePickerManager: NSObject {
     }
     
     
-    func showSettings(sourceType: SourceType, completion: ((UIImage) -> Void)? = nil) -> UIAlertController {
+    private func showSettings(sourceType: SourceType, completion: ((UIImage) -> Void)? = nil) -> UIAlertController {
         let title = sourceType == .camera ? ImagePickerTitles.camera.description : ImagePickerTitles.gallery.description
         
         let alert = UIAlertController(title: title,
@@ -167,7 +163,7 @@ class ImagePickerManager: NSObject {
         return alert
     }
     
-    func moveToAppPrivacySettings() {
+    private func moveToAppPrivacySettings() {
         guard let url = URL(string: UIApplication.openSettingsURLString),
               UIApplication.shared.canOpenURL(url) else {
             assertionFailure(ImagePickerTitles.moveToAppPrivacySettings.description)
@@ -176,7 +172,7 @@ class ImagePickerManager: NSObject {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
-    func showCamera(completion: @escaping ((UIImage) -> Void)) -> UIImagePickerController {
+    private func showCamera(completion: @escaping ((UIImage) -> Void)) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.modalPresentationStyle = .overCurrentContext
         picker.sourceType = .camera
@@ -186,7 +182,7 @@ class ImagePickerManager: NSObject {
         return picker
     }
     
-    func showPHPicker(completion: @escaping ((UIImage) -> Void)) -> PHPickerViewController {
+    private func showPHPicker(completion: @escaping ((UIImage) -> Void)) -> PHPickerViewController {
         var phPickerConfig = PHPickerConfiguration(photoLibrary: .shared())
         phPickerConfig.selectionLimit = 1
         phPickerConfig.filter = PHPickerFilter.any(of: [.images, .livePhotos])

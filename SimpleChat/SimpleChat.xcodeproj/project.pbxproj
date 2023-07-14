@@ -10,6 +10,7 @@
 		4872845B2A60854D0056790E /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4872845A2A60854D0056790E /* NetworkingManager.swift */; };
 		487300B92A5D4D7B00C35335 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 487300B82A5D4D7B00C35335 /* GoogleService-Info.plist */; };
 		487300BE2A5DA68E00C35335 /* FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487300BD2A5DA68E00C35335 /* FirebaseStorage.swift */; };
+		4877897C2A617E2600A9FEF6 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877897B2A617E2600A9FEF6 /* Validator.swift */; };
 		488045412A57EF84007986B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488045402A57EF84007986B7 /* AppDelegate.swift */; };
 		488045432A57EF84007986B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488045422A57EF84007986B7 /* SceneDelegate.swift */; };
 		488045452A57EF84007986B7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488045442A57EF84007986B7 /* LoginViewController.swift */; };
@@ -46,6 +47,7 @@
 		4872845A2A60854D0056790E /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		487300B82A5D4D7B00C35335 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		487300BD2A5DA68E00C35335 /* FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorage.swift; sourceTree = "<group>"; };
+		4877897B2A617E2600A9FEF6 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		4880453D2A57EF84007986B7 /* SimpleChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		488045402A57EF84007986B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		488045422A57EF84007986B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +129,14 @@
 			path = Resourses;
 			sourceTree = "<group>";
 		};
+		4877897A2A617E1400A9FEF6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4877897B2A617E2600A9FEF6 /* Validator.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		488045342A57EF84007986B7 = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +162,7 @@
 			children = (
 				487300BA2A5D4EE400C35335 /* Application */,
 				488B2A622A5C028400F52973 /* Managers */,
+				4877897A2A617E1400A9FEF6 /* Helpers */,
 				488B2A652A5C039F00F52973 /* Reuseble */,
 				488B2A5F2A5C022600F52973 /* Models */,
 				488B2A542A5C019B00F52973 /* LoginModule */,
@@ -412,6 +423,7 @@
 				488045412A57EF84007986B7 /* AppDelegate.swift in Sources */,
 				4872845B2A60854D0056790E /* NetworkingManager.swift in Sources */,
 				488B2A562A5C01DA00F52973 /* LoginViewModel.swift in Sources */,
+				4877897C2A617E2600A9FEF6 /* Validator.swift in Sources */,
 				488045712A581253007986B7 /* ChatsViewController.swift in Sources */,
 				488045432A57EF84007986B7 /* SceneDelegate.swift in Sources */,
 				488B2A642A5C029200F52973 /* GlobalRouter.swift in Sources */,

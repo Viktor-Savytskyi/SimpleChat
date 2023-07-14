@@ -11,7 +11,6 @@ import SDWebImage
 import Photos
 import PhotosUI
 
-
 protocol ViewControllerPickerPresentable where Self: UIViewController {
     func presentOverParent(_ pickerView: UIViewController)
     func dismissFromParent()
@@ -25,21 +24,17 @@ extension ViewControllerPickerPresentable {
     func dismissFromParent() {
         dismiss(animated: true)
     }
-    
-  
-    
 }
 
-class LoginViewController: UIViewController, ViewControllerPickerPresentable {
+final class LoginViewController: UIViewController, ViewControllerPickerPresentable {
     
-    @IBOutlet weak var editImageView: UIImageView!
+    @IBOutlet private weak var editImageView: UIImageView!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var firstNameSkyTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var lastNameSkyTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var enterButton: UIButton!
     
-    lazy var loginViewModel = LoginViewModel(currentController: self)
-
+    lazy private var loginViewModel = LoginViewModel(currentController: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,20 +53,22 @@ class LoginViewController: UIViewController, ViewControllerPickerPresentable {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-    func prepareUI() {
+    private func prepareUI() {
         enterButton.layer.cornerRadius = enterButton.frame.height / 2
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         editImageView.layer.cornerRadius = editImageView.frame.height / 2
     }
 
     
-    func addGestureRecognizers() {
+    private func addGestureRecognizers() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(editImage))
         editImageView.addGestureRecognizer(gesture)
         editImageView.isUserInteractionEnabled = true
+        avatarImageView.addGestureRecognizer(gesture)
+        avatarImageView.isUserInteractionEnabled = true
     }
     
-    @objc func editImage() {
+    @objc private func editImage() {
         loginViewModel.showImagePickerAler { [weak self] image in
             guard let self else { return }
             DispatchQueue.main.async {
@@ -80,16 +77,18 @@ class LoginViewController: UIViewController, ViewControllerPickerPresentable {
         }
     }
     
-    @IBAction func enterAction(_ sender: Any) {
-//        GlobalRouter.shared.moveTo(screen: .chats)
-        loginViewModel.createUser()
-
-    }
-    @IBAction func getUsersAction(_ sender: Any) {
-        loginViewModel.getUsers()
+    @IBAction private func enterAction(_ sender: Any) {
+        loginViewModel.loginWith(firstName: firstNameSkyTextField.text,
+                                 lastName: firstNameSkyTextField.text,
+                                 imageUrl: "String")
 
     }
     
+    
+    //added to test geting users - for delete
+    @IBAction private func getUsersAction(_ sender: Any) {
+        loginViewModel.getUsers()
+    }
 }
 
 extension LoginViewController: LoginViewModelDelegate {

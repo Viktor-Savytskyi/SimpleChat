@@ -7,77 +7,53 @@
 
 import Foundation
 
-class NetworkingManager {
-    let users = "users"
-    let value = "application/json"
-    let contentType = "Content-Type"
+enum Result<T> {
+    case success(T)
+    case error(String)
+}
+
+final class NetworkingManager {
+    private let users = "users"
+    private let value = "application/json"
+    private let contentType = "Content-Type"
     
-    func createUser() {
+    func createUser(user: User, completion: @escaping (() -> Void)) {
         guard let url = URL(string: "http://localhost:8080/\(users)") else { return }
         
-        // Створюємо об'єкт користувача
-        let user = User(firstName: "your-image-url",
-                        lastName: "John",
-                        image: "Doe")
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue(value, forHTTPHeaderField: contentType)
         
         do {
-            let jsonData = try JSONEncoder().encode(user)
-            
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue(value, forHTTPHeaderField: contentType)
-            request.httpBody = jsonData
-            
-            // Виконуємо запит
-            URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let error = error {
-                    print("Error: \(error.localizedDescription)")
-                    return
-                }
-                if let data = data {
-                    print("User saved successfully!")
-                }
-            }.resume()
+            request.httpBody = try user.convertToJson()
         } catch {
-            // Обробка помилки кодування в JSON
-            print("Error encoding user: \(error.localizedDescription)")
+            print((error as! UserError).localizedDescription)
         }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error {
+                print("Error: \(error.localizedDescription)")
+                return
+            } else if data != nil {
+                completion()
+            }
+        }.resume()
     }
     
-    func getUsers() {
+    func getUsers(completion: @escaping (Result<[User]>) -> Void) {
         guard let url = URL(string: "http://localhost:8080/\(users)") else { return }
-        
-        
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
-                // Обробка помилки
-                print("Помилка: \(error.localizedDescription)")
-                return
-            }
-
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                // Обробка невдачі запиту
-                print("Невдача запиту: \(response)")
-                return
-            }
-
-            if let data = data {
+                completion(Result.error(error.localizedDescription))
+            } else if let data = data {
                 do {
-                    // Розпарсити отримані дані в масив користувачів
                     let users = try JSONDecoder().decode([User].self, from: data)
-                    
-                    // Вивести отриманих користувачів
-                    for user in users {
-                        print("Юзер: \(user.firstName) \(user.lastName)")
-                    }
+                    completion(Result.success(users))
                 } catch {
-                    // Обробка помилки розпарсингу даних
-                    print("Помилка розпарсингу даних: \(error.localizedDescription)")
+                    completion(Result.error(error.localizedDescription))
                 }
             }
         }
-
         task.resume()
     }
 }
