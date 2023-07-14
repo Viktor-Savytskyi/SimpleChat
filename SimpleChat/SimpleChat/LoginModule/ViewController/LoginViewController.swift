@@ -39,8 +39,6 @@ class LoginViewController: UIViewController, ViewControllerPickerPresentable {
     @IBOutlet weak var enterButton: UIButton!
     
     lazy var loginViewModel = LoginViewModel(currentController: self)
-//    var imagePickerManager: ImagePickerManager!
-    var imagePickerDelegate: ImagePickerDelegate?
 
     
     override func viewDidLoad() {
@@ -48,8 +46,6 @@ class LoginViewController: UIViewController, ViewControllerPickerPresentable {
         prepareUI()
         addGestureRecognizers()
         loginViewModel.delegate = self
-
-//        imagePickerManager = ImagePickerManager()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,62 +71,6 @@ class LoginViewController: UIViewController, ViewControllerPickerPresentable {
         editImageView.isUserInteractionEnabled = true
     }
     
-//    func showImagePickerAler() {
-//        let imagePickerAlertView = UIAlertController(title: ImagePickerTitles.choseImage.description,
-//                                                     message: ImagePickerTitles.selectOrPickImage.description,
-//                                                     preferredStyle: .actionSheet)
-//        let pickFromGalleryAction = createPickFromAlertAction(sourceType: .gallery)
-//        let getFromCameraAction = createPickFromAlertAction(sourceType: .camera)
-//        let cancelAction = UIAlertAction(title: ImagePickerTitles.cancel.description, style: .cancel)
-//        
-//        imagePickerAlertView.addAction(pickFromGalleryAction)
-//        imagePickerAlertView.addAction(getFromCameraAction)
-//        imagePickerAlertView.addAction(cancelAction)
-//        self.present(imagePickerAlertView, animated: true)
-//    }
-//    
-//    func createPickFromAlertAction(sourceType: SourceType) -> UIAlertAction {
-//        var showCompletion: (() -> Void)?
-//        var title: String!
-//        
-//        switch sourceType {
-//        case .camera:
-//            title = ImagePickerTitles.camera.description
-//            showCompletion = {
-//                let cameraPicker = self.imagePickerManager.showCamera { [weak self] image in
-//                    guard let self else { return }
-//                    self.avatarImageView.image = image
-//                }
-//                self.present(cameraPicker, animated: true)
-//            }
-//        case .gallery:
-//            title = ImagePickerTitles.gallery.description
-//            showCompletion = {
-//                let phPicker = self.imagePickerManager.showPHPicker { [weak self] image in
-//                    guard let self else { return }
-//                    self.avatarImageView.image = image
-//                    let imageData = image.jpegData(compressionQuality: 1) ?? Data()
-//                    FirebaseStorage.shared.saveImageWithUrl(image: imageData) { [weak self] url, error in
-////                        guard let self else { return }
-//                        if (error != nil) {
-//                            print(error?.localizedDescription ?? "")
-//                        } else {
-//                            print(url ?? "")
-//                        }
-//                    }
-//                }
-//                self.present(phPicker, animated: true)
-//            }
-//        }
-//        
-//        return UIAlertAction(title: title, style: .default) { [weak self] _ in
-//            guard let self else { return }
-//            self.imagePickerManager.tryToOpen(type: sourceType,
-//                                              showCompletion: showCompletion,
-//                                              accessCompletion: { alert in self.present(alert, animated: true) })
-//        }
-//    }
-    
     @objc func editImage() {
         loginViewModel.showImagePickerAler { [weak self] image in
             guard let self else { return }
@@ -141,7 +81,13 @@ class LoginViewController: UIViewController, ViewControllerPickerPresentable {
     }
     
     @IBAction func enterAction(_ sender: Any) {
-        GlobalRouter.shared.moveTo(screen: .chats)
+//        GlobalRouter.shared.moveTo(screen: .chats)
+        loginViewModel.createUser()
+
+    }
+    @IBAction func getUsersAction(_ sender: Any) {
+        loginViewModel.getUsers()
+
     }
     
 }

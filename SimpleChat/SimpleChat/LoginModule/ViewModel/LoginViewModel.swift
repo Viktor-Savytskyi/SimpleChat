@@ -17,6 +17,7 @@ protocol LoginViewModelDelegate {
 class LoginViewModel {
     var delegate: LoginViewModelDelegate!
     var imagePickerManager: ImagePickerManager!
+    let networkingManager = NetworkingManager()
     
     init(currentController: ViewControllerPickerPresentable) {
         self.imagePickerManager = ImagePickerManager(currentViewController: currentController)
@@ -24,5 +25,13 @@ class LoginViewModel {
 
     func showImagePickerAler(completion: @escaping ((UIImage) -> Void)) {
         imagePickerManager.showImagePickerAler(completion: completion)
+    }
+    
+    func createUser() {
+        networkingManager.createUser()
+    }
+    
+    func getUsers() {
+        networkingManager.getUsers()
     }
 }

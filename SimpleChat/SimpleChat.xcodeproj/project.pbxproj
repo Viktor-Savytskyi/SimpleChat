@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4872845B2A60854D0056790E /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4872845A2A60854D0056790E /* NetworkingManager.swift */; };
 		487300B92A5D4D7B00C35335 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 487300B82A5D4D7B00C35335 /* GoogleService-Info.plist */; };
 		487300BE2A5DA68E00C35335 /* FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487300BD2A5DA68E00C35335 /* FirebaseStorage.swift */; };
 		488045412A57EF84007986B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488045402A57EF84007986B7 /* AppDelegate.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		12230C7DDF358B887A2F4485 /* Pods-SimpleChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.release.xcconfig"; path = "Target Support Files/Pods-SimpleChat/Pods-SimpleChat.release.xcconfig"; sourceTree = "<group>"; };
+		4872845A2A60854D0056790E /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		487300B82A5D4D7B00C35335 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		487300BD2A5DA68E00C35335 /* FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorage.swift; sourceTree = "<group>"; };
 		4880453D2A57EF84007986B7 /* SimpleChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				488B2A632A5C029200F52973 /* GlobalRouter.swift */,
+				4872845A2A60854D0056790E /* NetworkingManager.swift */,
 				487300BD2A5DA68E00C35335 /* FirebaseStorage.swift */,
 				48C993E22A5C29480072686A /* ImagePickerManager.swift */,
 			);
@@ -407,6 +410,7 @@
 				488B2A612A5C023300F52973 /* User.swift in Sources */,
 				488045452A57EF84007986B7 /* LoginViewController.swift in Sources */,
 				488045412A57EF84007986B7 /* AppDelegate.swift in Sources */,
+				4872845B2A60854D0056790E /* NetworkingManager.swift in Sources */,
 				488B2A562A5C01DA00F52973 /* LoginViewModel.swift in Sources */,
 				488045712A581253007986B7 /* ChatsViewController.swift in Sources */,
 				488045432A57EF84007986B7 /* SceneDelegate.swift in Sources */,

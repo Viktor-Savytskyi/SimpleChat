@@ -78,6 +78,14 @@
                                     <action selector="enterAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mP7-A0-hGe"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hg8-lS-nUP">
+                                <rect key="frame" x="148" y="658" width="97.333333333333314" height="34.333333333333371"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Get users"/>
+                                <connections>
+                                    <action selector="getUsersAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5AI-ZT-HHS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -90,7 +98,9 @@
                             <constraint firstItem="cYY-PR-VRJ" firstAttribute="top" secondItem="ps3-xE-pwi" secondAttribute="bottom" constant="59.333333333333371" id="X2Z-kd-bY0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ps3-xE-pwi" secondAttribute="trailing" constant="16" id="Zwf-PU-LXg"/>
                             <constraint firstItem="ps3-xE-pwi" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="bzS-lf-7j6"/>
+                            <constraint firstItem="Hg8-lS-nUP" firstAttribute="top" secondItem="cYY-PR-VRJ" secondAttribute="bottom" constant="44" id="e3O-Em-4s0"/>
                             <constraint firstItem="4rk-sa-iwb" firstAttribute="bottom" secondItem="E1G-ph-rNb" secondAttribute="bottom" constant="-25" id="ewv-cg-k3O"/>
+                            <constraint firstItem="Hg8-lS-nUP" firstAttribute="centerX" secondItem="cYY-PR-VRJ" secondAttribute="centerX" id="hal-cy-cpp"/>
                             <constraint firstItem="cYY-PR-VRJ" firstAttribute="leading" secondItem="ps3-xE-pwi" secondAttribute="leading" id="un3-In-mxh"/>
                         </constraints>
                     </view>
