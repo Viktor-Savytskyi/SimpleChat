@@ -67,22 +67,22 @@ final class ImagePickerManager: NSObject {
         self.currentViewController = currentViewController
     }
     
-    func showImagePickerAler(completion: @escaping (UIImage) -> Void) {
+    func showImagePickerAler(completion: @escaping (String) -> Void) {
         let imagePickerAlertView = UIAlertController(title: ImagePickerTitles.choseImage.description,
                                                      message: "",
                                                      preferredStyle: .actionSheet)
         
         let getFromCameraAction = UIAlertAction(title: ImagePickerTitles.camera.description, style: .default) { [weak self] _ in
             guard let self else { return }
-            self.openCamera { image in
-                completion(image)
+            self.openCamera { imageURL in
+                completion(imageURL)
             }
         }
         
         let pickFromGalleryAction = UIAlertAction(title: ImagePickerTitles.gallery.description, style: .default) { [weak self] _ in
             guard let self else { return }
-            self.openGallery { image in
-                completion(image)
+            self.openGallery { imageURL in
+                completion(imageURL)
             }
         }
         
@@ -94,7 +94,7 @@ final class ImagePickerManager: NSObject {
         currentViewController.presentOverParent(imagePickerAlertView)
     }
     
-    private func openCamera(completion: @escaping (UIImage) -> Void) {
+    private func openCamera(completion: @escaping (String) -> Void) {
         var isAuthorized: Bool = false
         AVCaptureDevice.requestAccess(for: .video) { success in
             isAuthorized = success
@@ -103,8 +103,9 @@ final class ImagePickerManager: NSObject {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             if isAuthorized {
-                let cameraPicker = self.showCamera { image in
-                    completion(image)
+                let cameraPicker = self.showCamera { [weak self] image in
+                    guard let self else { return }
+                    self.getUrlFromImage(image: image, completion: completion)
                 }
                 self.currentViewController.presentOverParent(cameraPicker)
             } else {
@@ -113,7 +114,7 @@ final class ImagePickerManager: NSObject {
         }
     }
     
-    private func openGallery(completion: @escaping (UIImage) -> Void) {
+    private func openGallery(completion: @escaping (String) -> Void) {
         var isAuthorized: Bool = false
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
             isAuthorized = status == .authorized
@@ -124,20 +125,22 @@ final class ImagePickerManager: NSObject {
             if isAuthorized {
                 let phPicker = self.showPHPicker { [weak self] image in
                     guard let self else { return }
-                    completion(image)
-                    let imageData = image.jpegData(compressionQuality: 1) ?? Data()
-                    FirebaseStorage.shared.saveImageWithUrl(image: imageData) { [weak self] url, error in
-                        //                        guard let self else { return }
-                        if (error != nil) {
-                            print(error?.localizedDescription ?? "")
-                        } else {
-                            print(url ?? "")
-                        }
-                    }
+                    self.getUrlFromImage(image: image, completion: completion)
                 }
                 self.currentViewController.presentOverParent(phPicker)
             } else {
                 self.currentViewController.presentOverParent(self.showSettings(sourceType: .gallery))
+            }
+        }
+    }
+    
+    private func getUrlFromImage(image: UIImage, completion: @escaping (String) -> Void) {
+        let imageData = image.jpegData(compressionQuality: 1) ?? Data()
+        FirebaseStorage.shared.saveImageWithUrl(image: imageData) { url, error in
+            if (error != nil) {
+                print(error?.localizedDescription ?? "")
+            } else {
+                completion(url ?? "")
             }
         }
     }

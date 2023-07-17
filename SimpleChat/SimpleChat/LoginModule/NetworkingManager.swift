@@ -12,16 +12,22 @@ enum Result<T> {
     case error(String)
 }
 
+enum Requests: String {
+    case get = "GET"
+    case post = "POST"
+}
+
 final class NetworkingManager {
-    private let users = "users"
+    private let host = "http://localhost:8080/"
+    private let usersCollection = "users"
     private let value = "application/json"
     private let contentType = "Content-Type"
     
     func createUser(user: User, completion: @escaping (() -> Void)) {
-        guard let url = URL(string: "http://localhost:8080/\(users)") else { return }
+        guard let url = URL(string: "\(host)\(usersCollection)") else { return }
         
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = Requests.post.rawValue
         request.setValue(value, forHTTPHeaderField: contentType)
         
         do {
@@ -40,9 +46,11 @@ final class NetworkingManager {
         }.resume()
     }
     
-    func getUsers(completion: @escaping (Result<[User]>) -> Void) {
-        guard let url = URL(string: "http://localhost:8080/\(users)") else { return }
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+    func fetchUsers(completion: @escaping (Result<[User]>) -> Void) {
+        guard let url = URL(string: "\(host)\(usersCollection)") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = Requests.get.rawValue
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 completion(Result.error(error.localizedDescription))
             } else if let data = data {

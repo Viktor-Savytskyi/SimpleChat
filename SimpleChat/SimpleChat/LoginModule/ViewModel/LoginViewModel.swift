@@ -22,7 +22,7 @@ class LoginViewModel {
         self.imagePickerManager = ImagePickerManager(currentViewController: currentController)
     }
 
-    func showImagePickerAler(completion: @escaping ((UIImage) -> Void)) {
+    func showImagePickerAler(completion: @escaping ((String) -> Void)) {
         imagePickerManager.showImagePickerAler(completion: completion)
     }
     
@@ -43,16 +43,5 @@ class LoginViewModel {
             print((error as! ValidationError).description)
         }
        return nil
-    }
-    
-    func getUsers() {
-        networkingManager.getUsers { response in
-            switch response {
-            case .success(let users):
-                self.users = users
-            case .error(let error):
-                print(error)
-            }
-        }
     }
 }

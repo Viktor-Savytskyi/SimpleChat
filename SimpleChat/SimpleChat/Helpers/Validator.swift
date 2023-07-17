@@ -31,13 +31,13 @@ protocol UserValidatorProtocol {
 
 final class UserValidator {
     
-    private let mockUser = User(firstName: "1111", lastName: "1111", imageUrl: "1111")
+//    private let mockUser = User(firstName: "1111", lastName: "1111", imageUrl: "1111")
     private var errorType: ValidationError!
     
     func validateUser(firstName: String?, lastName: String?, imageUrl: String?) throws -> User {
-        guard let firstName, firstName == mockUser.firstName || firstName.count < 1  else { throw ValidationError.firstName }
-        guard let lastName, lastName == mockUser.lastName    || lastName.count < 1   else { throw ValidationError.lastName }
-        guard let imageUrl, imageUrl == mockUser.imageUrl    || imageUrl.count < 1   else { throw ValidationError.imageUrl }
+        guard let firstName, firstName.count > 1 else { throw ValidationError.firstName }
+        guard let lastName, lastName.count > 1 else { throw ValidationError.lastName }
+        guard let imageUrl, imageUrl.count > 1 else { throw ValidationError.imageUrl }
         return User(firstName: firstName, lastName: lastName, imageUrl: imageUrl)
     }
 }

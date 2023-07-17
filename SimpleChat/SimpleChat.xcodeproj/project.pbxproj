@@ -10,6 +10,8 @@
 		4872845B2A60854D0056790E /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4872845A2A60854D0056790E /* NetworkingManager.swift */; };
 		487300B92A5D4D7B00C35335 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 487300B82A5D4D7B00C35335 /* GoogleService-Info.plist */; };
 		487300BE2A5DA68E00C35335 /* FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487300BD2A5DA68E00C35335 /* FirebaseStorage.swift */; };
+		4876AD442A648F6600094A61 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4876AD432A648F6600094A61 /* Constants.swift */; };
+		4876AD472A64908400094A61 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4876AD462A64908400094A61 /* Rubik-Regular.ttf */; };
 		4877897C2A617E2600A9FEF6 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877897B2A617E2600A9FEF6 /* Validator.swift */; };
 		488045412A57EF84007986B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488045402A57EF84007986B7 /* AppDelegate.swift */; };
 		488045432A57EF84007986B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488045422A57EF84007986B7 /* SceneDelegate.swift */; };
@@ -21,6 +23,10 @@
 		488B2A562A5C01DA00F52973 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A552A5C01DA00F52973 /* LoginViewModel.swift */; };
 		488B2A612A5C023300F52973 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A602A5C023300F52973 /* User.swift */; };
 		488B2A642A5C029200F52973 /* GlobalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A632A5C029200F52973 /* GlobalRouter.swift */; };
+		489A54B72A64598900592768 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A54B52A64598900592768 /* UserTableViewCell.swift */; };
+		489A54B82A64598900592768 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 489A54B62A64598900592768 /* UserTableViewCell.xib */; };
+		489A54BB2A645CF000592768 /* ChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A54BA2A645CF000592768 /* ChatsViewModel.swift */; };
+		489A54BD2A645DD500592768 /* RegistratedTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A54BC2A645DD500592768 /* RegistratedTableCell.swift */; };
 		48C993E32A5C29480072686A /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C993E22A5C29480072686A /* ImagePickerManager.swift */; };
 		92E18A3893B3C5A35C9E09F4 /* Pods_SimpleChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D628289AF729D785799BD8 /* Pods_SimpleChat.framework */; };
 /* End PBXBuildFile section */
@@ -47,6 +53,8 @@
 		4872845A2A60854D0056790E /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		487300B82A5D4D7B00C35335 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		487300BD2A5DA68E00C35335 /* FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorage.swift; sourceTree = "<group>"; };
+		4876AD432A648F6600094A61 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4876AD462A64908400094A61 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		4877897B2A617E2600A9FEF6 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		4880453D2A57EF84007986B7 /* SimpleChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		488045402A57EF84007986B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +70,10 @@
 		488B2A552A5C01DA00F52973 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		488B2A602A5C023300F52973 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		488B2A632A5C029200F52973 /* GlobalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalRouter.swift; sourceTree = "<group>"; };
+		489A54B52A64598900592768 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		489A54B62A64598900592768 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		489A54BA2A645CF000592768 /* ChatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewModel.swift; sourceTree = "<group>"; };
+		489A54BC2A645DD500592768 /* RegistratedTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistratedTableCell.swift; sourceTree = "<group>"; };
 		48C993E22A5C29480072686A /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		59D7E86C2C6F035513E33EC0 /* Pods-SimpleChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.debug.xcconfig"; path = "Target Support Files/Pods-SimpleChat/Pods-SimpleChat.debug.xcconfig"; sourceTree = "<group>"; };
 		A2D628289AF729D785799BD8 /* Pods_SimpleChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +127,7 @@
 			children = (
 				488045402A57EF84007986B7 /* AppDelegate.swift */,
 				488045422A57EF84007986B7 /* SceneDelegate.swift */,
+				4876AD432A648F6600094A61 /* Constants.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -123,16 +136,26 @@
 			isa = PBXGroup;
 			children = (
 				488045492A57EF86007986B7 /* Assets.xcassets */,
+				4876AD452A64907700094A61 /* Fonts */,
 				4880454E2A57EF86007986B7 /* Info.plist */,
 				487300B82A5D4D7B00C35335 /* GoogleService-Info.plist */,
 			);
 			path = Resourses;
 			sourceTree = "<group>";
 		};
+		4876AD452A64907700094A61 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4876AD462A64908400094A61 /* Rubik-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		4877897A2A617E1400A9FEF6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				4877897B2A617E2600A9FEF6 /* Validator.swift */,
+				489A54BC2A645DD500592768 /* RegistratedTableCell.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -229,6 +252,7 @@
 		488B2A662A5C03AE00F52973 /* ChatsModule */ = {
 			isa = PBXGroup;
 			children = (
+				489A54B92A645CDF00592768 /* ChatsViewModel */,
 				488B2A672A5C03BF00F52973 /* ChatsViewController */,
 			);
 			path = ChatsModule;
@@ -238,8 +262,26 @@
 			isa = PBXGroup;
 			children = (
 				488045702A581253007986B7 /* ChatsViewController.swift */,
+				489A54B42A64597500592768 /* TableViewCell */,
 			);
 			path = ChatsViewController;
+			sourceTree = "<group>";
+		};
+		489A54B42A64597500592768 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				489A54B52A64598900592768 /* UserTableViewCell.swift */,
+				489A54B62A64598900592768 /* UserTableViewCell.xib */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		489A54B92A645CDF00592768 /* ChatsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				489A54BA2A645CF000592768 /* ChatsViewModel.swift */,
+			);
+			path = ChatsViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,6 +391,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4880454D2A57EF86007986B7 /* LaunchScreen.storyboard in Resources */,
+				4876AD472A64908400094A61 /* Rubik-Regular.ttf in Resources */,
+				489A54B82A64598900592768 /* UserTableViewCell.xib in Resources */,
 				487300B92A5D4D7B00C35335 /* GoogleService-Info.plist in Resources */,
 				4880454A2A57EF86007986B7 /* Assets.xcassets in Resources */,
 				488045482A57EF84007986B7 /* Main.storyboard in Resources */,
@@ -421,13 +465,17 @@
 				488B2A612A5C023300F52973 /* User.swift in Sources */,
 				488045452A57EF84007986B7 /* LoginViewController.swift in Sources */,
 				488045412A57EF84007986B7 /* AppDelegate.swift in Sources */,
+				489A54BB2A645CF000592768 /* ChatsViewModel.swift in Sources */,
 				4872845B2A60854D0056790E /* NetworkingManager.swift in Sources */,
+				4876AD442A648F6600094A61 /* Constants.swift in Sources */,
 				488B2A562A5C01DA00F52973 /* LoginViewModel.swift in Sources */,
 				4877897C2A617E2600A9FEF6 /* Validator.swift in Sources */,
 				488045712A581253007986B7 /* ChatsViewController.swift in Sources */,
 				488045432A57EF84007986B7 /* SceneDelegate.swift in Sources */,
 				488B2A642A5C029200F52973 /* GlobalRouter.swift in Sources */,
+				489A54B72A64598900592768 /* UserTableViewCell.swift in Sources */,
 				48C993E32A5C29480072686A /* ImagePickerManager.swift in Sources */,
+				489A54BD2A645DD500592768 /* RegistratedTableCell.swift in Sources */,
 				487300BE2A5DA68E00C35335 /* FirebaseStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

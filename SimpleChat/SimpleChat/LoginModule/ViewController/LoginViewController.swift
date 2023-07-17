@@ -35,6 +35,7 @@ final class LoginViewController: UIViewController, ViewControllerPickerPresentab
     @IBOutlet weak var enterButton: UIButton!
     
     lazy private var loginViewModel = LoginViewModel(currentController: self)
+    var avatarImageURL: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,18 +62,20 @@ final class LoginViewController: UIViewController, ViewControllerPickerPresentab
 
     
     private func addGestureRecognizers() {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(editImage))
-        editImageView.addGestureRecognizer(gesture)
+        let avatarImageGesture = UITapGestureRecognizer(target: self, action: #selector(editImage))
+        let editImageGesture = UITapGestureRecognizer(target: self, action: #selector(editImage))
+        editImageView.addGestureRecognizer(editImageGesture)
         editImageView.isUserInteractionEnabled = true
-        avatarImageView.addGestureRecognizer(gesture)
+        avatarImageView.addGestureRecognizer(avatarImageGesture)
         avatarImageView.isUserInteractionEnabled = true
     }
     
     @objc private func editImage() {
-        loginViewModel.showImagePickerAler { [weak self] image in
+        loginViewModel.showImagePickerAler { [weak self] imageURL in
             guard let self else { return }
             DispatchQueue.main.async {
-                self.avatarImageView.image = image
+                self.avatarImageView.sd_setImage(with: URL(string: imageURL))
+                self.avatarImageURL = imageURL
             }
         }
     }
@@ -80,14 +83,8 @@ final class LoginViewController: UIViewController, ViewControllerPickerPresentab
     @IBAction private func enterAction(_ sender: Any) {
         loginViewModel.loginWith(firstName: firstNameSkyTextField.text,
                                  lastName: firstNameSkyTextField.text,
-                                 imageUrl: "String")
+                                 imageUrl: avatarImageURL)
 
-    }
-    
-    
-    //added to test geting users - for delete
-    @IBAction private func getUsersAction(_ sender: Any) {
-        loginViewModel.getUsers()
     }
 }
 
