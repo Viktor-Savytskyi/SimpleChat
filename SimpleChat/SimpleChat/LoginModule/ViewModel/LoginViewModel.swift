@@ -27,13 +27,16 @@ class LoginViewModel {
     }
     
     func loginWith(firstName: String?, lastName: String?, imageUrl: String?) {
-        guard let user = validatedUser(firstName: firstName, lastName: lastName, imageUrl: imageUrl) else { return }
+//        guard let user = validatedUser(firstName: firstName, lastName: lastName, imageUrl: imageUrl) else { return }
         
-        networkingManager.createUser(user: user) {
-            DispatchQueue.main.async {
-                GlobalRouter.shared.moveTo(screen: .chats)
-            }
-        }
+        CurrentUser.shared.createUser(firstName: firstName!)
+        print ("Current user: \(String(describing: CurrentUser.shared.currentUser))")
+        GlobalRouter.shared.moveTo(screen: .userChats)
+//        networkingManager.createUser(user: user) {
+//            DispatchQueue.main.async {
+//                GlobalRouter.shared.moveTo(screen: .userChats)
+//            }
+//        }
     }
 
     private func validatedUser(firstName: String?, lastName: String?, imageUrl: String?) -> User? {

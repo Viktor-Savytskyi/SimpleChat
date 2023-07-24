@@ -18,7 +18,7 @@ enum Requests: String {
 }
 
 final class NetworkingManager {
-    private let host = "http://localhost:8080/"
+    private let host = "http://127.0.0.1:8080/"
     private let usersCollection = "users"
     private let value = "application/json"
     private let contentType = "Content-Type"
@@ -50,10 +50,10 @@ final class NetworkingManager {
         guard let url = URL(string: "\(host)\(usersCollection)") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = Requests.get.rawValue
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 completion(Result.error(error.localizedDescription))
-            } else if let data = data {
+            } else if let data {
                 do {
                     let users = try JSONDecoder().decode([User].self, from: data)
                     completion(Result.success(users))
@@ -61,7 +61,25 @@ final class NetworkingManager {
                     completion(Result.error(error.localizedDescription))
                 }
             }
-        }
-        task.resume()
+        }.resume()
+    }
+    
+    func fetchUserBy(id: String, completion: @escaping (Result<User>) -> Void) {
+        guard let url = URL(string: "\(host)\(usersCollection)?id=\(id)") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = Requests.get.rawValue
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error {
+                completion(Result.error(error.localizedDescription))
+            } else if let data {
+                do {
+                    if let user = try JSONDecoder().decode([User].self, from: data).first {
+                        completion(Result.success(user))
+                    }
+                } catch {
+                    completion(Result.error(error.localizedDescription))
+                }
+            }
+        }.resume()
     }
 }

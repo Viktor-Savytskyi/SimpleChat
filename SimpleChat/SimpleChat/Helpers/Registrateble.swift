@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol RegistratedTableCell {
+protocol Registrateble {
     static var identifier: String { get }
     static var nib: UINib { get }
 }
 
-extension RegistratedTableCell {
+extension Registrateble {
     static var identifier: String { String(describing: self) }
     static var nib: UINib { UINib(nibName: String(describing: self), bundle: nil)}
 }

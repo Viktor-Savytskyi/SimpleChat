@@ -41,17 +41,7 @@ final class LoginViewController: UIViewController, ViewControllerPickerPresentab
         super.viewDidLoad()
         prepareUI()
         addGestureRecognizers()
-        loginViewModel.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        setupLoginViewModel()
     }
     
     private func prepareUI() {
@@ -59,14 +49,17 @@ final class LoginViewController: UIViewController, ViewControllerPickerPresentab
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         editImageView.layer.cornerRadius = editImageView.frame.height / 2
     }
-
+    
+    private func setupLoginViewModel() {
+        loginViewModel.delegate = self
+    }
     
     private func addGestureRecognizers() {
         let avatarImageGesture = UITapGestureRecognizer(target: self, action: #selector(editImage))
         let editImageGesture = UITapGestureRecognizer(target: self, action: #selector(editImage))
         editImageView.addGestureRecognizer(editImageGesture)
-        editImageView.isUserInteractionEnabled = true
         avatarImageView.addGestureRecognizer(avatarImageGesture)
+        editImageView.isUserInteractionEnabled = true
         avatarImageView.isUserInteractionEnabled = true
     }
     
@@ -74,7 +67,7 @@ final class LoginViewController: UIViewController, ViewControllerPickerPresentab
         loginViewModel.showImagePickerAler { [weak self] imageURL in
             guard let self else { return }
             DispatchQueue.main.async {
-                self.avatarImageView.sd_setImage(with: URL(string: imageURL))
+                self.avatarImageView.sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage(systemName: "person.circle.fill"))
                 self.avatarImageURL = imageURL
             }
         }

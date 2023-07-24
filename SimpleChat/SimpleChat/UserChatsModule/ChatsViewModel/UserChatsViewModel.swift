@@ -7,11 +7,10 @@
 
 import Foundation
 
-final class ChatsViewModel {
+final class UserChatsViewModel {
     
     private let networkingManager = NetworkingManager()
     private var users = [User]()
-    
     
     func fetchUsers(completion: @escaping () -> Void) {
         networkingManager.fetchUsers { response in
@@ -29,4 +28,7 @@ final class ChatsViewModel {
         users
     }
     
+    func moveToChat(with oponentID: String) {
+        GlobalRouter.shared.moveTo(screen: .chat, oponentID: oponentID)
+    }
 }
