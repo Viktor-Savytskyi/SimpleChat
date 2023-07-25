@@ -12,7 +12,7 @@ enum UserError: String, Error {
 }
 
 struct User: Codable {
-    var id: String?
+    var id: String = UUID().uuidString
     var firstName: String
     var lastName: String
     var imageUrl: String

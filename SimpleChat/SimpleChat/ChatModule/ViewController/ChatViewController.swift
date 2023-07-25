@@ -11,7 +11,7 @@ protocol DismissScreenDelegate {
     func dimsissFromView()
 }
 
-enum SentBy : String {
+enum SentBy: String {
     case user
     case opponent
 }
@@ -19,9 +19,11 @@ enum SentBy : String {
 class ChatViewController: UIViewController {
     @IBOutlet weak var userView: UserView!
     @IBOutlet weak var messagesTableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var customSearchBarView: CustomSearchBarView!
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var addButtonImageView: UIImageView!
+    @IBOutlet weak var bottomMessageView: UIView!
+    @IBOutlet weak var bottomMessageViewConstraint: NSLayoutConstraint!
     
     var oponentID: String!
     var isFirstLoading = true
@@ -29,10 +31,12 @@ class ChatViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchUser(by: oponentID)
+        configurateBottomMessageViewKeyboardAppereance()
+        setupSearchBar()
         setupTableView()
+        fetchUser(by: oponentID)
         messageTextField.delegate = self
-        chatViewModel.setupWebSocket(userID: CurrentUser.shared.currentUser.id!, oponentID: oponentID) {
+        chatViewModel.setupWebSocket(userID: CurrentUser.shared.currentUser.id, oponentID: oponentID) {
             DispatchQueue.main.async {
                 self.messagesTableView.reloadData()
                 self.scrollToBottom(isFirstLoading: self.isFirstLoading)
@@ -43,6 +47,10 @@ class ChatViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         chatViewModel.closeWebSocket()
+    }
+    
+    func setupSearchBar() {
+        customSearchBarView.setupSearchBar(placeholder: "Search in chat")
     }
     
     private func fetchUser(by id: String) {
@@ -66,9 +74,12 @@ class ChatViewController: UIViewController {
         messagesTableView.register(ChatTableViewCell.nib, forCellReuseIdentifier: ChatTableViewCell.identifier)
     }
     
-    func scrollToBottom(isFirstLoading: Bool){
+   
+    
+    func scrollToBottom(isFirstLoading: Bool) {
         DispatchQueue.main.async {
-            let indexPath = IndexPath(row: self.chatViewModel.getMessages().count-1, section: 0)
+             let indexPath = IndexPath(row: self.chatViewModel.getMessages().count-1, section: 0)
+            guard indexPath.row > 0 else { return }
             self.messagesTableView.scrollToRow(at: indexPath, at: .bottom, animated: !isFirstLoading)
             self.isFirstLoading = false
         }
@@ -107,5 +118,26 @@ extension ChatViewController: UITextFieldDelegate {
         chatViewModel.sendMessage(receiverID: oponentID, message: text)
         view.endEditing(true)
         return true
+    }
+}
+
+extension ChatViewController {
+    private func configurateBottomMessageViewKeyboardAppereance() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        let info = notification.userInfo!
+        let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            self.bottomMessageViewConstraint.constant = keyboardFrame.size.height + 0
+        })
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            self.bottomMessageViewConstraint.constant = 0
+        })
     }
 }

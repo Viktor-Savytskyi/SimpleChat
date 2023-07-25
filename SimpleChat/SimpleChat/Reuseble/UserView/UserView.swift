@@ -12,7 +12,7 @@ enum ViewState {
     case dismiss
 }
 
-class UserView: UIView, Registrateble {
+class UserView: UIView, LoadViewFromNib {
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userFirstLastNameLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
@@ -41,16 +41,13 @@ class UserView: UIView, Registrateble {
     func configure(_ user: User, state: ViewState, completion: ((() -> Void)?) = nil) {
         messageTimeLabel.isHidden = true
         dismissButton.isHidden = true
-        userImageView.sd_setImage(with: URL(string: user.imageUrl), placeholderImage: UIImage(systemName: "person.circle.fill"))
+        let placeholderImage = UIImage(systemName: "person.circle.fill")?.withTintColor(.black)
+        userImageView.sd_setImage(with: URL(string: user.imageUrl), placeholderImage: placeholderImage)
         userFirstLastNameLabel.text = user.firstName + " " + user.lastName
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm dd-MM"
         messageTimeLabel.text = dateFormatter.string(from: Date())
         showElementsState(state: state)
-    }
-    
-    func loadViewFromNib() -> UIView? {
-        Self.nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
     
     func showElementsState(state: ViewState) {

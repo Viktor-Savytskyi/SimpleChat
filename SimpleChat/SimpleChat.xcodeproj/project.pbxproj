@@ -33,12 +33,16 @@
 		488B2A562A5C01DA00F52973 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A552A5C01DA00F52973 /* LoginViewModel.swift */; };
 		488B2A612A5C023300F52973 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A602A5C023300F52973 /* User.swift */; };
 		488B2A642A5C029200F52973 /* GlobalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A632A5C029200F52973 /* GlobalRouter.swift */; };
+		488C65BB2A6FBBC700F308A5 /* CustomSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C65BA2A6FBBC700F308A5 /* CustomSearchBarView.swift */; };
+		488C65BD2A6FBBDF00F308A5 /* CustomSearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 488C65BC2A6FBBDF00F308A5 /* CustomSearchBarView.xib */; };
+		488C65C02A6FC19900F308A5 /* LoadViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C65BF2A6FC19900F308A5 /* LoadViewFromNib.swift */; };
 		489A54B72A64598900592768 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A54B52A64598900592768 /* UserTableViewCell.swift */; };
 		489A54B82A64598900592768 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 489A54B62A64598900592768 /* UserTableViewCell.xib */; };
 		489A54BB2A645CF000592768 /* UserChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A54BA2A645CF000592768 /* UserChatsViewModel.swift */; };
 		489A54BD2A645DD500592768 /* Registrateble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A54BC2A645DD500592768 /* Registrateble.swift */; };
 		48A88C472A693B7700415366 /* UserMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A88C462A693B7700415366 /* UserMessage.swift */; };
 		48C993E32A5C29480072686A /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C993E22A5C29480072686A /* ImagePickerManager.swift */; };
+		48D7F8112A700CA900DC70BE /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D7F8102A700CA900DC70BE /* KeyChainManager.swift */; };
 		92E18A3893B3C5A35C9E09F4 /* Pods_SimpleChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D628289AF729D785799BD8 /* Pods_SimpleChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,12 +95,16 @@
 		488B2A552A5C01DA00F52973 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		488B2A602A5C023300F52973 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		488B2A632A5C029200F52973 /* GlobalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalRouter.swift; sourceTree = "<group>"; };
+		488C65BA2A6FBBC700F308A5 /* CustomSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBarView.swift; sourceTree = "<group>"; };
+		488C65BC2A6FBBDF00F308A5 /* CustomSearchBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSearchBarView.xib; sourceTree = "<group>"; };
+		488C65BF2A6FC19900F308A5 /* LoadViewFromNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadViewFromNib.swift; sourceTree = "<group>"; };
 		489A54B52A64598900592768 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		489A54B62A64598900592768 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		489A54BA2A645CF000592768 /* UserChatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChatsViewModel.swift; sourceTree = "<group>"; };
 		489A54BC2A645DD500592768 /* Registrateble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registrateble.swift; sourceTree = "<group>"; };
 		48A88C462A693B7700415366 /* UserMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessage.swift; sourceTree = "<group>"; };
 		48C993E22A5C29480072686A /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
+		48D7F8102A700CA900DC70BE /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 		59D7E86C2C6F035513E33EC0 /* Pods-SimpleChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleChat.debug.xcconfig"; path = "Target Support Files/Pods-SimpleChat/Pods-SimpleChat.debug.xcconfig"; sourceTree = "<group>"; };
 		A2D628289AF729D785799BD8 /* Pods_SimpleChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -195,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				4877897B2A617E2600A9FEF6 /* Validator.swift */,
+				488C65BF2A6FC19900F308A5 /* LoadViewFromNib.swift */,
 				489A54BC2A645DD500592768 /* Registrateble.swift */,
 			);
 			path = Helpers;
@@ -312,6 +321,7 @@
 			children = (
 				488B2A632A5C029200F52973 /* GlobalRouter.swift */,
 				487D30952A66D949005051BF /* ChatManager.swift */,
+				48D7F8102A700CA900DC70BE /* KeyChainManager.swift */,
 				4883BEEC2A6A5DDD00A4D8E1 /* Networking */,
 				487300BD2A5DA68E00C35335 /* FirebaseStorage.swift */,
 				48C993E22A5C29480072686A /* ImagePickerManager.swift */,
@@ -323,8 +333,8 @@
 		488B2A652A5C039F00F52973 /* Reuseble */ = {
 			isa = PBXGroup;
 			children = (
-				487D308C2A667985005051BF /* UserView.swift */,
-				487D308E2A6679A3005051BF /* UserView.xib */,
+				488C65B92A6FBBAD00F308A5 /* SearchBar */,
+				488C65B82A6FBBA000F308A5 /* UserView */,
 			);
 			path = Reuseble;
 			sourceTree = "<group>";
@@ -346,6 +356,24 @@
 				489A54B42A64597500592768 /* UserTableViewCell */,
 			);
 			path = UserChatsViewController;
+			sourceTree = "<group>";
+		};
+		488C65B82A6FBBA000F308A5 /* UserView */ = {
+			isa = PBXGroup;
+			children = (
+				487D308C2A667985005051BF /* UserView.swift */,
+				487D308E2A6679A3005051BF /* UserView.xib */,
+			);
+			path = UserView;
+			sourceTree = "<group>";
+		};
+		488C65B92A6FBBAD00F308A5 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				488C65BA2A6FBBC700F308A5 /* CustomSearchBarView.swift */,
+				488C65BC2A6FBBDF00F308A5 /* CustomSearchBarView.xib */,
+			);
+			path = SearchBar;
 			sourceTree = "<group>";
 		};
 		489A54B42A64597500592768 /* UserTableViewCell */ = {
@@ -475,6 +503,7 @@
 				487D30942A66CC54005051BF /* ChatTableViewCell.xib in Resources */,
 				4876AD472A64908400094A61 /* Rubik-Regular.ttf in Resources */,
 				4884DF342A651CCB00F29062 /* UserCollectionViewCell.xib in Resources */,
+				488C65BD2A6FBBDF00F308A5 /* CustomSearchBarView.xib in Resources */,
 				489A54B82A64598900592768 /* UserTableViewCell.xib in Resources */,
 				487300B92A5D4D7B00C35335 /* GoogleService-Info.plist in Resources */,
 				4880454A2A57EF86007986B7 /* Assets.xcassets in Resources */,
@@ -546,6 +575,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				488C65C02A6FC19900F308A5 /* LoadViewFromNib.swift in Sources */,
 				488B2A612A5C023300F52973 /* User.swift in Sources */,
 				488045452A57EF84007986B7 /* LoginViewController.swift in Sources */,
 				488045412A57EF84007986B7 /* AppDelegate.swift in Sources */,
@@ -560,7 +590,9 @@
 				486D14FA2A6589F900BFE5A3 /* ChatViewController.swift in Sources */,
 				488045432A57EF84007986B7 /* SceneDelegate.swift in Sources */,
 				48A88C472A693B7700415366 /* UserMessage.swift in Sources */,
+				488C65BB2A6FBBC700F308A5 /* CustomSearchBarView.swift in Sources */,
 				488B2A642A5C029200F52973 /* GlobalRouter.swift in Sources */,
+				48D7F8112A700CA900DC70BE /* KeyChainManager.swift in Sources */,
 				489A54B72A64598900592768 /* UserTableViewCell.swift in Sources */,
 				48C993E32A5C29480072686A /* ImagePickerManager.swift in Sources */,
 				4884DF332A651CCA00F29062 /* UserCollectionViewCell.swift in Sources */,

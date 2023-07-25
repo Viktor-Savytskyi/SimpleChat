@@ -42,7 +42,7 @@ class ChatManager: NSObject {
     
     func sendMessage(receiverID: String, message: String) {
         do {
-            let userMessage = try UserMessage(senderID: CurrentUser.shared.currentUser.id!,
+            let userMessage = try UserMessage(senderID: CurrentUser.shared.currentUser.id,
                                               receiverID: receiverID,
                                               message: message).convertToJsonData()
             let message = URLSessionWebSocketTask.Message.data(userMessage)

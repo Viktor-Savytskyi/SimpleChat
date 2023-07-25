@@ -26,4 +26,8 @@ class CustomSearchBarView: UIView, LoadViewFromNib {
         view.frame = self.bounds
         self.addSubview(view)
     }
+    
+    func setupSearchBar(placeholder: String) {
+        searchBar.placeholder = placeholder
+    }
 }

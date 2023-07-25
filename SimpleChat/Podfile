@@ -9,4 +9,6 @@ pod 'MessageKit'
 pod 'SkyFloatingLabelTextField'
 pod 'SDWebImage'
 pod 'FirebaseStorage'
+pod 'Locksmith'
+pod 'IQKeyboardManagerSwift'
 end

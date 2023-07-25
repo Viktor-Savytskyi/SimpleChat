@@ -3,10 +3,15 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Rubik-Regular.ttf">
+            <string>Rubik-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,40 +23,46 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lsu-Ei-hYx">
-                        <rect key="frame" x="20" y="10" width="325" height="156"/>
+                        <rect key="frame" x="0.0" y="10" width="365" height="141.66666666666666"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YW-Dr-nPu">
-                                <rect key="frame" x="273.66666666666669" y="125" width="41.333333333333314" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgR-fu-YfN">
-                                <rect key="frame" x="10" y="10" width="305" height="105"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgR-fu-YfN">
+                                <rect key="frame" x="18" y="15.000000000000007" width="329" height="111.66666666666669"/>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="10"/>
+                                <color key="textColor" name="subMain"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vgR-fu-YfN" firstAttribute="top" secondItem="Lsu-Ei-hYx" secondAttribute="top" constant="10" id="5XQ-lB-hDc"/>
-                            <constraint firstItem="4YW-Dr-nPu" firstAttribute="top" secondItem="vgR-fu-YfN" secondAttribute="bottom" constant="10" id="Huc-3m-Qe2"/>
-                            <constraint firstAttribute="trailing" secondItem="vgR-fu-YfN" secondAttribute="trailing" constant="10" id="Ihv-h3-6Rj"/>
-                            <constraint firstAttribute="trailing" secondItem="4YW-Dr-nPu" secondAttribute="trailing" constant="10" id="Zq9-tO-Wee"/>
-                            <constraint firstAttribute="bottom" secondItem="4YW-Dr-nPu" secondAttribute="bottom" constant="10" id="erl-EZ-XyX"/>
-                            <constraint firstItem="vgR-fu-YfN" firstAttribute="leading" secondItem="Lsu-Ei-hYx" secondAttribute="leading" constant="10" id="pGd-mX-s73"/>
+                            <constraint firstItem="vgR-fu-YfN" firstAttribute="top" secondItem="Lsu-Ei-hYx" secondAttribute="top" constant="15" id="5XQ-lB-hDc"/>
+                            <constraint firstAttribute="trailing" secondItem="vgR-fu-YfN" secondAttribute="trailing" constant="18" id="Ihv-h3-6Rj"/>
+                            <constraint firstAttribute="bottom" secondItem="vgR-fu-YfN" secondAttribute="bottom" constant="15" id="d0p-WP-kx6"/>
+                            <constraint firstItem="vgR-fu-YfN" firstAttribute="leading" secondItem="Lsu-Ei-hYx" secondAttribute="leading" constant="18" id="pGd-mX-s73"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YW-Dr-nPu">
+                        <rect key="frame" x="329" y="157.66666666666666" width="18" height="8.3333333333333428"/>
+                        <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="7"/>
+                        <color key="textColor" name="subMain"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
+                <color key="backgroundColor" name="background"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Lsu-Ei-hYx" secondAttribute="bottom" constant="10" id="EIG-WM-nJf"/>
+                    <constraint firstItem="4YW-Dr-nPu" firstAttribute="top" secondItem="Lsu-Ei-hYx" secondAttribute="bottom" constant="6" id="0U5-7f-Shd"/>
+                    <constraint firstItem="4YW-Dr-nPu" firstAttribute="trailing" secondItem="vgR-fu-YfN" secondAttribute="trailing" id="48a-fI-LSq"/>
                     <constraint firstItem="Lsu-Ei-hYx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Mvv-qe-dbi"/>
-                    <constraint firstItem="Lsu-Ei-hYx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="NI2-Rs-kVs"/>
-                    <constraint firstAttribute="trailing" secondItem="Lsu-Ei-hYx" secondAttribute="trailing" constant="20" id="ron-Wg-BHk"/>
+                    <constraint firstItem="Lsu-Ei-hYx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="NI2-Rs-kVs"/>
+                    <constraint firstAttribute="bottom" secondItem="4YW-Dr-nPu" secondAttribute="bottom" constant="10" id="r9e-Cd-tJd"/>
+                    <constraint firstAttribute="trailing" secondItem="Lsu-Ei-hYx" secondAttribute="trailing" id="ron-Wg-BHk"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="background"/>
             <connections>
                 <outlet property="containerView" destination="Lsu-Ei-hYx" id="kFb-JH-EcV"/>
                 <outlet property="leftConstraint" destination="NI2-Rs-kVs" id="BAg-98-1Bd"/>
@@ -63,8 +74,11 @@
         </tableViewCell>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="subMain">
+            <color red="0.40392156862745099" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

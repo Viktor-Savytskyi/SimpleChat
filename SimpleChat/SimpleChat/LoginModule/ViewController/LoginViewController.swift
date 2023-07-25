@@ -48,6 +48,8 @@ final class LoginViewController: UIViewController, ViewControllerPickerPresentab
         enterButton.layer.cornerRadius = enterButton.frame.height / 2
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         editImageView.layer.cornerRadius = editImageView.frame.height / 2
+        firstNameSkyTextField.delegate = self
+        lastNameSkyTextField.delegate = self
     }
     
     private func setupLoginViewModel() {
@@ -83,4 +85,15 @@ final class LoginViewController: UIViewController, ViewControllerPickerPresentab
 
 extension LoginViewController: LoginViewModelDelegate {
     
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == firstNameSkyTextField {
+            lastNameSkyTextField.becomeFirstResponder()
+        } else {
+            view.endEditing(true)
+        }
+        return true
+    }
 }

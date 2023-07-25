@@ -25,8 +25,9 @@
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="TLR-a3-H3m">
                         <rect key="frame" x="0.0" y="0.0" width="50" height="75"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hib-Mq-iBP">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Hib-Mq-iBP">
+                                <rect key="frame" x="0.0" y="1" width="50" height="48.666666666666671"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Hib-Mq-iBP" secondAttribute="height" multiplier="1:1" id="0xb-1M-Q0N"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="yGI-KW-4dJ"/>
@@ -58,6 +59,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="main">
             <color red="0.17599999904632568" green="0.24699999392032623" blue="0.39599999785423279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
