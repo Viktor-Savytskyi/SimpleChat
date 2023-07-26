@@ -35,7 +35,7 @@ final class UserChatsViewController: UIViewController {
     }
     
     func setupSearchBar() {
-        customSearchBarView.setupSearchBar(placeholder: "Search...")
+        customSearchBarView.setupSearchBar(placeholder: SearchBarPlaceholders.search.rawValue)
     }
     
     private func fetchUsers() {

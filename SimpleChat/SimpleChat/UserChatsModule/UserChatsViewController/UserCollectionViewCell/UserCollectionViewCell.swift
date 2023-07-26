@@ -19,7 +19,7 @@ class UserCollectionViewCell: UICollectionViewCell, Registrateble {
     }
     
     func fillAddNewUser() {
-        avatarImageView.image = UIImage(named: "cellCircle")
+        avatarImageView.image = UIImage(named: "appAttachment")
         firstNameLabel.text = "Add New"
     }
     

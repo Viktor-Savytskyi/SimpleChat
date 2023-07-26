@@ -27,7 +27,6 @@ final class GlobalRouter {
     }
     
     func getNavigationController() -> UINavigationController {
-        moveTo(screen: .login)
         return navigationController
     }
     

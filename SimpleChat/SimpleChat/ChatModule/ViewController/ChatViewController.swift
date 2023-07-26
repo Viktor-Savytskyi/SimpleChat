@@ -21,8 +21,9 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var messagesTableView: UITableView!
     @IBOutlet weak var customSearchBarView: CustomSearchBarView!
     @IBOutlet weak var messageTextField: UITextField!
-    @IBOutlet weak var addButtonImageView: UIImageView!
     @IBOutlet weak var bottomMessageView: UIView!
+    @IBOutlet weak var addAttachmentButton: UIButton!
+    @IBOutlet weak var sendMessageButton: UIButton!
     @IBOutlet weak var bottomMessageViewConstraint: NSLayoutConstraint!
     
     var oponentID: String!
@@ -50,7 +51,7 @@ class ChatViewController: UIViewController {
     }
     
     func setupSearchBar() {
-        customSearchBarView.setupSearchBar(placeholder: "Search in chat")
+        customSearchBarView.setupSearchBar(placeholder: SearchBarPlaceholders.searchInChat.rawValue)
     }
     
     private func fetchUser(by id: String) {
@@ -63,7 +64,7 @@ class ChatViewController: UIViewController {
     }
     
     private func setupUserData() {
-        let user = chatViewModel.getSelectedUser()
+        let user = chatViewModel.getOponent()
         userView.configure(user, state: .dismiss)
         userView.dismissScreenDelegate = self
     }
@@ -74,7 +75,9 @@ class ChatViewController: UIViewController {
         messagesTableView.register(ChatTableViewCell.nib, forCellReuseIdentifier: ChatTableViewCell.identifier)
     }
     
-   
+    private func clearMessageField() {
+        messageTextField.text = ""
+    }
     
     func scrollToBottom(isFirstLoading: Bool) {
         DispatchQueue.main.async {
@@ -84,6 +87,19 @@ class ChatViewController: UIViewController {
             self.isFirstLoading = false
         }
     }
+    @IBAction func addAttachmentAction(_ sender: Any) {
+        print("addAttachment")
+        view.endEditing(true)
+    }
+    
+    @IBAction func sendMessageAction(_ sender: Any) {
+        guard let text = messageTextField.text else { return }
+        print("sendMessage \(text)")
+//        chatViewModel.sendMessage(receiverID: oponentID, message: text)
+        clearMessageField()
+        view.endEditing(true)
+    }
+    
 }
 
 extension ChatViewController: DismissScreenDelegate {
@@ -114,9 +130,7 @@ extension ChatViewController: UITableViewDelegate {
 
 extension ChatViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let text = textField.text else { return false }
-        chatViewModel.sendMessage(receiverID: oponentID, message: text)
-        view.endEditing(true)
+        
         return true
     }
 }
@@ -131,13 +145,15 @@ extension ChatViewController {
         let info = notification.userInfo!
         let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
-            self.bottomMessageViewConstraint.constant = keyboardFrame.size.height + 0
+            self.bottomMessageViewConstraint.constant = keyboardFrame.size.height
+            self.view.layoutIfNeeded()
         })
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.bottomMessageViewConstraint.constant = 0
+            self.view.layoutIfNeeded()
         })
     }
 }

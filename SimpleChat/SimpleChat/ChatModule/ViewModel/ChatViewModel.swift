@@ -10,14 +10,14 @@ import Foundation
 class ChatViewModel {
     private let chatManager = ChatManager()
     private let networkingManager = NetworkingManager()
-    private var selectedUser: User?
+    private var oponent: User?
     
     func fetchUser(by id: String, completion: @escaping () -> Void) {
         networkingManager.fetchUserBy(id: id) { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let user):
-                self.selectedUser = user
+                self.oponent = user
             case .error(let error):
                 print(error)
             }
@@ -25,8 +25,8 @@ class ChatViewModel {
         }
     }
     
-    func getSelectedUser() -> User {
-        selectedUser ?? User(firstName: "", lastName: "", imageUrl: "")
+    func getOponent() -> User {
+        oponent ?? User(firstName: "", lastName: "", imageUrl: "")
     }
     
     func sendMessage(receiverID: String, message: String) {

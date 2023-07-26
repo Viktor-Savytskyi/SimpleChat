@@ -12,13 +12,15 @@ class KeyChainManager {
     private let firstNameKey = "firstName"
     private let lastNameKey = "lastName"
     private let imageURLKey = "imageURLKey"
+    private let userKey = "user"
     
     func save(user: User)  {
         do {
             try Locksmith.saveData(data: [firstNameKey : user.firstName,
-                                           lastNameKey : user.lastName],
+                                           lastNameKey : user.lastName,
+                                           imageURLKey : user.imageUrl],
                                    forUserAccount: user.id)
-            UserDefaults.standard.set(true , forKey: "user")
+            UserDefaults.standard.set(user.id , forKey: userKey)
             CurrentUser.shared.currentUser = user
         } catch {
             print("cant save data \(error)")
@@ -26,7 +28,8 @@ class KeyChainManager {
     }
     
     func get() -> User? {
-        if let id = UserDefaults.standard.value(forKey: "user") as! String?, let user = Locksmith.loadDataForUserAccount(userAccount: id) {
+        if let id = UserDefaults.standard.string(forKey: userKey),
+            let user = Locksmith.loadDataForUserAccount(userAccount: id) {
             return User(id: id,
                         firstName: user[firstNameKey] as! String,
                         lastName: user[lastNameKey] as! String,

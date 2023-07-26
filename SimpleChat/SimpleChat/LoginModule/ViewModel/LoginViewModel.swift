@@ -30,7 +30,7 @@ class LoginViewModel {
     func loginWith(firstName: String?, lastName: String?, imageUrl: String?) {
         guard let user = validatedUser(firstName: firstName, lastName: lastName, imageUrl: imageUrl) else { return }
         
-        CurrentUser.shared.createUser(firstName: firstName!)
+//        CurrentUser.shared.createUser(firstName: firstName!)
 //        print ("Current user: \(String(describing: CurrentUser.shared.currentUser))")
 //        GlobalRouter.shared.moveTo(screen: .userChats)
         networkingManager.createUser(user: user) {

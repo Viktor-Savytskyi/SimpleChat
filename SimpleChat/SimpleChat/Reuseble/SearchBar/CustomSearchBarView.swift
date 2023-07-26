@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum SearchBarPlaceholders: String {
+    case searchInChat = "Search in chat"
+    case search = "Search..."
+}
+
 class CustomSearchBarView: UIView, LoadViewFromNib {
     
     @IBOutlet weak var searchBar: UISearchBar!

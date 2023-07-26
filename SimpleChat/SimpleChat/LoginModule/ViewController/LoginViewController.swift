@@ -77,7 +77,7 @@ final class LoginViewController: UIViewController, ViewControllerPickerPresentab
     
     @IBAction private func enterAction(_ sender: Any) {
         loginViewModel.loginWith(firstName: firstNameSkyTextField.text,
-                                 lastName: firstNameSkyTextField.text,
+                                 lastName: lastNameSkyTextField.text,
                                  imageUrl: avatarImageURL)
 
     }
