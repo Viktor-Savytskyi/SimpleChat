@@ -99,7 +99,6 @@ class ChatViewController: UIViewController {
         clearMessageField()
         view.endEditing(true)
     }
-    
 }
 
 extension ChatViewController: DismissScreenDelegate {
