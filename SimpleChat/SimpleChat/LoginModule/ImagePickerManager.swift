@@ -18,6 +18,7 @@ private enum ImagePickerTitles {
     case allow
     case settings
     case necessaryMessage(type: SourceType)
+    case selectLimitedPhotos
     case moveToAppPrivacySettings
     case fatalError
     
@@ -35,6 +36,8 @@ private enum ImagePickerTitles {
             return "Allow"
         case .necessaryMessage(let type):
             return "Application need to have full access to your '\(type.rawValue.capitalized)'. It is absolutely necessary to use this app"
+        case .selectLimitedPhotos:
+            return "Select limited photos"
         case .notNow:
             return "Not now"
         case .settings:
@@ -47,7 +50,13 @@ private enum ImagePickerTitles {
     }
 }
 
-private enum SourceType: String {
+enum AccessType {
+    case authorized
+    case limited
+    case denied
+}
+
+enum SourceType: String {
     case camera
     case gallery
 }
@@ -65,6 +74,10 @@ final class ImagePickerManager: NSObject {
         pickerDelegate = self
         phPickerDelegate = self
         self.currentViewController = currentViewController
+    }
+    
+    deinit {
+       PHPhotoLibrary .shared().unregisterChangeObserver(self)
     }
     
     func showImagePickerAler(completion: @escaping (String) -> Void) {
@@ -95,58 +108,74 @@ final class ImagePickerManager: NSObject {
     }
     
     private func openCamera(completion: @escaping (String) -> Void) {
-        var isAuthorized: Bool = false
-        AVCaptureDevice.requestAccess(for: .video) { success in
-            isAuthorized = success
-        }
-        
-        DispatchQueue.main.async { [weak self] in
+        var accessType: AccessType!
+        AVCaptureDevice.requestAccess(for: .video) { [weak self] success in
             guard let self else { return }
-            if isAuthorized {
-                let cameraPicker = self.showCamera { [weak self] image in
-                    guard let self else { return }
-                    self.getUrlFromImage(image: image, completion: completion)
+            accessType = success ? .authorized : .denied
+            
+            DispatchQueue.main.async {
+                if accessType == .authorized {
+                    let cameraPicker = self.showCamera { [weak self] image in
+                        guard let self else { return }
+                        self.getUrlFromImage(image: image, completion: completion)
+                    }
+                    self.currentViewController.presentOverParent(cameraPicker)
+                } else {
+                    self.currentViewController.presentOverParent(self.showSettings(sourceType: .camera,
+                                                                                   accessType: accessType))
                 }
-                self.currentViewController.presentOverParent(cameraPicker)
-            } else {
-                self.currentViewController.presentOverParent(self.showSettings(sourceType: .camera))
             }
         }
     }
     
     private func openGallery(completion: @escaping (String) -> Void) {
-        var isAuthorized: Bool = false
-        PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
-            isAuthorized = status == .authorized
-        }
+        var accessType: AccessType!
         
-        DispatchQueue.main.async { [weak self] in
+        PHPhotoLibrary.requestAuthorization(for: .readWrite) { [weak self] status in
             guard let self else { return }
-            if isAuthorized {
-                let phPicker = self.showPHPicker { [weak self] image in
-                    guard let self else { return }
-                    self.getUrlFromImage(image: image, completion: completion)
-                }
-                self.currentViewController.presentOverParent(phPicker)
+            if status == .authorized {
+                accessType = .authorized
+            } else if status == .limited {
+                accessType = .limited
             } else {
-                self.currentViewController.presentOverParent(self.showSettings(sourceType: .gallery))
+                accessType = .denied
             }
+            
+            DispatchQueue.main.async {
+                switch accessType {
+                case .authorized:
+                    let phPicker = self.showPHPicker { [weak self] image in
+                        guard let self else { return }
+                        self.getUrlFromImage(image: image, completion: completion)
+                    }
+                    self.currentViewController.presentOverParent(phPicker)
+                case .limited:
+                    self.currentViewController.presentOverParent(self.showSettings(sourceType: .gallery,
+                                                                                   accessType: accessType, completion: completion))
+                case .denied:
+                    self.currentViewController.presentOverParent(self.showSettings(sourceType: .gallery,
+                                                                                   accessType: accessType))
+                case .none:
+                    print(ImagePickerTitles.fatalError.description)
+                }
+            }
+            
         }
     }
     
-    private func getUrlFromImage(image: UIImage, completion: @escaping (String) -> Void) {
+    private func getUrlFromImage(image: UIImage, completion: ((String) -> Void)?) {
         let imageData = image.jpegData(compressionQuality: 1) ?? Data()
         FirebaseStorage.shared.saveImageWithUrl(image: imageData) { url, error in
             if (error != nil) {
                 print(error?.localizedDescription ?? "")
             } else {
-                completion(url ?? "")
+                completion?(url ?? "")
             }
         }
     }
     
     
-    private func showSettings(sourceType: SourceType, completion: ((UIImage) -> Void)? = nil) -> UIAlertController {
+    func showSettings(sourceType: SourceType, accessType: AccessType, completion: ((String) -> Void)? = nil) -> UIAlertController {
         let title = sourceType == .camera ? ImagePickerTitles.camera.description : ImagePickerTitles.gallery.description
         
         let alert = UIAlertController(title: title,
@@ -163,6 +192,33 @@ final class ImagePickerManager: NSObject {
         
         alert.addAction(moveToSettingsAction)
         alert.addAction(notNowAction)
+        
+        if sourceType == .gallery && accessType == .limited  {
+            let selectPhotosAction = UIAlertAction(title: ImagePickerTitles.selectLimitedPhotos.description,
+                                                   style: .default) { [weak self] _ in
+                guard let self else { return }
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    PHPhotoLibrary.shared().register(self)
+                    PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: self.currentViewController)
+                    //                    self.imageCompletion = completion
+                }
+            }
+           
+            let selectGaleryPhotosAction = UIAlertAction(title: "Pick limited photo from gallery",
+                                                   style: .default)  { [weak self] _ in
+                guard let self else { return }
+                let phPicker = self.showPHPicker { [weak self] image in
+                    guard let self else { return }
+                    self.getUrlFromImage(image: image, completion: completion)
+                }
+                self.currentViewController.presentOverParent(phPicker)
+            }
+           
+            
+            alert.addAction(selectGaleryPhotosAction)
+            alert.addAction(selectPhotosAction)
+        }
         return alert
     }
     
@@ -186,7 +242,7 @@ final class ImagePickerManager: NSObject {
     }
     
     private func showPHPicker(completion: @escaping ((UIImage) -> Void)) -> PHPickerViewController {
-        var phPickerConfig = PHPickerConfiguration(photoLibrary: .shared())
+        var phPickerConfig = PHPickerConfiguration()
         phPickerConfig.selectionLimit = 1
         phPickerConfig.filter = PHPickerFilter.any(of: [.images, .livePhotos])
         let phPickerVC = PHPickerViewController(configuration: phPickerConfig)
@@ -221,3 +277,35 @@ extension ImagePickerManager: PHPickerViewControllerDelegate {
         }
     }
 }
+
+extension ImagePickerManager: PHPhotoLibraryChangeObserver {
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
+        let fetchOptions = PHFetchOptions()
+//        fetchOptions.fetchLimit = 1
+        let images = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        
+        
+        print("limited images count = \(images.count)")
+        let newImages = convertAssetsToImages(fetchResult: images)
+        imageCompletion?(newImages.last ?? UIImage())
+    }
+}
+
+extension ImagePickerManager {
+    func convertAssetsToImages(fetchResult: PHFetchResult<PHAsset>) -> [UIImage] {
+        let manager = PHImageManager.default()
+        let options = PHImageRequestOptions()
+        options.isSynchronous = true
+        var images: [UIImage] = []
+        for index in 0..<fetchResult.count {
+            let asset = fetchResult.object(at: index)
+            manager.requestImage(for: asset, targetSize: CGSize(width: 300, height: 300), contentMode: .aspectFit, options: options) { (image, _) in
+                if let image = image {
+                    images.append(image)
+                }
+            }
+        }
+        return images
+    }
+}
+
