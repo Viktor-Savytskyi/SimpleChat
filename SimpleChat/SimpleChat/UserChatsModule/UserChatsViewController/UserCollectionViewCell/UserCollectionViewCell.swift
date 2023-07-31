@@ -24,7 +24,7 @@ class UserCollectionViewCell: UICollectionViewCell, Registrateble {
     }
     
     func fillWith(_ user: User) {
-        let placeholderImage = UIImage(systemName: "person.circle.fill")?.withTintColor(.black)
+        let placeholderImage = UIImage(systemName: Constants.Strings.avatarPlaceholder)?.withTintColor(.black)
         avatarImageView.sd_setImage(with: URL(string: user.imageUrl), placeholderImage: placeholderImage)
         firstNameLabel.text = user.firstName
     }

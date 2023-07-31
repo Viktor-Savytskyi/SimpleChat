@@ -11,12 +11,55 @@ enum UserError: String, Error {
     case convertToJSON = "unable to convert user to JSON"
 }
 
-struct User: Codable {
-    var id: String = UUID().uuidString
+class User: Codable {
+    var id: String
     var firstName: String
     var lastName: String
     var imageUrl: String
     var lastOnlineDate: Date?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case firstName
+        case lastName
+        case message
+        case imageUrl
+        case lastOnlineDate
+    }
+    
+    init(id: String = UUID().uuidString, firstName: String, lastName: String, imageUrl: String, lastOnlineDate: Date? = nil) {
+        self.id = id
+        self.firstName = firstName
+        self.lastName = lastName
+        self.imageUrl = imageUrl
+        self.lastOnlineDate = lastOnlineDate
+    }
+    
+    var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return formatter
+    }()
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(firstName, forKey: .firstName)
+        try container.encode(lastName, forKey: .lastName)
+        try container.encode(imageUrl, forKey: .imageUrl)
+        try container.encode(lastOnlineDate, forKey: .lastOnlineDate)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        firstName = try container.decode(String.self, forKey: .firstName)
+        lastName = try container.decode(String.self, forKey: .lastName)
+        imageUrl = try container.decode(String.self, forKey: .imageUrl)
+        if let dateString = try container.decodeIfPresent(String.self, forKey: .lastOnlineDate) {
+            lastOnlineDate = dateFormatter.date(from: dateString)
+        }
+    }
     
     func convertToJson() throws -> Data {
         do {
@@ -34,23 +77,4 @@ class CurrentUser {
     init() { }
     
     var currentUser: User!
-    
-//    func createUser(firstName: String) {
-//        if firstName == "1" {
-//            currentUser = User(id: "519D0148-2D43-4E9A-B40C-CC3C00AEF9F4",
-//                               firstName: "Current",
-//                               lastName: "Current",
-//                               imageUrl: "https://firebasestorage.googleapis.com:443/v0/b/simplechat-dc2d0.appspot.com/o/Avatars%2F8535D8DC-BF07-47AC-AEB6-5783327A5B7C.png?alt=media&token=b34456aa-bb6b-411c-9254-70dda385df59")
-//        } else if firstName == "2" {
-//            currentUser = User(id: "544D7151-06E8-4109-819C-1F9C5A224A50",
-//                               firstName: "victor",
-//                               lastName: "victor",
-//                               imageUrl: "https://firebasestorage.googleapis.com:443/v0/b/simplechat-dc2d0.appspot.com/o/Avatars%2F48373DEC-EDEE-486B-8947-654B0DA70E18.png?alt=media&token=ae934407-1d0c-4980-b849-afa1e0481218")
-//        } else if firstName == "3" {
-//            currentUser = User(id: "68BFF7F8-2753-4586-B9E3-01FA658E484D",
-//                               firstName: "vacation",
-//                               lastName: "vacation",
-//                               imageUrl: "https://firebasestorage.googleapis.com:443/v0/b/simplechat-dc2d0.appspot.com/o/Avatars%2F5BE3D190-2060-4B06-9931-93B7B7FCDD82.png?alt=media&token=bf6a4c02-3cb1-4b03-a3de-2ba630751005")
-//        }
-//    }
 }

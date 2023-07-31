@@ -21,6 +21,11 @@ final class UserChatsViewController: UIViewController {
         setupSearchBar() 
         prepareTableView()
         prepareCollectionView() 
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchUsers()
         fetchRooms()
     }
@@ -86,7 +91,7 @@ extension UserChatsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier, for: indexPath) as! UserTableViewCell
-        let room = userChatsViewModel.getRooms()[indexPath.row]
+        let room = userChatsViewModel.roomsData[indexPath.row]
         cell.fillWith(room)
         return cell
     }
@@ -94,7 +99,8 @@ extension UserChatsViewController: UITableViewDataSource {
 
 extension UserChatsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
+        let id = userChatsViewModel.getUsers()[indexPath.row].id
+        userChatsViewModel.moveToChat(with: id)
     }
 }
 

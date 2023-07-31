@@ -29,7 +29,5 @@ class UserRoom: Codable {
         id = try container.decodeIfPresent(UUID.self, forKey: .id)
         messages = try container.decode([UserMessage].self, forKey: .messages)
         users = try container.decode([String].self, forKey: .users)
-        
-        
     }
 }

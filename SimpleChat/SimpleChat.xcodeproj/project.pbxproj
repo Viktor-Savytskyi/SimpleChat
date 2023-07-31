@@ -925,7 +925,7 @@
 				488045662A57EF86007986B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		488045672A57EF86007986B7 /* Build configuration list for PBXNativeTarget "SimpleChat" */ = {
 			isa = XCConfigurationList;
@@ -934,7 +934,7 @@
 				488045692A57EF86007986B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		4880456A2A57EF86007986B7 /* Build configuration list for PBXNativeTarget "SimpleChatTests" */ = {
 			isa = XCConfigurationList;
@@ -943,7 +943,7 @@
 				4880456C2A57EF86007986B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		4880456D2A57EF86007986B7 /* Build configuration list for PBXNativeTarget "SimpleChatUITests" */ = {
 			isa = XCConfigurationList;
@@ -952,7 +952,7 @@
 				4880456F2A57EF86007986B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

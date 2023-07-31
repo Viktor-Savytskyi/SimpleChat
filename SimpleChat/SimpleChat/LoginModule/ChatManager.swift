@@ -65,7 +65,7 @@ class ChatManager: NSObject {
                 case .data(let data):
                     do {
                         let userMessage = try JSONDecoder().decode(UserMessage.self, from: data)
-                            self.messagesArray.append(userMessage)
+                        self.messagesArray.append(userMessage)
                     } catch {
                         print("Error at decoding data into a single message. Try to decode as array!")
                         do {

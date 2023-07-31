@@ -7,11 +7,17 @@
 
 import Foundation
 
+struct RoomData {
+    let messages: [UserMessage]
+    let users: [User]
+}
+
 final class UserChatsViewModel {
     
     private let networkingManager = NetworkingManager()
     private var users = [User]()
     private var rooms = [UserRoom]()
+    var roomsData = [RoomData]()
     
     func fetchUsers(completion: @escaping () -> Void) {
         networkingManager.fetchUsers { response in
@@ -29,9 +35,21 @@ final class UserChatsViewModel {
         users
     }
     
-    func getRooms() -> [UserRoom] {
-        rooms
+    func getRoomsData() {
+        roomsData = []
+        rooms.forEach { room in
+            var localUsers = [User]()
+            print("Room =", room.users)
+            users.forEach { user in
+                print("User =", user.id)
+                if room.users.contains(user.id) {
+                    localUsers.append(user)
+                }
+            }
+            roomsData.append(RoomData(messages: room.messages, users: localUsers))
+        }
     }
+    
     func fetchRooms(completion: @escaping () -> Void) {
         networkingManager.fetchRooms { response in
             switch response {
@@ -40,6 +58,7 @@ final class UserChatsViewModel {
             case .error(let error):
                 print(error)
             }
+            self.getRoomsData()
             completion()
         }
     }

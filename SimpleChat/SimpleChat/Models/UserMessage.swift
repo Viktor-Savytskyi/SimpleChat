@@ -24,9 +24,9 @@ class UserMessage: Codable {
         case room
     }
     
-    private static var dateFormatter: DateFormatter = {
+    private var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"  //"yyyy-mm-dd HH:mm"
         return formatter
     }()
     
@@ -46,8 +46,9 @@ class UserMessage: Codable {
         senderID = try container.decode(String.self, forKey: .senderID)
         receiverID = try container.decode(String.self, forKey: .receiverID)
         message = try container.decode(String.self, forKey: .message)
+//        createdAt = try container.decode(Date.self, forKey: .createdAt)
         if let dateString = try container.decodeIfPresent(String.self, forKey: .createdAt) {
-            createdAt = UserMessage.dateFormatter.date(from: dateString)
+            createdAt = dateFormatter.date(from: dateString)
         }
         room = try container.decodeIfPresent(Room.self, forKey: .room)
     }

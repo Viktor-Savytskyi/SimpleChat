@@ -69,7 +69,7 @@ final class LoginViewController: UIViewController, ViewControllerPickerPresentab
         loginViewModel.showImagePickerAler { [weak self] imageURL in
             guard let self else { return }
             DispatchQueue.main.async {
-                self.avatarImageView.sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage(systemName: "person.circle.fill"))
+                self.avatarImageView.sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage(systemName: Constants.Strings.avatarPlaceholder))
                 self.avatarImageURL = imageURL
             }
         }

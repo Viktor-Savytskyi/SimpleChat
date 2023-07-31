@@ -65,7 +65,7 @@ class ChatViewController: UIViewController {
     
     private func setupUserData() {
         let user = chatViewModel.getOponent()
-//        userView.configure(user, state: .chatDetails)
+        userView.configure(user: user, state: .chatDetails)
         userView.dismissScreenDelegate = self
     }
     

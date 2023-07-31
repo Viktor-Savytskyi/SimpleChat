@@ -45,18 +45,39 @@ class UserView: UIView, LoadViewFromNib {
         userImageView.layer.cornerRadius = userImageView.frame.height / 2
     }
     
-    func configure(_ room: UserRoom,
-                   state: CellType) {
+    func configure(user: User? = nil, room: RoomData? = nil, state: CellType) {
         messageTimeLabel.isHidden = true
         dismissButton.isHidden = true
-        let placeholderImage = UIImage(systemName: "person.circle.fill")?.withTintColor(.black)
-//        userImageView.sd_setImage(with: URL(string: user.imageUrl), placeholderImage: placeholderImage)
-//        userFirstLastNameLabel.text = user.firstName + " " + user.lastName
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm dd-MM"
-//        messageTimeLabel.text = dateFormatter.string(from: user.lastOnlineDate ?? Date())
-        showElementsState(state: state)
+        var user = user 
+
+        switch state {
+        case .chatList:
+            guard let room else { return }
+            if let oponent = room.users.first(where: { $0.id != CurrentUser.shared.currentUser.id }) {
+                user = oponent
+            } else {
+                user = CurrentUser.shared.currentUser
+            }
+            let lastMessage = room.messages.sorted(by: { $0.createdAt ?? Date() > $1.createdAt ?? Date()}).first
+            messageLabel.text = lastMessage?.message ?? "Your message list already empty"
+            if let messageDate = lastMessage?.createdAt {
+                messageTimeLabel.text = dateFormatter.string(from: messageDate)
+            } else {
+                messageTimeLabel.text = ""
+            }
+        case .chatDetails:
+            messageLabel.text = "Here will be isTyping status"
+        }
+        
 //        checkOnlineState(date: user.lastOnlineDate)
+        showElementsState(state: state)
+        guard let user else { return }
+        userFirstLastNameLabel.text = user.firstName + " " + user.lastName
+        let placeholderImage = UIImage(systemName: Constants.Strings.avatarPlaceholder)?.withTintColor(.black)
+        userImageView.sd_setImage(with: URL(string: user.imageUrl), placeholderImage: placeholderImage)
+
     }
     
     func checkOnlineState(date: Date?) {
@@ -71,9 +92,7 @@ class UserView: UIView, LoadViewFromNib {
         case .chatDetails:
             messageTimeLabel.isHidden = true
             dismissButton.isHidden = false
-        }
-        
-        messageLabel.text =  state == .chatDetails ? "is online?" : "message for chat table"
+        }        
     }
     @IBAction func dismissAction(_ sender: Any) {
         dismissScreenDelegate?.dimsissFromView()

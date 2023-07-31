@@ -17,6 +17,7 @@ struct Constants {
     }
     
     struct Strings {
-        let user = "user"
+        static let user = "user"
+        static let avatarPlaceholder = "person.circle.fill"
     }
 }
