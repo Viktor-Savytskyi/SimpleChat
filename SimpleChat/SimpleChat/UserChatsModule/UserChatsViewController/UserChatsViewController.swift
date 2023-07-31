@@ -22,17 +22,18 @@ final class UserChatsViewController: UIViewController {
         prepareTableView()
         prepareCollectionView() 
         fetchUsers()
+        fetchRooms()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        navigationController?.setNavigationBarHidden(true, animated: false)
+//    }
+//    
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        navigationController?.setNavigationBarHidden(false, animated: false)
+//    }
     
     func setupSearchBar() {
         customSearchBarView.setupSearchBar(placeholder: SearchBarPlaceholders.search.rawValue)
@@ -41,8 +42,16 @@ final class UserChatsViewController: UIViewController {
     private func fetchUsers() {
         userChatsViewModel.fetchUsers {
             DispatchQueue.main.async {
-                self.chatsTableView.reloadData()
                 self.usersCollectionView.reloadData()
+//                self.chatsTableView.reloadData()
+            }
+        }
+    }
+    
+    private func fetchRooms() {
+        userChatsViewModel.fetchRooms {
+            DispatchQueue.main.async {
+                self.chatsTableView.reloadData()
             }
         }
     }
@@ -77,8 +86,8 @@ extension UserChatsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier, for: indexPath) as! UserTableViewCell
-        let user = userChatsViewModel.getUsers()[indexPath.row]
-        cell.fillWith(user)
+        let room = userChatsViewModel.getRooms()[indexPath.row]
+        cell.fillWith(room)
         return cell
     }
 }

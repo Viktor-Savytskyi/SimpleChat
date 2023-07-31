@@ -281,7 +281,7 @@ extension ImagePickerManager: PHPickerViewControllerDelegate {
 extension ImagePickerManager: PHPhotoLibraryChangeObserver {
     func photoLibraryDidChange(_ changeInstance: PHChange) {
         let fetchOptions = PHFetchOptions()
-//        fetchOptions.fetchLimit = 1
+        fetchOptions.fetchLimit = 1
         let images = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         
         

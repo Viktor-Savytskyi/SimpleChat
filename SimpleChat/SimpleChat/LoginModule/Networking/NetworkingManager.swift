@@ -20,6 +20,7 @@ enum Requests: String {
 final class NetworkingManager {
     private let host = "http://127.0.0.1:8080/"
     private let usersCollection = "users"
+    private let roomCollection = "rooms"
     private let value = "application/json"
     private let contentType = "Content-Type"
     
@@ -76,6 +77,24 @@ final class NetworkingManager {
                     if let user = try JSONDecoder().decode([User].self, from: data).first {
                         completion(Result.success(user))
                     }
+                } catch {
+                    completion(Result.error(error.localizedDescription))
+                }
+            }
+        }.resume()
+    }
+    
+    func fetchRooms(completion: @escaping (Result<[UserRoom]>) -> Void) {
+        guard let url = URL(string: "\(host)\(roomCollection)") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = Requests.get.rawValue
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error {
+                completion(Result.error(error.localizedDescription))
+            } else if let data {
+                do {
+                     let rooms = try JSONDecoder().decode([UserRoom].self, from: data)
+                        completion(Result.success(rooms))
                 } catch {
                     completion(Result.error(error.localizedDescription))
                 }

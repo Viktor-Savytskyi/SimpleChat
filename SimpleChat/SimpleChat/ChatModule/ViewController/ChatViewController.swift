@@ -65,7 +65,7 @@ class ChatViewController: UIViewController {
     
     private func setupUserData() {
         let user = chatViewModel.getOponent()
-        userView.configure(user, state: .dismiss)
+//        userView.configure(user, state: .chatDetails)
         userView.dismissScreenDelegate = self
     }
     
@@ -94,8 +94,7 @@ class ChatViewController: UIViewController {
     
     @IBAction func sendMessageAction(_ sender: Any) {
         guard let text = messageTextField.text else { return }
-        print("sendMessage \(text)")
-//        chatViewModel.sendMessage(receiverID: oponentID, message: text)
+        chatViewModel.sendMessage(receiverID: oponentID, message: text)
         clearMessageField()
         view.endEditing(true)
     }

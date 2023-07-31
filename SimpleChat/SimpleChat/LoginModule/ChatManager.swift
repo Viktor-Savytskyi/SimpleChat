@@ -21,7 +21,7 @@ class ChatManager: NSObject {
         let url = URL(string: "ws://127.0.0.1:8080/chat?userID=\(userID)&oponentID=\(oponentID)")!
         webSocketTask = session.webSocketTask(with: url)
         webSocketTask?.resume()
-        ping()
+        getMessagesHistoryPing()
         reciveMessage() { messages in
             self.messagesArray = messages
             self.completion?()
@@ -29,10 +29,10 @@ class ChatManager: NSObject {
     }
     
     func closeWebSocket() {
-        webSocketTask?.cancel(with: .goingAway, reason: "Connection ended".data(using: .utf8))
+        webSocketTask?.cancel(with: .goingAway, reason: "Connection lost".data(using: .utf8))
     }
     
-    func ping() {
+    func getMessagesHistoryPing() {
         webSocketTask?.sendPing(pongReceiveHandler: { error in
             if let error = error {
                 print("Ping error: ", error)
@@ -42,10 +42,11 @@ class ChatManager: NSObject {
     
     func sendMessage(receiverID: String, message: String) {
         do {
-            let userMessage = try UserMessage(senderID: CurrentUser.shared.currentUser.id,
-                                              receiverID: receiverID,
-                                              message: message).convertToJsonData()
-            let message = URLSessionWebSocketTask.Message.data(userMessage)
+            let userMessage = UserMessage(senderID: CurrentUser.shared.currentUser.id,
+                                          receiverID: receiverID,
+                                          message: message)
+            let decodedUserMessage = try userMessage.convertToJsonData()
+            let message = URLSessionWebSocketTask.Message.data(decodedUserMessage)
             webSocketTask?.send(message) { error in
                 if let error {
                     print("websocet couldnt send emssage: \(error.localizedDescription)")
@@ -71,7 +72,7 @@ class ChatManager: NSObject {
                             let userMessages = try JSONDecoder().decode([UserMessage].self, from: data)
                             self.messagesArray = userMessages
                         } catch {
-                            print("Error at decoding data into message array of messages")
+                            print("Error at decoding data into message array of messages \(error)")
                         }
                     }
                 case .string(let message):
@@ -80,6 +81,7 @@ class ChatManager: NSObject {
                 }
             case .failure(let error):
                 print("Something went wrong \(error.localizedDescription)")
+                self.closeWebSocket()
             }
             self.reciveMessage() { messages in
                 self.messagesArray = messages

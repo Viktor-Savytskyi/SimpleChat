@@ -16,6 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserView" customModule="SimpleChat" customModuleProvider="target">
             <connections>
+                <outlet property="circleView" destination="rbC-pU-pCH" id="sbL-Hc-eng"/>
                 <outlet property="dismissButton" destination="CP6-QI-diF" id="FgM-Db-e9R"/>
                 <outlet property="messageLabel" destination="vD0-Or-ltj" id="Mcf-V3-9ZY"/>
                 <outlet property="messageTimeLabel" destination="cUi-p0-WI1" id="8CD-XI-nKb"/>
@@ -32,27 +33,46 @@
                     <rect key="frame" x="0.0" y="0.0" width="470" height="113"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="XIN-FO-lee">
-                            <rect key="frame" x="33" y="10" width="364" height="93"/>
+                            <rect key="frame" x="33" y="10" width="355.66666666666669" height="93"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4VI-C4-cys">
-                                    <rect key="frame" x="0.0" y="22.666666666666661" width="50" height="48.666666666666671"/>
-                                    <color key="tintColor" systemColor="labelColor"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbC-pU-pCH" customClass="CircleDrawView" customModule="SimpleChat" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="19" width="55" height="55"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4VI-C4-cys">
+                                            <rect key="frame" x="2.6666666666666643" y="3.6666666666666643" width="50" height="48.666666666666671"/>
+                                            <color key="tintColor" systemColor="labelColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="Hyw-fW-LCZ"/>
+                                                <constraint firstAttribute="width" secondItem="4VI-C4-cys" secondAttribute="height" multiplier="1:1" id="nXw-Re-MNs"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="50" id="Hyw-fW-LCZ"/>
-                                        <constraint firstAttribute="width" secondItem="4VI-C4-cys" secondAttribute="height" multiplier="1:1" id="nXw-Re-MNs"/>
+                                        <constraint firstAttribute="width" constant="55" id="LNn-RP-9Gw"/>
+                                        <constraint firstItem="4VI-C4-cys" firstAttribute="centerY" secondItem="rbC-pU-pCH" secondAttribute="centerY" id="Nr8-b1-bhW"/>
+                                        <constraint firstItem="4VI-C4-cys" firstAttribute="centerX" secondItem="rbC-pU-pCH" secondAttribute="centerX" id="QXF-nb-9Zs"/>
+                                        <constraint firstAttribute="height" constant="55" id="Tuh-Ne-BS1"/>
                                     </constraints>
-                                </imageView>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" systemColor="tintColor"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderSize">
+                                            <real key="value" value="2"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="HTp-oI-sxW">
-                                    <rect key="frame" x="65" y="0.0" width="299" height="93"/>
+                                    <rect key="frame" x="70" y="0.0" width="285.66666666666669" height="93"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmJ-cU-ukd">
-                                            <rect key="frame" x="0.0" y="0.0" width="299" height="39"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="285.66666666666669" height="39"/>
                                             <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="13"/>
                                             <color key="textColor" name="main"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vD0-Or-ltj">
-                                            <rect key="frame" x="0.0" y="54" width="299" height="39"/>
+                                            <rect key="frame" x="0.0" y="54" width="285.66666666666669" height="39"/>
                                             <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="9"/>
                                             <color key="textColor" name="sub"/>
                                             <nil key="highlightedColor"/>
@@ -61,14 +81,14 @@
                                 </stackView>
                             </subviews>
                         </stackView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUi-p0-WI1">
-                            <rect key="frame" x="402" y="31.666666666666668" width="35" height="0.0"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="750" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUi-p0-WI1">
+                            <rect key="frame" x="393.66666666666669" y="31.666666666666668" width="43.333333333333314" height="0.0"/>
                             <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="9"/>
                             <color key="textColor" name="sub"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CP6-QI-diF">
-                            <rect key="frame" x="402" y="39" width="35" height="35"/>
+                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CP6-QI-diF">
+                            <rect key="frame" x="393.66666666666669" y="39" width="43.333333333333314" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="CP6-QI-diF" secondAttribute="height" multiplier="1:1" id="AaA-De-xkx"/>
                             </constraints>
@@ -88,9 +108,6 @@
                         <constraint firstItem="XIN-FO-lee" firstAttribute="top" secondItem="DV7-i4-0UQ" secondAttribute="top" constant="10" id="LFv-2w-mIY"/>
                         <constraint firstItem="CP6-QI-diF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XIN-FO-lee" secondAttribute="trailing" constant="5" id="RP3-mz-idO"/>
                         <constraint firstAttribute="trailing" secondItem="CP6-QI-diF" secondAttribute="trailing" constant="33" id="WDI-MF-gGf"/>
-                        <constraint firstItem="CP6-QI-diF" firstAttribute="centerY" secondItem="4VI-C4-cys" secondAttribute="centerY" id="cFq-cb-tf8"/>
-                        <constraint firstItem="CP6-QI-diF" firstAttribute="height" secondItem="4VI-C4-cys" secondAttribute="height" multiplier="0.7" id="qKD-qi-Cwv"/>
-                        <constraint firstItem="cUi-p0-WI1" firstAttribute="top" secondItem="4VI-C4-cys" secondAttribute="top" id="sGS-cJ-kAg"/>
                     </constraints>
                 </view>
             </subviews>
@@ -116,6 +133,9 @@
         </namedColor>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
