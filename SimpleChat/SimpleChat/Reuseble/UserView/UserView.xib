@@ -81,8 +81,8 @@
                                 </stackView>
                             </subviews>
                         </stackView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="750" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUi-p0-WI1">
-                            <rect key="frame" x="393.66666666666669" y="31.666666666666668" width="43.333333333333314" height="0.0"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUi-p0-WI1">
+                            <rect key="frame" x="393.66666666666669" y="29.666666666666668" width="43.333333333333314" height="0.0"/>
                             <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="9"/>
                             <color key="textColor" name="sub"/>
                             <nil key="highlightedColor"/>
@@ -108,6 +108,7 @@
                         <constraint firstItem="XIN-FO-lee" firstAttribute="top" secondItem="DV7-i4-0UQ" secondAttribute="top" constant="10" id="LFv-2w-mIY"/>
                         <constraint firstItem="CP6-QI-diF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XIN-FO-lee" secondAttribute="trailing" constant="5" id="RP3-mz-idO"/>
                         <constraint firstAttribute="trailing" secondItem="CP6-QI-diF" secondAttribute="trailing" constant="33" id="WDI-MF-gGf"/>
+                        <constraint firstItem="cUi-p0-WI1" firstAttribute="centerY" secondItem="dmJ-cU-ukd" secondAttribute="centerY" id="knU-gq-S4B"/>
                     </constraints>
                 </view>
             </subviews>

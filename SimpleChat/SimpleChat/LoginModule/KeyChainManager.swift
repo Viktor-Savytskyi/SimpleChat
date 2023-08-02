@@ -28,6 +28,8 @@ class KeyChainManager {
     }
     
     func get() -> User? {
+//        deleteAllKeyChainSavedValues()
+        
         if let id = UserDefaults.standard.string(forKey: userKey),
             let user = Locksmith.loadDataForUserAccount(userAccount: id) {
             return User(id: id,
@@ -38,6 +40,18 @@ class KeyChainManager {
             print("error to get account")
             return nil
         }
+    }
+    
+    func deleteAllKeyChainSavedValues() {
+        [kSecClassGenericPassword, kSecClassInternetPassword, kSecClassCertificate, kSecClassKey, kSecClassIdentity].forEach {
+                let status = SecItemDelete([
+                  kSecClass: $0,
+                  kSecAttrSynchronizable: kSecAttrSynchronizableAny
+                ] as CFDictionary)
+                if status != errSecSuccess && status != errSecItemNotFound {
+                    //Error while removing class $0
+                }
+              }
     }
 }
 

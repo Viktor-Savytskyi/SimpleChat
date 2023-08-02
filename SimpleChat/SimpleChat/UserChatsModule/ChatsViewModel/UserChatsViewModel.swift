@@ -17,7 +17,7 @@ final class UserChatsViewModel {
     private let networkingManager = NetworkingManager()
     private var users = [User]()
     private var rooms = [UserRoom]()
-    var roomsData = [RoomData]()
+    private var roomsData = [RoomData]()
     
     func fetchUsers(completion: @escaping () -> Void) {
         networkingManager.fetchUsers { response in
@@ -35,15 +35,23 @@ final class UserChatsViewModel {
         users
     }
     
-    func getRoomsData() {
+    func getRoomsData() -> [RoomData] {
+        
+        return roomsData
+    }
+    
+    func createRoomsDataArray() {
         roomsData = []
         rooms.forEach { room in
             var localUsers = [User]()
             print("Room =", room.users)
             users.forEach { user in
-                print("User =", user.id)
                 if room.users.contains(user.id) {
-                    localUsers.append(user)
+                    if room.users.first == room.users.last {
+                        localUsers = [user, user]
+                    } else {
+                        localUsers.append(user)
+                    }
                 }
             }
             roomsData.append(RoomData(messages: room.messages, users: localUsers))
@@ -51,14 +59,14 @@ final class UserChatsViewModel {
     }
     
     func fetchRooms(completion: @escaping () -> Void) {
-        networkingManager.fetchRooms { response in
+        networkingManager.fetchRoomsForUser(id: CurrentUser.shared.currentUser.id) { response in
             switch response {
             case .success(let rooms):
                 self.rooms = rooms
             case .error(let error):
                 print(error)
             }
-            self.getRoomsData()
+            self.createRoomsDataArray()
             completion()
         }
     }

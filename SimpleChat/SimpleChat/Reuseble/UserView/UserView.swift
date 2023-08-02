@@ -60,7 +60,7 @@ class UserView: UIView, LoadViewFromNib {
             } else {
                 user = CurrentUser.shared.currentUser
             }
-            let lastMessage = room.messages.sorted(by: { $0.createdAt ?? Date() > $1.createdAt ?? Date()}).first
+            let lastMessage = room.messages.last
             messageLabel.text = lastMessage?.message ?? "Your message list already empty"
             if let messageDate = lastMessage?.createdAt {
                 messageTimeLabel.text = dateFormatter.string(from: messageDate)

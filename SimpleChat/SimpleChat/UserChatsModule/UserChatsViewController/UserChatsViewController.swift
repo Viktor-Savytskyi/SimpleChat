@@ -10,6 +10,8 @@ import UIKit
 final class UserChatsViewController: UIViewController {
 
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet weak var currentUserImageView: UIImageView!
+    @IBOutlet weak var currentUserFirstLastNameLabel: UILabel!
     @IBOutlet weak var customSearchBarView: CustomSearchBarView!
     @IBOutlet weak var usersCollectionView: UICollectionView!
     @IBOutlet private weak var chatsTableView: UITableView!
@@ -18,6 +20,7 @@ final class UserChatsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCurrentUserData()
         setupSearchBar() 
         prepareTableView()
         prepareCollectionView() 
@@ -74,24 +77,36 @@ final class UserChatsViewController: UIViewController {
         usersCollectionView.register(UserCollectionViewCell.nib,
                                      forCellWithReuseIdentifier: UserCollectionViewCell.identifier)
     }
+    
+    private func setupCurrentUserData() {
+        currentUserImageView.layer.cornerRadius = currentUserImageView.frame.height / 2
+        currentUserImageView.sd_setImage(with: URL(string: CurrentUser.shared.currentUser.imageUrl), placeholderImage: UIImage(systemName: Constants.Strings.avatarPlaceholder))
+        currentUserFirstLastNameLabel.text = CurrentUser.shared.currentUser.firstName + " " + CurrentUser.shared.currentUser.lastName
+    }
 }
 
 extension UserChatsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let id = userChatsViewModel.getUsers()[indexPath.row].id
-        userChatsViewModel.moveToChat(with: id)
+        let id = userChatsViewModel.getRoomsData()[indexPath.row].users.filter({ $0.id != CurrentUser.shared.currentUser.id
+        }).first?.id
+        
+        if let id {
+            userChatsViewModel.moveToChat(with: id)
+        } else {
+            userChatsViewModel.moveToChat(with:  CurrentUser.shared.currentUser.id)
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 extension UserChatsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        userChatsViewModel.getUsers().count
+        userChatsViewModel.getRoomsData().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier, for: indexPath) as! UserTableViewCell
-        let room = userChatsViewModel.roomsData[indexPath.row]
+        let room = userChatsViewModel.getRoomsData()[indexPath.row]
         cell.fillWith(room)
         return cell
     }
@@ -99,8 +114,12 @@ extension UserChatsViewController: UITableViewDataSource {
 
 extension UserChatsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let id = userChatsViewModel.getUsers()[indexPath.row].id
-        userChatsViewModel.moveToChat(with: id)
+        if indexPath.row > 0 {
+            let id = userChatsViewModel.getUsers()[indexPath.row - 1].id
+            userChatsViewModel.moveToChat(with: id)
+        } else {
+            print("New dialog tapped")
+        }
     }
 }
 

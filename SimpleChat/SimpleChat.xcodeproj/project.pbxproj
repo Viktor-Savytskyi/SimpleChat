@@ -15,6 +15,7 @@
 		4876AD472A64908400094A61 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4876AD462A64908400094A61 /* Rubik-Regular.ttf */; };
 		4876D6B92A72B95900C35E15 /* CircleDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4876D6B82A72B95900C35E15 /* CircleDrawView.swift */; };
 		4877897C2A617E2600A9FEF6 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877897B2A617E2600A9FEF6 /* Validator.swift */; };
+		4878E4912A7A335500DD3069 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4878E4902A7A335500DD3069 /* CurrentUser.swift */; };
 		487D308B2A6667C2005051BF /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487D308A2A6667C2005051BF /* ChatViewModel.swift */; };
 		487D308D2A667985005051BF /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487D308C2A667985005051BF /* UserView.swift */; };
 		487D308F2A6679A3005051BF /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487D308E2A6679A3005051BF /* UserView.xib */; };
@@ -75,6 +76,7 @@
 		4876AD462A64908400094A61 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		4876D6B82A72B95900C35E15 /* CircleDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDrawView.swift; sourceTree = "<group>"; };
 		4877897B2A617E2600A9FEF6 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		4878E4902A7A335500DD3069 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		487D308A2A6667C2005051BF /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		487D308C2A667985005051BF /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		487D308E2A6679A3005051BF /* UserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				4877897B2A617E2600A9FEF6 /* Validator.swift */,
 				488C65BF2A6FC19900F308A5 /* LoadViewFromNib.swift */,
 				489A54BC2A645DD500592768 /* Registrateble.swift */,
+				4876D6B82A72B95900C35E15 /* CircleDrawView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				488B2A632A5C029200F52973 /* GlobalRouter.swift */,
 				487D30952A66D949005051BF /* ChatManager.swift */,
 				48D7F8102A700CA900DC70BE /* KeyChainManager.swift */,
+				4878E4902A7A335500DD3069 /* CurrentUser.swift */,
 				4883BEEC2A6A5DDD00A4D8E1 /* Networking */,
 				487300BD2A5DA68E00C35335 /* FirebaseStorage.swift */,
 				48C993E22A5C29480072686A /* ImagePickerManager.swift */,
@@ -340,7 +344,6 @@
 			children = (
 				488C65B92A6FBBAD00F308A5 /* SearchBar */,
 				488C65B82A6FBBA000F308A5 /* UserView */,
-				4876D6B82A72B95900C35E15 /* CircleDrawView.swift */,
 			);
 			path = Reuseble;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				4876D6B92A72B95900C35E15 /* CircleDrawView.swift in Sources */,
 				489A54BD2A645DD500592768 /* Registrateble.swift in Sources */,
 				487D30932A66CC54005051BF /* ChatTableViewCell.swift in Sources */,
+				4878E4912A7A335500DD3069 /* CurrentUser.swift in Sources */,
 				487D30962A66D949005051BF /* ChatManager.swift in Sources */,
 				487D308B2A6667C2005051BF /* ChatViewModel.swift in Sources */,
 				487300BE2A5DA68E00C35335 /* FirebaseStorage.swift in Sources */,

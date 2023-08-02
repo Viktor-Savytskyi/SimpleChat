@@ -84,8 +84,8 @@ final class NetworkingManager {
         }.resume()
     }
     
-    func fetchRooms(completion: @escaping (Result<[UserRoom]>) -> Void) {
-        guard let url = URL(string: "\(host)\(roomCollection)") else { return }
+    func fetchRoomsForUser(id: String, completion: @escaping (Result<[UserRoom]>) -> Void) {
+        guard let url = URL(string: "\(host)\(roomCollection)?id=\(id)") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = Requests.get.rawValue
         URLSession.shared.dataTask(with: request) { data, response, error in

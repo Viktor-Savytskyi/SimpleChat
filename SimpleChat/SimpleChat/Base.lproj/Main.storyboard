@@ -121,7 +121,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ycf-b4-JVE">
-                                <rect key="frame" x="33" y="59" width="327" height="57"/>
+                                <rect key="frame" x="32.999999999999993" y="59" width="106.33333333333331" height="57"/>
                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="48"/>
                                 <color key="textColor" name="main"/>
                                 <nil key="highlightedColor"/>
@@ -162,12 +162,34 @@
                                 <color key="backgroundColor" name="background"/>
                                 <color key="sectionIndexBackgroundColor" name="background"/>
                             </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fwV-no-nCp">
+                                <rect key="frame" x="310" y="58.999999999999993" width="50" height="68.333333333333314"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qc4-cc-CeV">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="qc4-cc-CeV" secondAttribute="height" multiplier="1:1" id="KuD-Ok-whG"/>
+                                            <constraint firstAttribute="width" constant="50" id="WDe-pK-SP2"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yGt-4e-rtJ">
+                                        <rect key="frame" x="0.0" y="55" width="50" height="13.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="EAf-bP-Z2J"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="63f-S4-Gqc"/>
                         <color key="backgroundColor" name="background"/>
                         <constraints>
                             <constraint firstItem="d9G-oQ-ZsX" firstAttribute="top" secondItem="qVr-2Q-kV0" secondAttribute="bottom" constant="15" id="3QT-YO-Z1Q"/>
                             <constraint firstAttribute="bottom" secondItem="w7i-HR-V51" secondAttribute="bottom" constant="10" id="5dQ-8D-lJL"/>
+                            <constraint firstItem="fwV-no-nCp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ycf-b4-JVE" secondAttribute="trailing" id="9Jx-Xf-LGn"/>
                             <constraint firstItem="w7i-HR-V51" firstAttribute="top" secondItem="apt-2M-g04" secondAttribute="bottom" constant="15" id="AFF-Wb-ntq"/>
                             <constraint firstItem="Op1-Wj-Cbw" firstAttribute="trailing" secondItem="d9G-oQ-ZsX" secondAttribute="trailing" id="BBy-rT-e3M"/>
                             <constraint firstItem="d9G-oQ-ZsX" firstAttribute="trailing" secondItem="qVr-2Q-kV0" secondAttribute="trailing" id="K5X-qv-zn4"/>
@@ -180,7 +202,8 @@
                             <constraint firstItem="qVr-2Q-kV0" firstAttribute="top" secondItem="Ycf-b4-JVE" secondAttribute="bottom" constant="25" id="gLs-RH-nDG"/>
                             <constraint firstItem="w7i-HR-V51" firstAttribute="trailing" secondItem="63f-S4-Gqc" secondAttribute="trailing" id="gbY-4V-ZHP"/>
                             <constraint firstItem="Ycf-b4-JVE" firstAttribute="top" secondItem="63f-S4-Gqc" secondAttribute="top" id="jR7-uR-BAw"/>
-                            <constraint firstItem="63f-S4-Gqc" firstAttribute="trailing" secondItem="Ycf-b4-JVE" secondAttribute="trailing" constant="33" id="rxp-9V-4u4"/>
+                            <constraint firstItem="63f-S4-Gqc" firstAttribute="trailing" secondItem="fwV-no-nCp" secondAttribute="trailing" constant="33" id="kg0-Tk-INi"/>
+                            <constraint firstItem="fwV-no-nCp" firstAttribute="top" secondItem="Ycf-b4-JVE" secondAttribute="top" id="lYz-Xn-oU8"/>
                             <constraint firstItem="qVr-2Q-kV0" firstAttribute="leading" secondItem="63f-S4-Gqc" secondAttribute="leading" constant="32" id="vKW-xW-I9s"/>
                             <constraint firstItem="Op1-Wj-Cbw" firstAttribute="leading" secondItem="d9G-oQ-ZsX" secondAttribute="leading" id="wkk-Uw-OZX"/>
                             <constraint firstItem="Ycf-b4-JVE" firstAttribute="leading" secondItem="63f-S4-Gqc" secondAttribute="leading" constant="33" id="yjk-0q-KtI"/>
@@ -189,6 +212,8 @@
                     </view>
                     <connections>
                         <outlet property="chatsTableView" destination="w7i-HR-V51" id="p7f-Y7-jgq"/>
+                        <outlet property="currentUserFirstLastNameLabel" destination="yGt-4e-rtJ" id="lrq-YK-TjM"/>
+                        <outlet property="currentUserImageView" destination="qc4-cc-CeV" id="DBV-cD-s9h"/>
                         <outlet property="customSearchBarView" destination="qVr-2Q-kV0" id="7Ny-UU-GS8"/>
                         <outlet property="titleLabel" destination="Ycf-b4-JVE" id="WMQ-X4-P1F"/>
                         <outlet property="usersCollectionView" destination="d9G-oQ-ZsX" id="lEJ-AB-j27"/>

@@ -69,12 +69,3 @@ class User: Codable {
         }
     }
 }
-
-class CurrentUser {
-    
-    static let shared = CurrentUser()
-    
-    init() { }
-    
-    var currentUser: User!
-}
