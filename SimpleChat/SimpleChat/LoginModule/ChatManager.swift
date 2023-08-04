@@ -8,9 +8,6 @@
 import Foundation
 
 class ChatManager: NSObject {
-    
-    static var shared = ChatManager()
-    
     var webSocketTask: URLSessionWebSocketTask?
     var messagesArray: [UserMessage]?
     var completion: (() -> Void)?
@@ -36,9 +33,15 @@ class ChatManager: NSObject {
         }
     }
     
-    func getRoomMessages(userID: String, opponentID: String ) {
+    func getRoomMessages(userID: String, opponentID: String) {
+        messagesArray = []
         messagesArray = roomsArray.first(where: { room in
-            room.users.contains(userID) && room.users.contains(opponentID)
+            if userID != opponentID {
+                return room.users.contains(userID) && room.users.contains(opponentID)
+            } else {
+                // check is room twice containe userID (is it owner`s self chat)
+                return room.users.filter { $0 == userID }.count == 2
+            }
         })?.messages
     }
     

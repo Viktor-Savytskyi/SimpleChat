@@ -28,27 +28,31 @@ class ChatViewController: UIViewController {
     
     var oponentID: String!
     var isFirstLoading = true
-    let chatViewModel = ChatViewModel()
-    var webSocketTask: URLSessionWebSocketTask!
+    var chatViewModel: ChatViewModel!
+    var chatManager: ChatManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        chatViewModel = ChatViewModel(chatManager: chatManager)
         configurateBottomMessageViewKeyboardAppereance()
         setupSearchBar()
         setupTableView()
         fetchUser(by: oponentID)
-        ChatManager.shared.getRoomMessages(userID: CurrentUser.shared.currentUser.id, opponentID: oponentID)
+        showMessages()
+        messageTextField.delegate = self
+    }
+    
+    func showMessages() {
+        chatViewModel.getRoomMessages(userID: CurrentUser.shared.currentUser.id, oponentID: oponentID)
         scrollToBottom(isFirstLoading: isFirstLoading)
-        ChatManager.shared.tableViewCompletion = {
-            ChatManager.shared.getRoomMessages(userID: CurrentUser.shared.currentUser.id, opponentID: self.oponentID)
+        chatViewModel.showNewMessages {
+            self.chatViewModel.getRoomMessages(userID: CurrentUser.shared.currentUser.id, oponentID: self.oponentID)
             DispatchQueue.main.async {
                 self.messagesTableView.reloadData()
                 self.scrollToBottom(isFirstLoading: self.isFirstLoading)
             }
         }
-        messageTextField.delegate = self
     }
-    
 
     func setupSearchBar() {
         customSearchBarView.setupSearchBar(placeholder: SearchBarPlaceholders.searchInChat.rawValue)
@@ -76,7 +80,7 @@ class ChatViewController: UIViewController {
     }
     
     private func clearMessageField() {
-        messageTextField.text = ""
+        messageTextField.text = nil
     }
     
     func scrollToBottom(isFirstLoading: Bool) {

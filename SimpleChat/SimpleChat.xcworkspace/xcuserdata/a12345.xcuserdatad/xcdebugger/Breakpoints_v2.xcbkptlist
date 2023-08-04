@@ -1182,8 +1182,8 @@
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "sendMessage(receiverID:message:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1198,8 +1198,8 @@
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "getMessagesHistoryPing()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1214,8 +1214,8 @@
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "reciveMessage(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1326,8 +1326,8 @@
             filePath = "SimpleChat/ChatModule/ViewController/ChatViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "setupUserData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1342,8 +1342,8 @@
             filePath = "SimpleChat/UserChatsModule/ChatsViewModel/UserChatsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "fetchRooms(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1358,8 +1358,8 @@
             filePath = "SimpleChat/UserChatsModule/ChatsViewModel/UserChatsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "fetchRooms(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1374,8 +1374,8 @@
             filePath = "SimpleChat/UserChatsModule/ChatsViewModel/UserChatsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "fetchRooms(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1390,8 +1390,8 @@
             filePath = "SimpleChat/UserChatsModule/ChatsViewModel/UserChatsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "fetchRooms(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1447,38 +1447,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2D74CD2E-9A48-48B9-9D4B-51BEAFF5CF57"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleChat/LoginModule/ChatManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "closeWebSocket()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7882BB42-4461-4185-9539-C3CA182A8EB3"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleChat/LoginModule/ChatManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "reciveMessage(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "4FDEF7B9-FD7C-47A0-BDB0-F00ACCF2B7FD"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -1486,25 +1454,9 @@
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "urlSession(_:webSocketTask:didCloseWith:reason:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7832642F-1A77-4204-8F27-4D9BE967E69C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleChat/UserChatsModule/ChatsViewModel/UserChatsViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "createRoomsDataArray()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1518,8 +1470,8 @@
             filePath = "SimpleChat/UserChatsModule/ChatsViewModel/UserChatsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "createRoomsDataArray()"
             landmarkType = "7">
             <Locations>
@@ -1566,8 +1518,8 @@
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "ChatManager"
             landmarkType = "3">
          </BreakpointContent>
@@ -1582,8 +1534,8 @@
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "reciveMessage(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1598,8 +1550,8 @@
             filePath = "SimpleChat/UserChatsModule/ChatsViewModel/UserChatsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "createRoomsDataArray()"
             landmarkType = "7">
             <Locations>
@@ -1646,8 +1598,8 @@
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "reciveMessage(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1662,8 +1614,8 @@
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "reciveMessage(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1678,8 +1630,8 @@
             filePath = "SimpleChat/UserChatsModule/ChatsViewModel/UserChatsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "getRoomsData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1694,8 +1646,8 @@
             filePath = "SimpleChat/UserChatsModule/ChatsViewModel/UserChatsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "createRoomsDataArray()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1704,6 +1656,22 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "C779975C-A3CD-4217-8C98-B7825BD14EE2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SimpleChat/UserChatsModule/ChatsViewModel/UserChatsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "createRoomsDataArray()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "73FD8D7F-646D-4000-ABB9-177E332C70D8"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1719,22 +1687,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "73FD8D7F-646D-4000-ABB9-177E332C70D8"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleChat/UserChatsModule/ChatsViewModel/UserChatsViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "createRoomsDataArray()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "50288F50-143B-4ED0-ACEE-FCA38F91D939"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1742,8 +1694,8 @@
             filePath = "SimpleChat/UserChatsModule/ChatsViewModel/UserChatsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "createRoomsDataArray()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1758,8 +1710,8 @@
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "sendMessage(receiverID:message:)"
             landmarkType = "7">
             <Locations>
@@ -1799,47 +1751,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CD0FC4C6-28D3-424C-8741-631B7CAA1FDA"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleChat/ChatModule/ViewController/ChatViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7950530E-AB68-493B-B1F8-5948DA85ED25"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleChat/ChatModule/ViewController/ChatViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "8FAE1254-65A4-4424-A48D-806418A89E37"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "getRoomMessages(userID:opponentID:)"
             landmarkType = "7">
             <Locations>
@@ -1856,7 +1776,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "41"
                   endingLineNumber = "41"
-                  offsetFromSymbolStart = "94">
+                  offsetFromSymbolStart = "163">
                </Location>
                <Location
                   uuid = "8FAE1254-65A4-4424-A48D-806418A89E37 - 2e87c38e5f9f2647"
@@ -1871,7 +1791,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "42"
                   endingLineNumber = "42"
-                  offsetFromSymbolStart = "159">
+                  offsetFromSymbolStart = "168">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1879,31 +1799,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D5069BA5-6EFD-446B-BAE9-35B9BAD80D25"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleChat/ChatModule/ViewController/ChatViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "scrollToBottom(isFirstLoading:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "DF824D07-581A-4F4F-ABF5-05CC6836F46D"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "getRoomMessages(userID:opponentID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1911,31 +1815,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B9BD4516-6204-436B-ACC3-D3A0DC6EB66F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleChat/ChatModule/ViewController/ChatViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "83FF43D3-9C1D-430C-8AC4-743EA0233767"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "reciveMessage(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1950,8 +1838,8 @@
             filePath = "SimpleChat/ChatModule/ViewController/ChatViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
             <Locations>
@@ -1998,6 +1886,22 @@
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "reciveMessage(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CD98E765-2547-4515-AB94-94E6C656B3E7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SimpleChat/LoginModule/ChatManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
             endingLineNumber = "100"
             landmarkName = "reciveMessage(completion:)"
@@ -2007,31 +1911,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CD98E765-2547-4515-AB94-94E6C656B3E7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleChat/LoginModule/ChatManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "reciveMessage(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E3D67BF6-6C0A-4E75-B929-1A5F3B08AE0A"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "reciveMessage(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2040,14 +1928,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "705B16B8-F2FF-4168-B42C-2A41B0C05569"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "reciveMessage(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2056,19 +1944,19 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "2F7FA84D-A5AB-433C-AB9E-7D2B2E0E3E9C"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "reciveMessage(completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "2F7FA84D-A5AB-433C-AB9E-7D2B2E0E3E9C - 350153dcffc8fe1f"
+                  uuid = "2F7FA84D-A5AB-433C-AB9E-7D2B2E0E3E9C - 350153dcffc7002f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2078,12 +1966,12 @@
                   urlString = "file:///Users/a12345/EKreativeIntership/SimpleChat/SimpleChat/SimpleChat/LoginModule/ChatManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "107"
-                  endingLineNumber = "107"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
                   offsetFromSymbolStart = "2840">
                </Location>
                <Location
-                  uuid = "2F7FA84D-A5AB-433C-AB9E-7D2B2E0E3E9C - 51a3d084c97cccc0"
+                  uuid = "2F7FA84D-A5AB-433C-AB9E-7D2B2E0E3E9C - 51a3d084c97332f0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2093,8 +1981,8 @@
                   urlString = "file:///Users/a12345/EKreativeIntership/SimpleChat/SimpleChat/SimpleChat/LoginModule/ChatManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "107"
-                  endingLineNumber = "107"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
                   offsetFromSymbolStart = "243">
                </Location>
             </Locations>
@@ -2110,8 +1998,8 @@
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "reciveMessage(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2120,87 +2008,23 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "53CC708A-9516-409B-8364-FCEA4745A65C"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SimpleChat/LoginModule/ChatManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "reciveMessage(completion:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "86AC8803-A22A-47E4-BF6B-2C26AE9CD50A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleChat/LoginModule/ChatManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "reciveMessage(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D4D336CF-2CDF-4299-BB84-81AF7A059093"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SimpleChat/LoginModule/ChatManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "reciveMessage(completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D4D336CF-2CDF-4299-BB84-81AF7A059093 - 350153dcffc8fea3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;__C.NSURLSessionWebSocketTask.Message, Swift.Error&gt;) -&gt; () in SimpleChat.ChatManager.reciveMessage(completion: () -&gt; ()) -&gt; ()"
-                  moduleName = "SimpleChat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a12345/EKreativeIntership/SimpleChat/SimpleChat/SimpleChat/LoginModule/ChatManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103"
-                  offsetFromSymbolStart = "944">
-               </Location>
-               <Location
-                  uuid = "D4D336CF-2CDF-4299-BB84-81AF7A059093 - 350153dcffc8fea3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;__C.NSURLSessionWebSocketTask.Message, Swift.Error&gt;) -&gt; () in SimpleChat.ChatManager.reciveMessage(completion: () -&gt; ()) -&gt; ()"
-                  moduleName = "SimpleChat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a12345/EKreativeIntership/SimpleChat/SimpleChat/SimpleChat/LoginModule/ChatManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103"
-                  offsetFromSymbolStart = "3221">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F4EDD088-FDD0-4F36-93F8-0DCE78E26222"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SimpleChat/Models/UserRoom.swift"
@@ -2216,7 +2040,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1064DECF-31C4-4FC3-BF1A-133D3993C02E"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SimpleChat/Models/UserRoom.swift"
@@ -2232,7 +2056,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "96795F80-9E6B-4F36-B0FB-9572AA0464B6"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SimpleChat/Models/UserRoom.swift"
@@ -2242,6 +2066,70 @@
             endingLineNumber = "31"
             landmarkName = "init(from:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AFBB73F7-2AF0-4B03-8A0D-D5B91CD62B50"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SimpleChat/LoginModule/ChatManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "getRoomMessages(userID:opponentID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E51E8E48-4A6E-41EB-9BF5-67DA6251EF9C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SimpleChat/LoginModule/ChatManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "getRoomMessages(userID:opponentID:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E51E8E48-4A6E-41EB-9BF5-67DA6251EF9C - 2e87c38e5f9f25c3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SimpleChat.UserRoom) -&gt; Swift.Bool in SimpleChat.ChatManager.getRoomMessages(userID: Swift.String, opponentID: Swift.String) -&gt; ()"
+                  moduleName = "SimpleChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a12345/EKreativeIntership/SimpleChat/SimpleChat/SimpleChat/LoginModule/ChatManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "601">
+               </Location>
+               <Location
+                  uuid = "E51E8E48-4A6E-41EB-9BF5-67DA6251EF9C - 4ed0af598051398d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; Swift.Bool in closure #1 (SimpleChat.UserRoom) -&gt; Swift.Bool in SimpleChat.ChatManager.getRoomMessages(userID: Swift.String, opponentID: Swift.String) -&gt; ()"
+                  moduleName = "SimpleChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a12345/EKreativeIntership/SimpleChat/SimpleChat/SimpleChat/LoginModule/ChatManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "55">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

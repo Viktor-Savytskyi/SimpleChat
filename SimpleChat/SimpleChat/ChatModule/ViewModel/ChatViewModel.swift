@@ -10,6 +10,12 @@ import Foundation
 class ChatViewModel {
     private let networkingManager = NetworkingManager()
     private var oponent: User?
+    private var chatManager: ChatManager!
+    
+    init(oponent: User? = nil, chatManager: ChatManager) {
+        self.oponent = oponent
+        self.chatManager = chatManager
+    }
     
     func fetchUser(by id: String, completion: @escaping () -> Void) {
         networkingManager.fetchUserBy(id: id) { [weak self] result in
@@ -24,28 +30,23 @@ class ChatViewModel {
         }
     }
     
+    func getRoomMessages(userID: String, oponentID: String) {
+        chatManager.getRoomMessages(userID: CurrentUser.shared.currentUser.id, opponentID: oponentID)
+    }
+
+    func showNewMessages(completion: @escaping (() -> Void)) {
+        chatManager.tableViewCompletion = completion
+    }
+    
     func getOponent() -> User {
         oponent ?? User(firstName: "", lastName: "", imageUrl: "")
     }
     
     func sendMessage(receiverID: String, message: String) {
-        ChatManager.shared.sendMessage(receiverID: receiverID, message: message)
-    }
-    
-    func setupWebSocket(userID: String, oponentID: String, completion: @escaping (() -> Void)) {
-        ChatManager.shared.completion = completion
-        ChatManager.shared.setupWebSocket(userID: userID)
+        chatManager.sendMessage(receiverID: receiverID, message: message)
     }
     
     func getMessages() -> [UserMessage] {
-        ChatManager.shared.messagesArray ?? []
-    }
-    
-    func createMessageArray(userID: String, opponentID: String) {
-        ChatManager.shared.getRoomMessages(userID: userID, opponentID: opponentID)
-    }
-    
-    func closeWebSocket() {
-        ChatManager.shared.closeWebSocket()
+        chatManager.messagesArray ?? []
     }
 }

@@ -30,14 +30,14 @@ final class GlobalRouter {
         return navigationController
     }
     
-    func moveTo(screen: Screens, oponentID: String? = nil, webSocketTask: URLSessionWebSocketTask? = nil) {
+    func moveTo(screen: Screens, oponentID: String? = nil, chatManager: ChatManager? = nil) {
         switch screen {
         case .login:
             openLoginScreen()
         case .userChats:
             openUserChatsScreen()
         case .chat:
-            openChatScreen(oponentID: oponentID, webSocketTask: webSocketTask)
+            openChatScreen(oponentID: oponentID, chatManager: chatManager)
         }
     }
     
@@ -51,12 +51,12 @@ final class GlobalRouter {
         navigationController.pushViewController(userChatsVC, animated: true)
     }
     
-    private func openChatScreen(oponentID: String?, webSocketTask: URLSessionWebSocketTask?) {
+    private func openChatScreen(oponentID: String?, chatManager: ChatManager?) {
         guard let oponentID else { return }
         let chatVC = storyboard.instantiateViewController(withIdentifier: Screens.chat.rawValue) as! ChatViewController
         chatVC.oponentID = oponentID
-        chatVC.webSocketTask = webSocketTask
         chatVC.modalPresentationStyle = .fullScreen
+        chatVC.chatManager = chatManager
         navigationController.present(chatVC, animated: true)
     }
 }

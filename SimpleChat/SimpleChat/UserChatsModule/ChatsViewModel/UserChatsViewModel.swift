@@ -14,6 +14,7 @@ struct RoomData {
 
 final class UserChatsViewModel {
     
+    private let chatManager = ChatManager()
     private let networkingManager = NetworkingManager()
     private var users = [User]()
     private var rooms = [UserRoom]()
@@ -36,13 +37,17 @@ final class UserChatsViewModel {
         users
     }
     
+    func getChatManager() -> ChatManager {
+        chatManager
+    }
+    
     func getRoomsData() -> [RoomData] {
         return roomsData
     }
     
     func createRoomsDataArray() {
         roomsData = []
-        ChatManager.shared.roomsArray.forEach { room in
+        chatManager.roomsArray.forEach { room in
             var localUsers = [User]()
             print("Room =", room.users)
             users.forEach { user in
@@ -55,6 +60,11 @@ final class UserChatsViewModel {
                 }
             }
             roomsData.append(RoomData(messages: room.messages, users: localUsers))
+        }
+        roomsData = roomsData.sorted { room1, room2 in
+            let lastMessageDate1 = room1.messages.last?.createdAt ?? Date.distantPast
+            let lastMessageDate2 = room2.messages.last?.createdAt ?? Date.distantPast
+            return lastMessageDate1 > lastMessageDate2
         }
     }
     
@@ -71,26 +81,14 @@ final class UserChatsViewModel {
         }
     }
     
-    func moveToChat(with oponentID: String, webSocketTask: URLSessionWebSocketTask?) {
-        GlobalRouter.shared.moveTo(screen: .chat, oponentID: oponentID, webSocketTask: webSocketTask)
+    func moveToChat(with oponentID: String, chatManager: ChatManager?) {
+        GlobalRouter.shared.moveTo(screen: .chat, oponentID: oponentID, chatManager: chatManager)
     }
 }
 
 extension UserChatsViewModel {
-    func sendMessage(receiverID: String, message: String) {
-        ChatManager.shared.sendMessage(receiverID: receiverID, message: message)
-    }
-    
     func setupWebSocket(userID: String, completion: @escaping (() -> Void)) {
-        ChatManager.shared.completion = completion
-        ChatManager.shared.setupWebSocket(userID: userID)
-    }
-    
-    func getMessages() -> [UserMessage] {
-        ChatManager.shared.messagesArray ?? []
-    }
-    
-    func closeWebSocket() {
-        ChatManager.shared.closeWebSocket()
+        chatManager.completion = completion
+        chatManager.setupWebSocket(userID: userID)
     }
 }
