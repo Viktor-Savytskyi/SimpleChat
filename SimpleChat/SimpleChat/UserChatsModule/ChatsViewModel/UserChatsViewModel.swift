@@ -18,6 +18,7 @@ final class UserChatsViewModel {
     private var users = [User]()
     private var rooms = [UserRoom]()
     private var roomsData = [RoomData]()
+    private var oponent: User?
     
     func fetchUsers(completion: @escaping () -> Void) {
         networkingManager.fetchUsers { response in
@@ -36,13 +37,12 @@ final class UserChatsViewModel {
     }
     
     func getRoomsData() -> [RoomData] {
-        
         return roomsData
     }
     
     func createRoomsDataArray() {
         roomsData = []
-        rooms.forEach { room in
+        ChatManager.shared.roomsArray.forEach { room in
             var localUsers = [User]()
             print("Room =", room.users)
             users.forEach { user in
@@ -71,7 +71,26 @@ final class UserChatsViewModel {
         }
     }
     
-    func moveToChat(with oponentID: String) {
-        GlobalRouter.shared.moveTo(screen: .chat, oponentID: oponentID)
+    func moveToChat(with oponentID: String, webSocketTask: URLSessionWebSocketTask?) {
+        GlobalRouter.shared.moveTo(screen: .chat, oponentID: oponentID, webSocketTask: webSocketTask)
+    }
+}
+
+extension UserChatsViewModel {
+    func sendMessage(receiverID: String, message: String) {
+        ChatManager.shared.sendMessage(receiverID: receiverID, message: message)
+    }
+    
+    func setupWebSocket(userID: String, completion: @escaping (() -> Void)) {
+        ChatManager.shared.completion = completion
+        ChatManager.shared.setupWebSocket(userID: userID)
+    }
+    
+    func getMessages() -> [UserMessage] {
+        ChatManager.shared.messagesArray ?? []
+    }
+    
+    func closeWebSocket() {
+        ChatManager.shared.closeWebSocket()
     }
 }

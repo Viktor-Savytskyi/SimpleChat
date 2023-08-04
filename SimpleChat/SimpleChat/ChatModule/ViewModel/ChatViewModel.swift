@@ -8,7 +8,6 @@
 import Foundation
 
 class ChatViewModel {
-    private let chatManager = ChatManager()
     private let networkingManager = NetworkingManager()
     private var oponent: User?
     
@@ -30,19 +29,23 @@ class ChatViewModel {
     }
     
     func sendMessage(receiverID: String, message: String) {
-        chatManager.sendMessage(receiverID: receiverID, message: message)
+        ChatManager.shared.sendMessage(receiverID: receiverID, message: message)
     }
     
     func setupWebSocket(userID: String, oponentID: String, completion: @escaping (() -> Void)) {
-        chatManager.completion = completion
-        chatManager.setupWebSocket(userID: userID, oponentID: oponentID)
+        ChatManager.shared.completion = completion
+        ChatManager.shared.setupWebSocket(userID: userID)
     }
     
     func getMessages() -> [UserMessage] {
-        chatManager.messagesArray
+        ChatManager.shared.messagesArray ?? []
+    }
+    
+    func createMessageArray(userID: String, opponentID: String) {
+        ChatManager.shared.getRoomMessages(userID: userID, opponentID: opponentID)
     }
     
     func closeWebSocket() {
-        chatManager.closeWebSocket()
+        ChatManager.shared.closeWebSocket()
     }
 }

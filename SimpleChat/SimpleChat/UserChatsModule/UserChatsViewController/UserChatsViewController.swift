@@ -17,20 +17,27 @@ final class UserChatsViewController: UIViewController {
     @IBOutlet private weak var chatsTableView: UITableView!
     
     let userChatsViewModel = UserChatsViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCurrentUserData()
         setupSearchBar() 
         prepareTableView()
         prepareCollectionView() 
-        
+        userChatsViewModel.setupWebSocket(userID: CurrentUser.shared.currentUser.id) {
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                self.userChatsViewModel.createRoomsDataArray()
+                print("socket connect on chat list screen")
+                self.chatsTableView.reloadData()
+//                self.scrollToBottom(isFirstLoading: self.isFirstLoading)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchUsers()
-        fetchRooms()
+//        fetchRooms()
     }
     
 //    override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +58,7 @@ final class UserChatsViewController: UIViewController {
         userChatsViewModel.fetchUsers {
             DispatchQueue.main.async {
                 self.usersCollectionView.reloadData()
-//                self.chatsTableView.reloadData()
+                self.chatsTableView.reloadData()
             }
         }
     }
@@ -87,14 +94,15 @@ final class UserChatsViewController: UIViewController {
 
 extension UserChatsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let id = userChatsViewModel.getRoomsData()[indexPath.row].users.filter({ $0.id != CurrentUser.shared.currentUser.id
-        }).first?.id
-        
-        if let id {
-            userChatsViewModel.moveToChat(with: id)
+        var id: String!
+        if let opponentID = userChatsViewModel.getRoomsData()[indexPath.row].users.first(where: { $0.id != CurrentUser.shared.currentUser.id
+        })?.id {
+            id = opponentID
         } else {
-            userChatsViewModel.moveToChat(with:  CurrentUser.shared.currentUser.id)
+            id = CurrentUser.shared.currentUser.id
         }
+        userChatsViewModel.moveToChat(with: id, webSocketTask: ChatManager.shared.webSocketTask)
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -116,7 +124,7 @@ extension UserChatsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row > 0 {
             let id = userChatsViewModel.getUsers()[indexPath.row - 1].id
-            userChatsViewModel.moveToChat(with: id)
+            userChatsViewModel.moveToChat(with: id, webSocketTask: ChatManager.shared.webSocketTask)
         } else {
             print("New dialog tapped")
         }

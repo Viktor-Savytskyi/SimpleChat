@@ -29,27 +29,27 @@ class ChatViewController: UIViewController {
     var oponentID: String!
     var isFirstLoading = true
     let chatViewModel = ChatViewModel()
-
+    var webSocketTask: URLSessionWebSocketTask!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configurateBottomMessageViewKeyboardAppereance()
         setupSearchBar()
         setupTableView()
         fetchUser(by: oponentID)
-        messageTextField.delegate = self
-        chatViewModel.setupWebSocket(userID: CurrentUser.shared.currentUser.id, oponentID: oponentID) {
+        ChatManager.shared.getRoomMessages(userID: CurrentUser.shared.currentUser.id, opponentID: oponentID)
+        scrollToBottom(isFirstLoading: isFirstLoading)
+        ChatManager.shared.tableViewCompletion = {
+            ChatManager.shared.getRoomMessages(userID: CurrentUser.shared.currentUser.id, opponentID: self.oponentID)
             DispatchQueue.main.async {
                 self.messagesTableView.reloadData()
                 self.scrollToBottom(isFirstLoading: self.isFirstLoading)
             }
         }
+        messageTextField.delegate = self
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        chatViewModel.closeWebSocket()
-    }
-    
+
     func setupSearchBar() {
         customSearchBarView.setupSearchBar(placeholder: SearchBarPlaceholders.searchInChat.rawValue)
     }
@@ -80,7 +80,7 @@ class ChatViewController: UIViewController {
     }
     
     func scrollToBottom(isFirstLoading: Bool) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
              let indexPath = IndexPath(row: self.chatViewModel.getMessages().count-1, section: 0)
             guard indexPath.row > 0 else { return }
             self.messagesTableView.scrollToRow(at: indexPath, at: .bottom, animated: !isFirstLoading)
@@ -128,7 +128,6 @@ extension ChatViewController: UITableViewDelegate {
 
 extension ChatViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         return true
     }
 }
