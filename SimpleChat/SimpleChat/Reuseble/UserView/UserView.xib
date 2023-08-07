@@ -18,8 +18,10 @@
             <connections>
                 <outlet property="circleView" destination="rbC-pU-pCH" id="sbL-Hc-eng"/>
                 <outlet property="dismissButton" destination="CP6-QI-diF" id="FgM-Db-e9R"/>
+                <outlet property="dotsView" destination="dLT-uI-Upq" id="QQV-HX-0J3"/>
                 <outlet property="messageLabel" destination="vD0-Or-ltj" id="Mcf-V3-9ZY"/>
                 <outlet property="messageTimeLabel" destination="cUi-p0-WI1" id="8CD-XI-nKb"/>
+                <outlet property="typingStatusStackView" destination="x9H-JC-Y16" id="z2V-CW-GkR"/>
                 <outlet property="userFirstLastNameLabel" destination="dmJ-cU-ukd" id="Y7a-oy-sZ8"/>
                 <outlet property="userImageView" destination="4VI-C4-cys" id="Mv4-L3-agS"/>
             </connections>
@@ -33,7 +35,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="470" height="113"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="XIN-FO-lee">
-                            <rect key="frame" x="33" y="10" width="355.66666666666669" height="93"/>
+                            <rect key="frame" x="33" y="10" width="364" height="93"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbC-pU-pCH" customClass="CircleDrawView" customModule="SimpleChat" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="19" width="55" height="55"/>
@@ -54,43 +56,53 @@
                                         <constraint firstAttribute="height" constant="55" id="Tuh-Ne-BS1"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                            <color key="value" systemColor="tintColor"/>
-                                        </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="number" keyPath="borderSize">
                                             <real key="value" value="2"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" name="AccentColor"/>
+                                        </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="HTp-oI-sxW">
-                                    <rect key="frame" x="70" y="0.0" width="285.66666666666669" height="93"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="HTp-oI-sxW">
+                                    <rect key="frame" x="70" y="0.0" width="294" height="93"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmJ-cU-ukd">
-                                            <rect key="frame" x="0.0" y="0.0" width="285.66666666666669" height="39"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmJ-cU-ukd">
+                                            <rect key="frame" x="0.0" y="0.0" width="294" height="46"/>
                                             <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="13"/>
                                             <color key="textColor" name="main"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vD0-Or-ltj">
-                                            <rect key="frame" x="0.0" y="54" width="285.66666666666669" height="39"/>
-                                            <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="9"/>
-                                            <color key="textColor" name="sub"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="x9H-JC-Y16">
+                                            <rect key="frame" x="0.0" y="47" width="294" height="46"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vD0-Or-ltj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="277" height="46"/>
+                                                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="9"/>
+                                                    <color key="textColor" name="sub"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="dLT-uI-Upq">
+                                                    <rect key="frame" x="279" y="0.0" width="15" height="46"/>
+                                                </view>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                 </stackView>
                             </subviews>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUi-p0-WI1">
-                            <rect key="frame" x="393.66666666666669" y="29.666666666666668" width="43.333333333333314" height="0.0"/>
+                            <rect key="frame" x="402" y="33" width="35" height="0.0"/>
                             <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="9"/>
                             <color key="textColor" name="sub"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CP6-QI-diF">
-                            <rect key="frame" x="393.66666666666669" y="39" width="43.333333333333314" height="35"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CP6-QI-diF">
+                            <rect key="frame" x="402" y="39" width="35" height="35"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="CP6-QI-diF" secondAttribute="height" multiplier="1:1" id="AaA-De-xkx"/>
+                                <constraint firstAttribute="height" constant="35" id="Fvz-vf-Zw9"/>
+                                <constraint firstAttribute="width" constant="35" id="lNU-ek-dFV"/>
+                                <constraint firstAttribute="width" secondItem="CP6-QI-diF" secondAttribute="height" multiplier="1:1" id="wii-FW-9sQ"/>
                             </constraints>
                             <color key="tintColor" name="sub"/>
                             <state key="normal" title="Button"/>
@@ -101,6 +113,7 @@
                         </button>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="CP6-QI-diF" firstAttribute="centerY" secondItem="XIN-FO-lee" secondAttribute="centerY" id="44K-cb-4NI"/>
                         <constraint firstAttribute="trailing" secondItem="cUi-p0-WI1" secondAttribute="trailing" constant="33" id="5Gj-v7-gYf"/>
                         <constraint firstItem="cUi-p0-WI1" firstAttribute="leading" secondItem="XIN-FO-lee" secondAttribute="trailing" constant="5" id="BXi-AW-7Jx"/>
                         <constraint firstAttribute="bottom" secondItem="XIN-FO-lee" secondAttribute="bottom" constant="10" id="CEq-XZ-gRZ"/>
@@ -108,7 +121,7 @@
                         <constraint firstItem="XIN-FO-lee" firstAttribute="top" secondItem="DV7-i4-0UQ" secondAttribute="top" constant="10" id="LFv-2w-mIY"/>
                         <constraint firstItem="CP6-QI-diF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XIN-FO-lee" secondAttribute="trailing" constant="5" id="RP3-mz-idO"/>
                         <constraint firstAttribute="trailing" secondItem="CP6-QI-diF" secondAttribute="trailing" constant="33" id="WDI-MF-gGf"/>
-                        <constraint firstItem="cUi-p0-WI1" firstAttribute="centerY" secondItem="dmJ-cU-ukd" secondAttribute="centerY" id="knU-gq-S4B"/>
+                        <constraint firstItem="cUi-p0-WI1" firstAttribute="centerY" secondItem="dmJ-cU-ukd" secondAttribute="centerY" id="sOa-S5-Ol4"/>
                     </constraints>
                 </view>
             </subviews>
@@ -126,6 +139,9 @@
     <resources>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="main">
             <color red="0.17599999904632568" green="0.24699999392032623" blue="0.39599999785423279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -134,9 +150,6 @@
         </namedColor>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

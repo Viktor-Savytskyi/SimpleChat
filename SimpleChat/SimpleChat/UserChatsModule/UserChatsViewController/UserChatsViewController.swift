@@ -8,7 +8,7 @@
 import UIKit
 
 final class UserChatsViewController: UIViewController {
-
+    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet weak var currentUserImageView: UIImageView!
     @IBOutlet weak var currentUserFirstLastNameLabel: UILabel!
@@ -17,19 +17,20 @@ final class UserChatsViewController: UIViewController {
     @IBOutlet private weak var chatsTableView: UITableView!
     
     let userChatsViewModel = UserChatsViewModel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCurrentUserData()
-        setupSearchBar() 
+        setupSearchBar()
         prepareTableView()
-        prepareCollectionView() 
+        prepareCollectionView()
         userChatsViewModel.setupWebSocket(userID: CurrentUser.shared.currentUser.id) {
             DispatchQueue.main.async() {
                 self.userChatsViewModel.createRoomsDataArray()
                 self.chatsTableView.reloadData()
             }
         }
+        setupIsUsersOnlineUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,15 +38,13 @@ final class UserChatsViewController: UIViewController {
         fetchUsers()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        navigationController?.setNavigationBarHidden(true, animated: false)
-//    }
-//    
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//        navigationController?.setNavigationBarHidden(false, animated: false)
-//    }
+    func setupIsUsersOnlineUI() {
+        userChatsViewModel.setupUsersOnlineCompletion(onlineUsersCompletion: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.chatsTableView.reloadData()
+            }
+        })
+    }
     
     func setupSearchBar() {
         customSearchBarView.setupSearchBar(placeholder: SearchBarPlaceholders.search.rawValue)
@@ -91,10 +90,11 @@ final class UserChatsViewController: UIViewController {
 
 extension UserChatsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         let opponentID = userChatsViewModel.getRoomsData()[indexPath.row].users.first(where: { $0.id != CurrentUser.shared.currentUser.id
+        let opponentID = userChatsViewModel.getRoomsData()[indexPath.row].users.first(where: { $0.id != CurrentUser.shared.currentUser.id
         })?.id
         let id = opponentID != nil ? opponentID! : CurrentUser.shared.currentUser.id
-        userChatsViewModel.moveToChat(with: id, chatManager: userChatsViewModel.getChatManager())
+        userChatsViewModel.moveToChat(with: id,
+                                      chatManager: userChatsViewModel.getChatManager())
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -107,7 +107,9 @@ extension UserChatsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier, for: indexPath) as! UserTableViewCell
         let room = userChatsViewModel.getRoomsData()[indexPath.row]
-        cell.fillWith(room)
+        if let onlineUsers = userChatsViewModel.getOnlineUsers() {
+            cell.fillWith(room, onlineUsers: onlineUsers)
+        }
         return cell
     }
 }
@@ -116,7 +118,8 @@ extension UserChatsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row > 0 {
             let id = userChatsViewModel.getUsers()[indexPath.row - 1].id
-            userChatsViewModel.moveToChat(with: id, chatManager: userChatsViewModel.getChatManager())
+            userChatsViewModel.moveToChat(with: id,
+                                          chatManager: userChatsViewModel.getChatManager())
         } else {
             print("New dialog tapped")
         }
@@ -139,8 +142,5 @@ extension UserChatsViewController: UICollectionViewDataSource {
             cell.fillWith(user)
             return cell
         }
-        
     }
-    
-    
 }

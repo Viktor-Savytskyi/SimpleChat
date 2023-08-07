@@ -20,6 +20,9 @@ final class UserChatsViewModel {
     private var rooms = [UserRoom]()
     private var roomsData = [RoomData]()
     private var oponent: User?
+    var onlineUsers: [String : String?]?
+    var onlineUsersCompletion: (() -> Void)?
+
     
     func fetchUsers(completion: @escaping () -> Void) {
         networkingManager.fetchUsers { response in
@@ -37,12 +40,25 @@ final class UserChatsViewModel {
         users
     }
     
+    func getOnlineUsers() -> [String : String?]? {
+        chatManager.onlineUsers
+    }
+    
     func getChatManager() -> ChatManager {
         chatManager
     }
     
     func getRoomsData() -> [RoomData] {
         return roomsData
+    }
+    
+    func setupWebSocket(userID: String, completion: @escaping (() -> Void)) {
+        chatManager.completion = completion
+        chatManager.setupWebSocket(userID: userID)
+    }
+    
+    func setupUsersOnlineCompletion(onlineUsersCompletion: (() -> Void)?) {
+        chatManager.onlineUsersListCompletion = onlineUsersCompletion
     }
     
     func createRoomsDataArray() {
@@ -82,13 +98,8 @@ final class UserChatsViewModel {
     }
     
     func moveToChat(with oponentID: String, chatManager: ChatManager?) {
-        GlobalRouter.shared.moveTo(screen: .chat, oponentID: oponentID, chatManager: chatManager)
-    }
-}
-
-extension UserChatsViewModel {
-    func setupWebSocket(userID: String, completion: @escaping (() -> Void)) {
-        chatManager.completion = completion
-        chatManager.setupWebSocket(userID: userID)
+        GlobalRouter.shared.moveTo(screen: .chat,
+                                   oponentID: oponentID,
+                                   chatManager: chatManager)
     }
 }

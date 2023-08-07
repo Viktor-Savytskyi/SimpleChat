@@ -13,7 +13,6 @@ struct Constants {
         static let main = UIColor(named: "main")
         static let chatOwner = UIColor(named: "chatOwner")
         static let chatMate = UIColor(named: "chatMate")
-        
     }
     
     struct Strings {

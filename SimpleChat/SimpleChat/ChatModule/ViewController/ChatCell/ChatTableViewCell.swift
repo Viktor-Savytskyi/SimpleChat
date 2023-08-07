@@ -39,6 +39,6 @@ final class ChatTableViewCell: UITableViewCell, Registrateble {
             leftConstraint.constant = ChatMessageConstraints.oponentLeft.rawValue
             rightConstraint.constant = ChatMessageConstraints.oponentRight.rawValue
         }
-        containerView.layoutIfNeeded()
+        containerView.setNeedsLayout()
     }
 }

@@ -25,6 +25,8 @@ class UserView: UIView, LoadViewFromNib {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var messageTimeLabel: UILabel!
     @IBOutlet weak var dismissButton: UIButton!
+    @IBOutlet weak var typingStatusStackView: UIStackView!
+    @IBOutlet weak var dotsView: UIView!
     
     var dismissScreenDelegate: DismissScreenDelegate?
     
@@ -45,7 +47,9 @@ class UserView: UIView, LoadViewFromNib {
         userImageView.layer.cornerRadius = userImageView.frame.height / 2
     }
     
-    func configure(user: User? = nil, room: RoomData? = nil, state: CellType) {
+    func configure(user: User? = nil, room: RoomData? = nil,
+                   onlineUsers: [String : String?]?,
+                   state: CellType) {
         messageTimeLabel.isHidden = true
         dismissButton.isHidden = true
         let dateFormatter = DateFormatter()
@@ -68,20 +72,25 @@ class UserView: UIView, LoadViewFromNib {
                 messageTimeLabel.text = ""
             }
         case .chatDetails:
-            messageLabel.text = "Here will be isTyping status"
+            messageLabel.text = ""
         }
         
-//        checkOnlineState(date: user.lastOnlineDate)
         showElementsState(state: state)
-        guard let user else { return }
+        guard let user,
+              let onlineUsers else { return }
+        setCircleColor(user: user, onlineUsers: onlineUsers)
         userFirstLastNameLabel.text = user.firstName + " " + user.lastName
         let placeholderImage = UIImage(systemName: Constants.Strings.avatarPlaceholder)?.withTintColor(.black)
         userImageView.sd_setImage(with: URL(string: user.imageUrl), placeholderImage: placeholderImage)
-
     }
     
-    func checkOnlineState(date: Date?) {
-        
+    func setCircleColor(user: User, onlineUsers: [String : String?]) {
+        let onlineStatus = onlineUsers.first(where: { key, value in
+            user.id == key
+        })?.value
+        circleView.borderColor = onlineStatus == nil
+        ? .tintColor
+        : .black
     }
     
     func showElementsState(state: CellType) {
@@ -94,6 +103,41 @@ class UserView: UIView, LoadViewFromNib {
             dismissButton.isHidden = false
         }        
     }
+    
+    func showTypingAnimation(show: Bool) {
+        if show {
+            messageLabel.text = "typing"
+            createAnimatedDots()
+        } else {
+            messageLabel.text = nil
+            removeAnimatedDots()
+        }
+    }
+    
+    func createAnimatedDots() {
+        let lay = CAReplicatorLayer()
+        lay.frame = CGRect(x: 0, y: -2, width: 6, height: 6)
+        let bar = CALayer()
+        bar.frame = CGRect(x: 0, y: -2, width: 2, height: 2)
+        bar.cornerRadius = bar.frame.height / 2
+        bar.backgroundColor = UIColor.black.cgColor
+        lay.addSublayer(bar)
+        lay.instanceCount = 3
+        lay.instanceTransform = CATransform3DMakeTranslation(6, 0, 0)
+        let anim = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
+        anim.fromValue = 1.0
+        anim.toValue = 0.2
+        anim.duration = 1
+        anim.repeatCount = .infinity
+        bar.add(anim, forKey: nil)
+        lay.instanceDelay = anim.duration / Double(lay.instanceCount)
+        dotsView.layer.addSublayer(lay)
+    }
+    
+    func removeAnimatedDots() {
+        dotsView.layer.sublayers?.removeAll()
+    }
+    
     @IBAction func dismissAction(_ sender: Any) {
         dismissScreenDelegate?.dimsissFromView()
     }

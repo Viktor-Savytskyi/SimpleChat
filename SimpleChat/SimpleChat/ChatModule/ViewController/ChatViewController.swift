@@ -30,6 +30,7 @@ class ChatViewController: UIViewController {
     var isFirstLoading = true
     var chatViewModel: ChatViewModel!
     var chatManager: ChatManager!
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,7 @@ class ChatViewController: UIViewController {
         setupTableView()
         fetchUser(by: oponentID)
         showMessages()
+        setupIsOponentTypingUI()
         messageTextField.delegate = self
     }
     
@@ -50,6 +52,14 @@ class ChatViewController: UIViewController {
             DispatchQueue.main.async {
                 self.messagesTableView.reloadData()
                 self.scrollToBottom(isFirstLoading: self.isFirstLoading)
+            }
+        }
+    }
+    
+    func setupIsOponentTypingUI() {
+        chatViewModel.isOponentTyping { isTyping in
+            DispatchQueue.main.async {
+                self.userView.showTypingAnimation(show: isTyping)
             }
         }
     }
@@ -69,8 +79,15 @@ class ChatViewController: UIViewController {
     
     private func setupUserData() {
         let user = chatViewModel.getOponent()
-        userView.configure(user: user, state: .chatDetails)
+        userView.configure(user: user, onlineUsers: chatViewModel.getOnlineUsers(), state: .chatDetails)
         userView.dismissScreenDelegate = self
+        self.user = user
+        
+        chatViewModel.setupUsersOnlineCompletion(onlineUserCompletion: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.userView.configure(user: self.user, onlineUsers: self.chatViewModel.getOnlineUsers(), state: .chatDetails)
+            }
+        })
     }
     
     private func setupTableView() {
@@ -91,6 +108,7 @@ class ChatViewController: UIViewController {
             self.isFirstLoading = false
         }
     }
+    
     @IBAction func addAttachmentAction(_ sender: Any) {
         print("addAttachment")
         view.endEditing(true)
@@ -131,6 +149,17 @@ extension ChatViewController: UITableViewDelegate {
 }
 
 extension ChatViewController: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        chatViewModel.sendTypingState(userID: CurrentUser.shared.currentUser.id, oponentID: oponentID, userTypingState: .typing)
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        chatViewModel.sendTypingState(userID: CurrentUser.shared.currentUser.id, oponentID: oponentID, userTypingState: .stopTyping)
+        return true
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return true
     }

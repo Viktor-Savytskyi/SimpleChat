@@ -7,7 +7,26 @@
 
 import Foundation
 
+enum UserTypingState: String {
+    case typing
+    case stopTyping
+}
+
+enum MessageField: String {
+    case message
+    case senderID
+    case receiverID
+}
+
+enum WebsocketMessages: String {
+    case connectionLost = "Connection lost"
+    case connected = "Did connect to webSocket"
+    case disconnected = "Did disconnect to webSocket"
+}
+
+
 class ChatManager: NSObject {
+    let webSocketHostName = "ws://127.0.0.1:8080/chat?userID="
     var webSocketTask: URLSessionWebSocketTask?
     var messagesArray: [UserMessage]?
     var completion: (() -> Void)?
@@ -16,7 +35,12 @@ class ChatManager: NSObject {
             tableViewCompletion?()
         }
     }
+    var onlineUsers: [String : String?]?
     var tableViewCompletion: (() -> Void)?
+    var isOponentTypingCompletion: ((Bool) -> Void)?
+    var onlineUsersListCompletion: (() -> Void)?
+    var onlineUserCompletion: (() -> Void)?
+
     
     func setupWebSocket(userID: String) {
         guard webSocketTask == nil else { return }
@@ -24,7 +48,7 @@ class ChatManager: NSObject {
                                  delegate: self,
                                  delegateQueue: OperationQueue())
         
-        let url = URL(string: "ws://127.0.0.1:8080/chat?userID=\(userID)")!
+        let url = URL(string: webSocketHostName + userID)!
         webSocketTask = session.webSocketTask(with: url)
         webSocketTask?.resume()
         getMessagesHistoryPing()
@@ -46,15 +70,30 @@ class ChatManager: NSObject {
     }
     
     func closeWebSocket() {
-        webSocketTask?.cancel(with: .goingAway, reason: "Connection lost".data(using: .utf8))
+        webSocketTask?.cancel(with: .goingAway, reason: WebsocketMessages.connectionLost.rawValue.data(using: .utf8))
     }
     
     func getMessagesHistoryPing() {
         webSocketTask?.sendPing(pongReceiveHandler: { error in
             if let error = error {
-                print("Ping error: ", error)
+                print("Chat manager: Ping error: ", error)
             }
         })
+    }
+    
+    func sendTypingState(userID: String, oponentID: String, userTypingState: UserTypingState) {
+        guard let webSocketTask else { return }
+        let typingMessage = URLSessionWebSocketTask.Message.string(
+                """
+                \(MessageField.senderID.rawValue) : \(userID)
+                \(MessageField.receiverID.rawValue) : \(oponentID)
+                \(MessageField.message.rawValue) : \(userTypingState.rawValue)
+                """)
+        webSocketTask.send(typingMessage) { error in
+            if let error {
+                print("Chat manager: Failed to send \(userTypingState) message: \(error)")
+            }
+        }
     }
     
     func sendMessage(receiverID: String, message: String) {
@@ -66,7 +105,7 @@ class ChatManager: NSObject {
             let message = URLSessionWebSocketTask.Message.data(decodedUserMessage)
             webSocketTask?.send(message) { error in
                 if let error {
-                    print("websocet couldnt send emssage: \(error.localizedDescription)")
+                    print("Chat manager websocet couldnt send emssage: \(error.localizedDescription)")
                 }
             }
         } catch {
@@ -83,15 +122,15 @@ class ChatManager: NSObject {
                     do {
                         let userMessage = try JSONDecoder().decode(UserMessage.self, from: data)
                         self.roomsArray.forEach { room in
-                             if room.users.contains(userMessage.senderID) && room.users.contains(userMessage.receiverID) {
+                            if room.users.contains(userMessage.senderID) && room.users.contains(userMessage.receiverID) {
                                 room.messages.append(userMessage)
                             }
                         }
                     } catch {
-                        print("Error at decoding data into a single message. Try to decode as array!")
+                        print("Error at decoding data into a SINGLE MESSAGE. Try to decode as array!")
                         do {
                             let usersRoom = try JSONDecoder().decode(UserRoom.self, from: data)
-                            if self.roomsArray.filter( { $0.id == usersRoom.id }).count == 0 {
+                            if self.roomsArray.filter({ $0.id == usersRoom.id }).count == 0 {
                                 self.roomsArray.append(usersRoom)
                             }
                         } catch {
@@ -106,7 +145,15 @@ class ChatManager: NSObject {
                         
                     }
                 case .string(let message):
-                    print("Message: \(message)")
+                    let dictMessage = message.convertToDict()
+                    let isOponentTyping = dictMessage[MessageField.message.rawValue] == UserTypingState.typing.rawValue
+                    if dictMessage[MessageField.message.rawValue] == UserTypingState.typing.rawValue || dictMessage[MessageField.message.rawValue] == UserTypingState.stopTyping.rawValue {
+                        self.isOponentTypingCompletion?(isOponentTyping)
+                    } else {
+                        self.onlineUsers = dictMessage
+                        self.onlineUsersListCompletion?()
+                        self.onlineUserCompletion?()
+                    }
                 default:
                     print("Unknown case")
                 }
@@ -125,10 +172,10 @@ class ChatManager: NSObject {
 
 extension ChatManager: URLSessionWebSocketDelegate {
     func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
-            print("Did connect to webSocket")
+        print(WebsocketMessages.connected.rawValue)
     }
     
     func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didCloseWith closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?) {
-        print("Did disconnect to webSocket")
+        print(WebsocketMessages.disconnected.rawValue)
     }
 }

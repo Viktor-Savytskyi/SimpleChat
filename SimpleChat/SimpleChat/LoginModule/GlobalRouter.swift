@@ -24,6 +24,7 @@ final class GlobalRouter {
     
     private init() {
         self.navigationController = .init()
+        self.navigationController.isNavigationBarHidden = true
     }
     
     func getNavigationController() -> UINavigationController {

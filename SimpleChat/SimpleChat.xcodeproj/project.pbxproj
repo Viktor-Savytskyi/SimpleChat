@@ -35,6 +35,7 @@
 		488B2A562A5C01DA00F52973 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A552A5C01DA00F52973 /* LoginViewModel.swift */; };
 		488B2A612A5C023300F52973 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A602A5C023300F52973 /* User.swift */; };
 		488B2A642A5C029200F52973 /* GlobalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B2A632A5C029200F52973 /* GlobalRouter.swift */; };
+		488B506A2A8128C400D29228 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488B50692A8128C400D29228 /* String+Extension.swift */; };
 		488C65BB2A6FBBC700F308A5 /* CustomSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C65BA2A6FBBC700F308A5 /* CustomSearchBarView.swift */; };
 		488C65BD2A6FBBDF00F308A5 /* CustomSearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 488C65BC2A6FBBDF00F308A5 /* CustomSearchBarView.xib */; };
 		488C65C02A6FC19900F308A5 /* LoadViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C65BF2A6FC19900F308A5 /* LoadViewFromNib.swift */; };
@@ -100,6 +101,7 @@
 		488B2A552A5C01DA00F52973 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		488B2A602A5C023300F52973 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		488B2A632A5C029200F52973 /* GlobalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalRouter.swift; sourceTree = "<group>"; };
+		488B50692A8128C400D29228 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		488C65BA2A6FBBC700F308A5 /* CustomSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBarView.swift; sourceTree = "<group>"; };
 		488C65BC2A6FBBDF00F308A5 /* CustomSearchBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSearchBarView.xib; sourceTree = "<group>"; };
 		488C65BF2A6FC19900F308A5 /* LoadViewFromNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadViewFromNib.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 			children = (
 				487300BA2A5D4EE400C35335 /* Application */,
 				488B2A622A5C028400F52973 /* Managers */,
+				488B50682A8128B400D29228 /* Extensions */,
 				4877897A2A617E1400A9FEF6 /* Helpers */,
 				488B2A652A5C039F00F52973 /* Reuseble */,
 				488B2A5F2A5C022600F52973 /* Models */,
@@ -365,6 +368,14 @@
 				489A54B42A64597500592768 /* UserTableViewCell */,
 			);
 			path = UserChatsViewController;
+			sourceTree = "<group>";
+		};
+		488B50682A8128B400D29228 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				488B50692A8128C400D29228 /* String+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		488C65B82A6FBBA000F308A5 /* UserView */ = {
@@ -612,6 +623,7 @@
 				4878E4912A7A335500DD3069 /* CurrentUser.swift in Sources */,
 				487D30962A66D949005051BF /* ChatManager.swift in Sources */,
 				487D308B2A6667C2005051BF /* ChatViewModel.swift in Sources */,
+				488B506A2A8128C400D29228 /* String+Extension.swift in Sources */,
 				487300BE2A5DA68E00C35335 /* FirebaseStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
