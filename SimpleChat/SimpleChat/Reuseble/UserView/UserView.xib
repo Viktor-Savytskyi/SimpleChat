@@ -40,16 +40,17 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbC-pU-pCH" customClass="CircleDrawView" customModule="SimpleChat" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="19" width="55" height="55"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4VI-C4-cys">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4VI-C4-cys">
                                             <rect key="frame" x="2.6666666666666643" y="3.6666666666666643" width="50" height="48.666666666666671"/>
                                             <color key="tintColor" systemColor="labelColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="50" id="Hyw-fW-LCZ"/>
                                                 <constraint firstAttribute="width" secondItem="4VI-C4-cys" secondAttribute="height" multiplier="1:1" id="nXw-Re-MNs"/>
+                                                <constraint firstAttribute="height" constant="50" id="sEG-Oy-blg"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="width" secondItem="rbC-pU-pCH" secondAttribute="height" multiplier="1:1" id="GT2-ip-fta"/>
                                         <constraint firstAttribute="width" constant="55" id="LNn-RP-9Gw"/>
                                         <constraint firstItem="4VI-C4-cys" firstAttribute="centerY" secondItem="rbC-pU-pCH" secondAttribute="centerY" id="Nr8-b1-bhW"/>
                                         <constraint firstItem="4VI-C4-cys" firstAttribute="centerX" secondItem="rbC-pU-pCH" secondAttribute="centerX" id="QXF-nb-9Zs"/>
