@@ -35,12 +35,6 @@ class User: Codable {
         self.lastOnlineDate = lastOnlineDate
     }
     
-    var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        return formatter
-    }()
-    
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
@@ -57,7 +51,7 @@ class User: Codable {
         lastName = try container.decode(String.self, forKey: .lastName)
         imageUrl = try container.decode(String.self, forKey: .imageUrl)
         if let dateString = try container.decodeIfPresent(String.self, forKey: .lastOnlineDate) {
-            lastOnlineDate = dateFormatter.date(from: dateString)
+            lastOnlineDate = DateFormatter.setDateFormat().date(from: dateString)
         }
     }
     

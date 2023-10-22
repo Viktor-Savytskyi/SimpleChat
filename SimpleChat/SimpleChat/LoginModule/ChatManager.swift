@@ -40,7 +40,7 @@ class ChatManager: NSObject {
     var isOponentTypingCompletion: ((Bool) -> Void)?
     var onlineUsersListCompletion: (() -> Void)?
     var onlineUserCompletion: (() -> Void)?
-
+    
     
     func setupWebSocket(userID: String) {
         guard webSocketTask == nil else { return }
@@ -114,58 +114,63 @@ class ChatManager: NSObject {
     }
     
     func reciveMessage(completion: @escaping () -> Void) {
-        webSocketTask?.receive { result in
+        webSocketTask?.receive { [weak self] result in
             switch result {
             case .success(let message):
                 switch message {
                 case .data(let data):
                     do {
-                        let userMessage = try JSONDecoder().decode(UserMessage.self, from: data)
-                        self.roomsArray.forEach { room in
-                            if room.users.contains(userMessage.senderID) && room.users.contains(userMessage.receiverID) {
-                                room.messages.append(userMessage)
-                            }
-                        }
-                    } catch {
-                        print("Error at decoding data into a SINGLE MESSAGE. Try to decode as array!")
-                        do {
-                            let usersRoom = try JSONDecoder().decode(UserRoom.self, from: data)
-                            if self.roomsArray.filter({ $0.id == usersRoom.id }).count == 0 {
-                                self.roomsArray.append(usersRoom)
-                            }
-                        } catch {
-                            print("Error at decoding data into ROOM MODEL \(error)")
-                            do {
-                                let rooms = try JSONDecoder().decode([UserRoom].self, from: data)
-                                self.roomsArray = rooms
-                            } catch {
-                                print("Error at decoding data into message array of messages \(error)")
-                            }
-                        }
-                        
+                        self?.parseImcomingData(data)
                     }
                 case .string(let message):
                     let dictMessage = message.convertToDict()
                     let isOponentTyping = dictMessage[MessageField.message.rawValue] == UserTypingState.typing.rawValue
                     if dictMessage[MessageField.message.rawValue] == UserTypingState.typing.rawValue || dictMessage[MessageField.message.rawValue] == UserTypingState.stopTyping.rawValue {
-                        self.isOponentTypingCompletion?(isOponentTyping)
+                        self?.isOponentTypingCompletion?(isOponentTyping)
                     } else {
-                        self.onlineUsers = dictMessage
-                        self.onlineUsersListCompletion?()
-                        self.onlineUserCompletion?()
+                        self?.onlineUsers = dictMessage
+                        self?.onlineUsersListCompletion?()
+                        self?.onlineUserCompletion?()
                     }
                 default:
                     print("Unknown case")
                 }
             case .failure(let error):
                 print("Something went wrong \(error.localizedDescription)")
-                self.closeWebSocket()
+                self?.closeWebSocket()
             }
-            self.reciveMessage() {
-                self.tableViewCompletion?()
-                self.completion?()
+            self?.reciveMessage() {
+                self?.tableViewCompletion?()
+                self?.completion?()
             }
             completion()
+        }
+    }
+    
+    func parseImcomingData(_ data: Data) {
+        do {
+            let userMessage = try JSONDecoder().decode(UserMessage.self, from: data)
+            roomsArray.forEach { room in
+                if room.users.contains(userMessage.senderID) && room.users.contains(userMessage.receiverID) {
+                    room.messages.append(userMessage)
+                }
+            }
+        } catch {
+            print("Error at decoding data into a SINGLE MESSAGE. Try to decode as array!")
+            do {
+                let usersRoom = try JSONDecoder().decode(UserRoom.self, from: data)
+                if roomsArray.filter({ $0.id == usersRoom.id }).count == 0 {
+                    self.roomsArray.append(usersRoom)
+                }
+            } catch {
+                print("Error at decoding data into ROOM MODEL \(error)")
+                do {
+                    let rooms = try JSONDecoder().decode([UserRoom].self, from: data)
+                    self.roomsArray = rooms
+                } catch {
+                    print("Error at decoding data into message array of messages \(error)")
+                }
+            }
         }
     }
 }

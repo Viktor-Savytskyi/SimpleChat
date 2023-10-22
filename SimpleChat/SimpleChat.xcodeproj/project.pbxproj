@@ -39,6 +39,7 @@
 		488C65BB2A6FBBC700F308A5 /* CustomSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C65BA2A6FBBC700F308A5 /* CustomSearchBarView.swift */; };
 		488C65BD2A6FBBDF00F308A5 /* CustomSearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 488C65BC2A6FBBDF00F308A5 /* CustomSearchBarView.xib */; };
 		488C65C02A6FC19900F308A5 /* LoadViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C65BF2A6FC19900F308A5 /* LoadViewFromNib.swift */; };
+		488FA9892AE54B78004A0CE7 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488FA9882AE54B78004A0CE7 /* DateFormatter+Extension.swift */; };
 		489A54B72A64598900592768 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A54B52A64598900592768 /* UserTableViewCell.swift */; };
 		489A54B82A64598900592768 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 489A54B62A64598900592768 /* UserTableViewCell.xib */; };
 		489A54BB2A645CF000592768 /* UserChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489A54BA2A645CF000592768 /* UserChatsViewModel.swift */; };
@@ -105,6 +106,7 @@
 		488C65BA2A6FBBC700F308A5 /* CustomSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBarView.swift; sourceTree = "<group>"; };
 		488C65BC2A6FBBDF00F308A5 /* CustomSearchBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSearchBarView.xib; sourceTree = "<group>"; };
 		488C65BF2A6FC19900F308A5 /* LoadViewFromNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadViewFromNib.swift; sourceTree = "<group>"; };
+		488FA9882AE54B78004A0CE7 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		489A54B52A64598900592768 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		489A54B62A64598900592768 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		489A54BA2A645CF000592768 /* UserChatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChatsViewModel.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				488B50692A8128C400D29228 /* String+Extension.swift */,
+				488FA9882AE54B78004A0CE7 /* DateFormatter+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				487D30932A66CC54005051BF /* ChatTableViewCell.swift in Sources */,
 				4878E4912A7A335500DD3069 /* CurrentUser.swift in Sources */,
 				487D30962A66D949005051BF /* ChatManager.swift in Sources */,
+				488FA9892AE54B78004A0CE7 /* DateFormatter+Extension.swift in Sources */,
 				487D308B2A6667C2005051BF /* ChatViewModel.swift in Sources */,
 				488B506A2A8128C400D29228 /* String+Extension.swift in Sources */,
 				487300BE2A5DA68E00C35335 /* FirebaseStorage.swift in Sources */,
